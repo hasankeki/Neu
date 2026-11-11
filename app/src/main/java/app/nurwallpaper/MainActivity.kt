@@ -16,7 +16,7 @@ import android.widget.ScrollView
 import android.widget.TextView
 
 class MainActivity : Activity() {
-    private val background = Color.rgb(7, 12, 29)
+    private val backgroundColorValue = Color.rgb(7, 12, 29)
     private val surface = Color.rgb(17, 26, 48)
     private val accent = Color.rgb(74, 222, 224)
     private lateinit var root: LinearLayout
@@ -30,7 +30,7 @@ class MainActivity : Activity() {
         root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(dp(22), dp(28), dp(22), dp(24))
-            setBackgroundColor(background)
+            setBackgroundColor(backgroundColorValue)
         }
 
         val scroll = ScrollView(this).apply {
@@ -97,7 +97,7 @@ class MainActivity : Activity() {
             this.text = text
             isAllCaps = false
             textSize = 15f
-            setTextColor(background)
+            setTextColor(backgroundColorValue)
             setBackgroundTintList(android.content.res.ColorStateList.valueOf(accent))
             setOnClickListener { onClick() }
         }
