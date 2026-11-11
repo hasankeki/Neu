@@ -1,6 +1,7 @@
 package app.nurwallpaper
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.WallpaperManager
 import android.content.ComponentName
 import android.content.Intent
@@ -8,7 +9,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -19,6 +19,7 @@ class MainActivity : Activity() {
     private val backgroundColorValue = Color.rgb(7, 12, 29)
     private val surface = Color.rgb(17, 26, 48)
     private val accent = Color.rgb(74, 222, 224)
+    private val prefs by lazy { getSharedPreferences("nurwallpaper_settings", MODE_PRIVATE) }
     private lateinit var root: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,54 +27,103 @@ class MainActivity : Activity() {
         showHome()
     }
 
-    private fun showHome() {
+    private fun page(): ScrollView {
         root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(dp(22), dp(28), dp(22), dp(24))
             setBackgroundColor(backgroundColorValue)
         }
+        return ScrollView(this).apply { isFillViewport = true; addView(root) }
+    }
 
-        val scroll = ScrollView(this).apply {
-            isFillViewport = true
-            addView(root)
-        }
-
+    private fun showHome() {
+        val scroll = page()
         root.addView(label("NUR", 13f, accent, true))
         root.addView(label("NurWallpaper", 30f, Color.WHITE, true), margin(top = 5))
         root.addView(label("Erinnerungen, die dich durch den Tag begleiten.", 15f, 0xFFB8C4D9.toInt()), margin(top = 8, bottom = 22))
-
         root.addView(sectionTitle("DEINE BIBLIOTHEK"))
         root.addView(categoryButton("Verse", "Koranverse mit Quelle und Übersetzung") { showCategory("Verse") }, margin(top = 12))
-        root.addView(categoryButton("Hadithe", "Überlieferungen aus Bukhārī und Muslim") { showCategory("Hadithe") }, margin(top = 10))
+        root.addView(categoryButton("Hadithe", "Ausschließlich Bukhārī und Muslim") { showCategory("Hadithe") }, margin(top = 10))
         root.addView(categoryButton("Duʿāʾ & Dhikr", "Bittgebete und Gedenken") { showCategory("Duʿāʾ & Dhikr") }, margin(top = 10))
         root.addView(categoryButton("Esmaül Hüsna", "Die 99 schönen Namen Allahs") { showCategory("Esmaül Hüsna") }, margin(top = 10))
-
         root.addView(sectionTitle("WALLPAPER"), margin(top = 26, bottom = 10))
         root.addView(label("Wähle NurWallpaper als Hintergrund für deinen Start- oder Sperrbildschirm.", 14f, 0xFFB8C4D9.toInt()))
         root.addView(actionButton("Live-Wallpaper auswählen") { openWallpaperPicker() }, margin(top = 12))
+        root.addView(actionButton("Einstellungen") { showSettings() }, margin(top = 10))
         root.addView(label("Offline · Ohne Konto · Ohne Werbung", 12f, 0xFF8492AA.toInt()), margin(top = 20))
         setContentView(scroll)
     }
 
     private fun showCategory(name: String) {
-        root = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(dp(22), dp(28), dp(22), dp(24))
-            setBackgroundColor(background)
-        }
-        val scroll = ScrollView(this).apply { isFillViewport = true; addView(root) }
+        val scroll = page()
         root.addView(actionButton("← Zurück") { showHome() }, margin(bottom = 28))
         root.addView(label("BIBLIOTHEK", 13f, accent, true))
         root.addView(label(name, 28f, Color.WHITE, true), margin(top = 6, bottom = 18))
-        root.addView(label(
-            "Dieser Bereich wird gerade mit geprüften Inhalten aufgebaut. Es werden nur Einträge angezeigt, deren Wortlaut, Fundstelle, Übersetzung und Nutzungsrechte ausreichend geprüft sind.",
-            16f, 0xFFD1DAE8.toInt()
-        ), margin(top = 4))
-        root.addView(label(
-            "Noch keine Inhalte zur Veröffentlichung freigegeben.",
-            14f, accent, true
-        ), margin(top = 22))
+        root.addView(label("Dieser Bereich wird mit geprüften Inhalten aufgebaut. Wortlaut, Fundstelle, Übersetzung und Nutzungsrechte werden vor der Freigabe geprüft.", 16f, 0xFFD1DAE8.toInt()), margin(top = 4))
+        root.addView(label("Noch keine Inhalte zur Veröffentlichung freigegeben.", 14f, accent, true), margin(top = 22))
         setContentView(scroll)
+    }
+
+    private fun showSettings() {
+        val scroll = page()
+        root.addView(actionButton("← Zurück") { showHome() }, margin(bottom = 24))
+        root.addView(label("Einstellungen", 28f, Color.WHITE, true))
+        root.addView(label("Sprache", 13f, accent, true), margin(top = 24))
+        settingRow("Anzeigesprache", languageLabel(), "Deutsch", "Türkçe", "English", "العربية") { value ->
+            val code = when (value) { "Türkçe" -> "tr"; "English" -> "en"; "العربية" -> "ar"; else -> "de" }
+            prefs.edit().putString("language", code).apply()
+            showSettings()
+        }
+        root.addView(label("Rotation", 13f, accent, true), margin(top = 22))
+        settingRow("Wie oft soll sich der Inhalt ändern?", rotationLabel(), "Nie", "Selten", "Oft", "Nur Favoriten") { value ->
+            prefs.edit().putString("rotation", value).apply()
+            showSettings()
+        }
+        root.addView(label("Darstellung", 13f, accent, true), margin(top = 22))
+        val animationEnabled = prefs.getBoolean("light_effect", true)
+        root.addView(categoryButton("Lichtstreifen", if (animationEnabled) "Aktiviert" else "Deaktiviert") {
+            prefs.edit().putBoolean("light_effect", !animationEnabled).apply()
+            showSettings()
+        }, margin(top = 10))
+        root.addView(label("Der dynamische Kontrastschutz bleibt immer aktiv, damit arabischer Text, Übersetzung und Quelle lesbar bleiben.", 13f, 0xFFB8C4D9.toInt()), margin(top = 18))
+        root.addView(actionButton("Quellen und Lizenzen") { showSources() }, margin(top = 24))
+        setContentView(scroll)
+    }
+
+    private fun showSources() {
+        val scroll = page()
+        root.addView(actionButton("← Zurück zu Einstellungen") { showSettings() }, margin(bottom = 24))
+        root.addView(label("Quellen und Lizenzen", 26f, Color.WHITE, true))
+        root.addView(label("Korantext: vorgesehene Grundlage ist die Tanzil-Ausgabe. Übersetzungen benötigen jeweils eine eigene Rechteprüfung und Attribution. Hadith-Quellen der offiziellen Bibliothek: Ṣaḥīḥ al-Bukhārī und Ṣaḥīḥ Muslim.", 15f, 0xFFD1DAE8.toInt()), margin(top = 18))
+        root.addView(label("Ein Inhalt wird erst veröffentlicht, wenn Originalwortlaut, genaue Fundstelle, Übersetzung, Nutzungsrechte und fachliche Prüfung dokumentiert sind.", 14f, accent), margin(top = 16))
+        setContentView(scroll)
+    }
+
+    private fun languageLabel() = when (prefs.getString("language", "de")) {
+        "tr" -> "Türkçe"; "en" -> "English"; "ar" -> "العربية"; else -> "Deutsch"
+    }
+
+    private fun rotationLabel() = prefs.getString("rotation", "Nie") ?: "Nie"
+
+    private fun settingRow(title: String, current: String, vararg options: String, onChoose: (String) -> Unit) {
+        val row = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(16), dp(14), dp(16), dp(14))
+            background = rounded(surface, 14)
+            isClickable = true
+            isFocusable = true
+            setOnClickListener {
+                AlertDialog.Builder(this@MainActivity)
+                    .setTitle(title)
+                    .setSingleChoiceItems(options, options.indexOf(current)) { dialog, which ->
+                        dialog.dismiss()
+                        onChoose(options[which])
+                    }.setNegativeButton("Abbrechen", null).show()
+            }
+        }
+        row.addView(label(title, 15f, Color.WHITE, true))
+        row.addView(label(current + "  ›", 14f, accent), margin(top = 6))
+        root.addView(row, margin(top = 9))
     }
 
     private fun categoryButton(title: String, subtitle: String, onClick: () -> Unit): View {
@@ -126,10 +176,7 @@ class MainActivity : Activity() {
 
     private fun openWallpaperPicker() {
         val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER).apply {
-            putExtra(
-                WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                ComponentName(this@MainActivity, NurWallpaperService::class.java)
-            )
+            putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT, ComponentName(this@MainActivity, NurWallpaperService::class.java))
         }
         startActivity(intent)
     }
