@@ -29,6 +29,19 @@ Content scopes. Start with pre-live credentials and endpoints; move to productio
 after production access is approved. Never mix credentials and endpoints from different
 environments.
 
+## Zero-cost project rule
+
+NurWallpaper must be developed and operated with **0 EUR in additional costs**.
+Do not enable paid plans, paid add-ons, paid API tiers, free trials that require
+billing activation, or services that can automatically switch to paid usage.
+Before any deployment, verify that the selected service can remain free without
+adding a payment method or enabling billing. If no suitable option exists, keep
+the audio backend undeployed and audio disabled; do not incur a charge.
+
+The backend applies a 15-second timeout to both Quran Foundation OAuth and
+Content API requests. A timeout is returned as an upstream error; it does not
+trigger paid retries or background work.
+
 ## Run locally
 
 ```sh
