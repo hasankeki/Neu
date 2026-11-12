@@ -185,7 +185,9 @@ class AudioPlayerActivity : Activity() {
                 val json = requestJson("$base/v1/audio?verse_key=$encodedKey&recitation_id=${reciter.id}")
                 val audioUrl = json.optString("audio_url", "")
                 if (!audioUrl.startsWith("https://")) throw IllegalStateException("Ungültige Audio-Adresse.")
-                runOnUiThread { preparePlayback(audioUrl, reciter) }
+                runOnUiThread {
+                    if (!isFinishing && !isDestroyed) preparePlayback(audioUrl, reciter)
+                }
             } catch (error: Exception) {
                 runOnUiThread {
                     playButton.isEnabled = true
@@ -202,6 +204,10 @@ class AudioPlayerActivity : Activity() {
         val media = MediaPlayer()
         player = media
         media.setOnPreparedListener {
+            if (player !== it || isFinishing || isDestroyed) {
+                runCatching { it.release() }
+                return@setOnPreparedListener
+            }
             if (android.os.Build.VERSION.SDK_INT >= 23) {
                 runCatching { it.setPlaybackParams(PlaybackParams().setSpeed(speed)) }
             }
