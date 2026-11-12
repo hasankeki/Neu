@@ -232,8 +232,10 @@ class AudioPlayerActivity : Activity() {
                 current.pause()
                 playButton.text = "▶ Fortsetzen"
                 status.text = "Pausiert."
-            } else if (current != null && current.currentPosition > 0) {
-                current.start()
+            } else if (current != null && runCatching {
+                    if (current.currentPosition >= current.duration) current.seekTo(0)
+                    current.start()
+                }.isSuccess) {
                 playButton.text = "Ⅱ Pause"
                 status.text = "Wiedergabe läuft."
             } else {
