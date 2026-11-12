@@ -197,7 +197,9 @@ class MainActivity : Activity() {
         val scroll = page()
         root.addView(actionButton("← Zurück zu Einstellungen") { showSettings() }, margin(bottom = 24))
         root.addView(label("Quellen und Lizenzen", 26f, Color.WHITE, true))
-        root.addView(label("Korantext: vorgesehene Grundlage ist die Tanzil-Ausgabe. Übersetzungen benötigen jeweils eine eigene Rechteprüfung und Attribution. Hadith-Quellen der offiziellen Bibliothek: Ṣaḥīḥ al-Bukhārī und Ṣaḥīḥ Muslim.", 15f, 0xFFF0E7D6.toInt()), margin(top = 18))
+        root.addView(label("Korantext: Tanzil Quran Text (Uthmani, Version 1.1). Copyright (C) 2007–2021 Tanzil Project. Lizenz: Creative Commons Attribution 3.0 (CC BY 3.0). Der arabische Text wird wortgetreu übernommen und nicht verändert. Quelle und Updates: tanzil.net", 14f, 0xFFF0E7D6.toInt()), margin(top = 18))
+        root.addView(label("Hadith-Primärsammlungen: ausschließlich Ṣaḥīḥ al-Bukhārī und Ṣaḥīḥ Muslim. Die drei derzeit freigegebenen mehrsprachigen Übersetzungen stammen von HadeethEnc.com / Rowad Translation Center, veröffentlicht durch das Islamic Propagation Office in Rabwah. Sprachversionen: Deutsch v1.58.0 · Türkisch v1.71.0 · Englisch v1.25.0. Die Texte werden unverändert und mit Quellen-/Versionsangabe geführt.", 14f, 0xFFF0E7D6.toInt()), margin(top = 14))
+        root.addView(label("Sunnah.com dient bei den noch nicht freigegebenen Einträgen ausschließlich zur Fundstellen- und Wortlautkontrolle; dortige moderne Übersetzungen werden nicht ohne eigene Lizenz übernommen. Quran-Übersetzungen benötigen je Sprache eine dokumentierte Lizenz, Versionsangabe und Attribution.", 13f, 0xFFBBA77E.toInt()), margin(top = 14))
         root.addView(label("Ein Inhalt wird erst veröffentlicht, wenn Originalwortlaut, genaue Fundstelle, Übersetzung, Nutzungsrechte und fachliche Prüfung dokumentiert sind.", 14f, accent), margin(top = 16))
         setContentView(scroll)
     }
