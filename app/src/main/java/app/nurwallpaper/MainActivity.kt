@@ -59,8 +59,36 @@ class MainActivity : Activity() {
         root.addView(actionButton("← Zurück") { showHome() }, margin(bottom = 28))
         root.addView(label("BIBLIOTHEK", 13f, accent, true))
         root.addView(label(name, 28f, Color.WHITE, true), margin(top = 6, bottom = 18))
-        root.addView(label("Dieser Bereich wird mit geprüften Inhalten aufgebaut. Wortlaut, Fundstelle, Übersetzung und Nutzungsrechte werden vor der Freigabe geprüft.", 16f, 0xFFD1DAE8.toInt()), margin(top = 4))
-        root.addView(label("Noch keine Inhalte zur Veröffentlichung freigegeben.", 14f, accent, true), margin(top = 22))
+        val category = when (name) {
+            "Verse" -> ContentCategory.VERSE
+            "Hadithe" -> ContentCategory.HADITH
+            "Duʿāʾ & Dhikr" -> ContentCategory.DUA_DHIKR
+            "Esmaül Hüsna" -> ContentCategory.ASMA_UL_HUSNA
+            else -> null
+        }
+        val language = prefs.getString("language", "de") ?: "de"
+        val repository = runCatching { ContentLibraryLoader.load(this) }.getOrElse {
+            root.addView(label("Die lokale Inhaltsdatei konnte nicht gelesen werden.", 14f, 0xFFFFB4AB.toInt()))
+            setContentView(scroll)
+            return
+        }
+        val items = repository.approved(category)
+        if (items.isEmpty()) {
+            root.addView(label("Noch keine Inhalte zur Veröffentlichung freigegeben.", 15f, 0xFFD1DAE8.toInt()), margin(top = 4))
+            root.addView(label("Ungeprüfte oder unvollständige Einträge bleiben bewusst unsichtbar. Sobald geprüfte Inhalte samt Übersetzungen und Lizenzangaben freigegeben sind, erscheinen sie hier automatisch.", 13f, 0xFF9EADC4.toInt()), margin(top = 12))
+        } else {
+            val favorites = FavoriteStore(prefs)
+            items.forEach { item ->
+                val text = item.textFor(language) ?: item.originalText
+                root.addView(categoryButton(text, "${item.source.collection} · ${item.source.locator}") {}, margin(top = 10))
+                root.addView(actionButton(
+                    if (favorites.contains(item.id)) "★ Favorit entfernen" else "☆ Als Favorit speichern"
+                ) {
+                    favorites.toggle(item.id)
+                    showCategory(name)
+                }, margin(top = 6))
+            }
+        }
         setContentView(scroll)
     }
 
