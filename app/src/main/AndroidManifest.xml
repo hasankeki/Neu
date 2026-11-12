@@ -4,6 +4,9 @@
         android:name="android.software.live_wallpaper"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="false"
         android:label="NurWallpaper"
