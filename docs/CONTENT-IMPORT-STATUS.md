@@ -11,7 +11,7 @@ Wichtig: Auswahl-/Inhaltsfreigabe und technische Veröffentlichungsreife sind ge
 
 ## Aktueller technischer Stand
 
-`app/src/main/assets/content-library.json` enthält inzwischen 15 Datensätze: 3 bestehen den technischen Release-Gate und werden in der App angezeigt; 12 bestätigte Auswahl-Einträge sind mit arabischem Originalwortlaut und genauer Fundstelle gesichert, bleiben aber wegen noch fehlender lizenzierter Übersetzungen und/oder dokumentierter Fachprüfung verborgen. Die Auswahl wird nicht erneut zur Diskussion gestellt.
+`app/src/main/assets/content-library.json` enthält inzwischen 144 Datensätze: 27 Hadithe, 14 Koranverse, 4 allgemeine Dhikr-Formeln und 99 Esmaül-Hüsna-Namen. Alle 144 Einträge sind als `CONFIRMED` markiert. 3 Hadithe bestehen den technischen Release-Gate und werden in der App angezeigt; 24 Hadithe, 14 Verse, 4 Dhikr-Formeln und 99 Namen bleiben wegen noch offener Übersetzungs-, Rechte- und/oder Fachprüfungsnachweise verborgen. Die redaktionelle Auswahl wird nicht erneut zur Diskussion gestellt.
 
 Die vorhandene Arbeitsgrundlage umfasst:
 - `NurWallpaper-Dua-Dhikr-Katalog-v0.7.md` (878 Zeilen; konsolidierter Redaktions- und Quellen-Audit-Katalog).
@@ -111,7 +111,7 @@ Die zuvor vom Nutzer bestätigten Inhalte wurden in `app/src/main/assets/content
 
 Die HadeethEnc-Übersetzungen werden unverändert mit den dokumentierten Sprachversionen und den Wiederveröffentlichungsbedingungen geführt: DE v1.58.0, TR v1.71.0, EN v1.25.0. Die jeweiligen HadeethEnc-Einträge sind in den Datensätzen als Übersetzungsquelle und Attribution eingetragen. Die Hadith-Sammlung bleibt strikt auf Bukhārī und Muslim beschränkt.
 
-Der App-Katalog enthält damit erstmals **3 technisch vollständige Hadith-Datensätze**. Die restlichen vom Nutzer bestätigten Auswahl-Einträge werden in den nächsten Import-Batches ergänzt; neue Recherchekandidaten werden nicht mit bestätigten Auswahlen vermischt.
+Der App-Katalog enthält damit erstmals **3 technisch vollständige Hadith-Datensätze**. Der aktuelle Importstand wurde inzwischen auf 144 bestätigte Datensätze erweitert (siehe den aktuellen Status am Ende dieses Dokuments). Weitere Recherchekandidaten werden nicht mit bestätigten Auswahlen vermischt.
 
 
 ## Import-Batch – bestätigte Auswahlen (12.11.2026)
@@ -185,3 +185,31 @@ Zusätzlich wurde Muslim 2702a (Istighfār hundertmal am Tag) als eigener Hadith
 Die in der Ayat-Ergänzung ausdrücklich ausgewählten Themen (Firʿaun, zwei Gewässer, Bienen, Zakariyyā, Yaʾjūj/Maʾjūj, Geduld, Erleichterung, Barmherzigkeit, Dhikr der Herzen, diesseitiges Leben und Ribā) sind als bestätigte, aber noch gesperrte Einträge abgelegt. Der arabische Arbeitswortlaut muss vor Freigabe zeichengetreu mit Tanzil Uthmani 1.1 abgeglichen und unverändert übernommen werden.
 
 Die CI-Validierung und der Android-Build müssen nach diesem Batch erneut erfolgreich laufen. Ein bestandener JSON-/Build-Test ersetzt weder die menschliche religiöse Fachprüfung noch einen Gerätetest.
+
+
+## Verbindlicher Gesamtstand – 12.11.2026, letzter Abgleich
+
+Die aktuelle Datei `app/src/main/assets/content-library.json` wurde direkt gegen den Entwicklungszweig geprüft. Ergebnis:
+
+| Bereich | Importiert | Technisch release-ready | Noch verborgen |
+|---|---:|---:|---:|
+| Hadithe (ausschließlich Bukhārī/Muslim) | 27 | 3 | 24 |
+| Koranverse | 14 | 0 | 14 |
+| Allgemeiner Dhikr | 4 | 0 | 4 |
+| Esmaül Hüsna | 99 | 0 | 99 |
+| **Gesamt** | **144** | **3** | **141** |
+
+Alle 144 Datensätze besitzen eine eindeutige ID und den Auswahlstatus `CONFIRMED`. Der Status `CONFIRMED` bedeutet: redaktionell ausgewählt und in den Projektkatalog importiert. Er bedeutet ausdrücklich nicht, dass der Eintrag bereits zur Veröffentlichung freigegeben ist.
+
+Die App-Logik zeigt ausschließlich `APPROVED_FOR_RELEASE`-Datensätze, die zusätzlich drei vollständige, getrennt dokumentierte DE/TR/EN-Übersetzungen, Quellen-/Lizenz-/Attributionsangaben und einen menschlichen Prüfvermerk besitzen. Derzeit bestehen genau die drei oben genannten Hadith-Datensätze diesen Gate. Die übrigen 141 bleiben unsichtbar; es werden weder Arbeitsübersetzungen noch nicht belegte Rechte als fertige Inhalte ausgegeben.
+
+Die früheren Abschnitte dieses Dokuments, die von 12 bestätigten, noch verborgenen Datensätzen sprechen, beschreiben einen historischen Zwischenstand und sind durch diese Gesamtübersicht ersetzt. Die 99 Namen bleiben als traditionelle Zusammenstellung gekennzeichnet; Bukhārī 6410 und Muslim 2677 werden nicht fälschlich als Einzelüberlieferung dieser konkreten Liste dargestellt.
+
+Geprüfte Kategorien und Quellenregeln:
+- Hadithe: nur Ṣaḥīḥ al-Bukhārī und Ṣaḥīḥ Muslim.
+- Korantext: Tanzil Uthmani 1.1, unverändert und mit CC BY 3.0-Attribution.
+- Übersetzungen: separate Rechte und Versionsnachweise pro Sprache.
+- Esmaül Hüsna: traditionelle Liste, nicht als authentisch einzeln überlieferte Hadith-Aufzählung ausgegeben.
+- Audio-Rezitatoren: weiterhin nicht freigegeben; keine Audio- oder Backend-Veröffentlichung.
+
+Letzter Abgleich: 12.11.2026. Branch: `feature/free-foundation-golden-flow`.
