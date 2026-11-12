@@ -67,8 +67,9 @@ class ContentRotationManager(private val preferences: SharedPreferences) {
         }
         if (pool.isEmpty()) return null
 
-        val poolKey = pool.map { it.id }.sorted().joinToString("|").hashCode()
-        val seenKey = "rotation_seen_${mode.name}_$poolKey"
+        val poolKey = pool.map { it.id }.sorted().joinToString("|")
+        val poolScope = if (mode == RotationMode.FAVORITES_ONLY) "favorites" else "all"
+        val seenKey = "rotation_seen_${poolScope}_$poolKey"
         val seen = preferences.getStringSet(seenKey, emptySet())?.toMutableSet()
             ?: mutableSetOf()
 
