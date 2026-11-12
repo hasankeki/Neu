@@ -402,5 +402,15 @@
         "Menschliche sprachliche/fachkundige Freigabe nicht dokumentiert"
       ]
     }
+  ],
+  "confirmedSelections": [
+    {
+      "id": "asma-ul-husna-99",
+      "category": "ASMA_UL_HUSNA",
+      "expectedCount": 99,
+      "selectionStatus": "CONFIRMED",
+      "importStatus": "SOURCE_ARTIFACT_RECOVERY_REQUIRED",
+      "note": "Die Auswahl aller 99 Namen wurde am 10.11.2026 vom Nutzer akzeptiert. Im aktuellen Repository und in den auffindbaren Projektdateien liegt jedoch keine konkrete, vollständige 99-Namen-Liste mit Arabisch, DE/TR/EN-Bedeutungen, genauer Quelle und Rechteangaben vor. Ein früherer Assistent meldete einen Import, die aktuelle Git-Historie enthält aber keine entsprechenden Datensätze. Deshalb wird die bestätigte Auswahl festgehalten, aber keine Liste rekonstruiert oder als verifiziert ausgegeben."
+    }
   ]
 }
