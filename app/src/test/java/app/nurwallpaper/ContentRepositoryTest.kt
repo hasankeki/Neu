@@ -71,6 +71,23 @@ class ContentRepositoryTest {
     }
 
     @Test
+    fun arabicDisplayKeepsArabicAndUsesSelectedTranslation() {
+        assertEquals("de", translationLanguageFor("ar", "de"))
+        assertEquals("tr", translationLanguageFor("ar", "tr"))
+        assertEquals("en", translationLanguageFor("ar", "en"))
+    }
+
+    @Test
+    fun unsupportedDisplayLanguageFallsBackToGermanTranslation() {
+        assertEquals("de", translationLanguageFor("ar", "fr"))
+    }
+
+    @Test
+    fun normalDisplayLanguageRemainsTheTranslationLanguage() {
+        assertEquals("tr", translationLanguageFor("tr", "de"))
+    }
+
+    @Test
     fun duplicateTranslationLanguageIsRejected() {
         assertFalse(
             approvedItem(
