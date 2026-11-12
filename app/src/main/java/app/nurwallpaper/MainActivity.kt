@@ -90,6 +90,11 @@ class MainActivity : Activity() {
                     root.addView(label(translation, 16f, 0xFFF0E7D6.toInt()), margin(top = 10))
                 }
                 root.addView(label("${item.source.collection} · ${item.source.locator}", 12f, 0xFFE2B453.toInt()), margin(top = 8))
+                if (category == ContentCategory.VERSE && Regex("^[1-9][0-9]{0,2}:[1-9][0-9]{0,2}$").matches(item.source.locator.trim())) {
+                    root.addView(actionButton("▶ Aya anhören") {
+                        startActivity(Intent(this, AudioPlayerActivity::class.java).putExtra(AudioPlayerActivity.EXTRA_VERSE_KEY, item.source.locator.trim()))
+                    }, margin(top = 8))
+                }
                 root.addView(actionButton(
                     if (favorites.contains(item.id)) "★ Favorit entfernen" else "☆ Als Favorit speichern"
                 ) {
@@ -133,6 +138,12 @@ class MainActivity : Activity() {
             prefs.edit().putInt("prayer_school", if (value == "Hanafi") 1 else 0).apply()
             showSettings()
         }
+        root.addView(label("Audio", 13f, accent, true), margin(top = 22))
+        val audioApiUrl = prefs.getString("audio_api_base_url", "").orEmpty()
+        root.addView(categoryButton("Audio-Server verbinden", if (audioApiUrl.isBlank()) "Noch nicht eingerichtet" else audioApiUrl) {
+            editAudioApiUrl()
+        }, margin(top = 10))
+        root.addView(label("Die Wiedergabe startet nur nach deinem Klick und spielt ausschließlich die ausgewählte Aya online ab.", 12f, 0xFFBBA77E.toInt()), margin(top = 8))
         root.addView(label("Darstellung", 13f, accent, true), margin(top = 22))
         val animationEnabled = prefs.getBoolean("light_effect", true)
         root.addView(categoryButton("Lichtstreifen", if (animationEnabled) "Aktiviert" else "Deaktiviert") {
@@ -142,6 +153,33 @@ class MainActivity : Activity() {
         root.addView(label("Der dynamische Kontrastschutz bleibt immer aktiv, damit arabischer Text, Übersetzung und Quelle lesbar bleiben.", 13f, 0xFFE8DDC7.toInt()), margin(top = 18))
         root.addView(actionButton("Quellen und Lizenzen") { showSources() }, margin(top = 24))
         setContentView(scroll)
+    }
+
+    private fun editAudioApiUrl() {
+        val field = android.widget.EditText(this).apply {
+            hint = "https://dein-audio-server.example"
+            setSingleLine(true)
+            setText(prefs.getString("audio_api_base_url", ""))
+            inputType = android.text.InputType.TYPE_TEXT_VARIATION_URI
+        }
+        AlertDialog.Builder(this)
+            .setTitle("Audio-Backend-Adresse")
+            .setMessage("Hier kommt später die HTTPS-Adresse des bereitgestellten NurWallpaper-Audio-Servers hinein. Keine Quran-Foundation-Zugangsdaten hier eintragen.")
+            .setView(field)
+            .setPositiveButton("Speichern") { _, _ ->
+                val value = field.text.toString().trim().trimEnd('/')
+                if (value.isBlank() || value.startsWith("https://")) {
+                    prefs.edit().putString("audio_api_base_url", value).apply()
+                    showSettings()
+                } else {
+                    AlertDialog.Builder(this)
+                        .setMessage("Bitte eine sichere HTTPS-Adresse eingeben.")
+                        .setPositiveButton("OK", null)
+                        .show()
+                }
+            }
+            .setNegativeButton("Abbrechen", null)
+            .show()
     }
 
     private fun showSources() {
