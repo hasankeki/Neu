@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.Shader
+import android.content.SharedPreferences
 import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
 import kotlin.random.Random
@@ -15,6 +16,23 @@ class NurWallpaperService : WallpaperService() {
     override fun onCreateEngine(): Engine = NurEngine()
 
     private inner class NurEngine : Engine() {
+        private val preferences by lazy {
+            getSharedPreferences("nurwallpaper_settings", MODE_PRIVATE)
+        }
+        private val settingsListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == "language" || key == "light_effect") drawFrame()
+        }
+
+        override fun onCreate(surfaceHolder: SurfaceHolder) {
+            super.onCreate(surfaceHolder)
+            preferences.registerOnSharedPreferenceChangeListener(settingsListener)
+        }
+
+        override fun onDestroy() {
+            preferences.unregisterOnSharedPreferenceChangeListener(settingsListener)
+            super.onDestroy()
+        }
+
         private val skyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         private val mountainPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         private val ridgePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -97,10 +115,13 @@ class NurWallpaperService : WallpaperService() {
             panelPaint.shader = null
 
             canvas.drawText("NurWallpaper", centerX, centerY - 5f, titlePaint)
-            canvas.drawText(
-                "Erst die Botschaft, dann die Effekte.",
-                centerX, centerY + 43f, subtitlePaint
-            )
+            val tagline = when (preferences.getString("language", "de")) {
+                "tr" -> "Önce mesaj, sonra efektler."
+                "en" -> "The message comes before the effects."
+                "ar" -> "الرسالة أولاً، ثم المؤثرات."
+                else -> "Erst die Botschaft, dann die Effekte."
+            }
+            canvas.drawText(tagline, centerX, centerY + 43f, subtitlePaint)
         }
 
         private fun drawMountain(canvas: Canvas, width: Float, height: Float, base: Float, color: Int, variation: Float) {
@@ -117,7 +138,9 @@ class NurWallpaperService : WallpaperService() {
             }
             mountainPaint.color = color
             canvas.drawPath(path, mountainPaint)
-            canvas.drawPath(path, ridgePaint)
+            if (preferences.getBoolean("light_effect", true)) {
+                canvas.drawPath(path, ridgePaint)
+            }
         }
     }
 }
