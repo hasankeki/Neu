@@ -108,6 +108,7 @@ class MainActivity : Activity() {
             prefs.edit().putString("rotation", value).apply()
             showSettings()
         }
+        root.addView(label("Oft: alle 30 Minuten · Selten: alle 3 Stunden · Nur Favoriten: alle 30 Minuten, ausschließlich aus deinen Favoriten. Der Wechsel erfolgt nach Zeitintervall, nicht bei jedem Entsperren.", 12f, 0xFF9EADC4.toInt()), margin(top = 8))
         root.addView(label("Darstellung", 13f, accent, true), margin(top = 22))
         val animationEnabled = prefs.getBoolean("light_effect", true)
         root.addView(categoryButton("Lichtstreifen", if (animationEnabled) "Aktiviert" else "Deaktiviert") {
