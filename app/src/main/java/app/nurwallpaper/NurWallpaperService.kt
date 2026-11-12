@@ -7,6 +7,9 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.Shader
+import android.text.Layout
+import android.text.StaticLayout
+import android.text.TextPaint
 import android.content.SharedPreferences
 import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
@@ -33,6 +36,24 @@ class NurWallpaperService : WallpaperService() {
             super.onDestroy()
         }
 
+        private val contentRepository by lazy { runCatching { ContentLibraryLoader.load(this@NurWallpaperService) }.getOrElse { ContentRepository() } }
+        private val contentPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.WHITE
+            textSize = 38f
+            textAlign = Paint.Align.CENTER
+            setShadowLayer(5f, 0f, 2f, Color.BLACK)
+        }
+        private val translationPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.rgb(224, 232, 242)
+            textSize = 24f
+            textAlign = Paint.Align.CENTER
+            setShadowLayer(4f, 0f, 1f, Color.BLACK)
+        }
+        private val sourcePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.rgb(150, 190, 205)
+            textSize = 17f
+            textAlign = Paint.Align.CENTER
+        }
         private val skyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         private val mountainPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         private val ridgePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -114,15 +135,50 @@ class NurWallpaperService : WallpaperService() {
             canvas.drawRoundRect(panel, 34f, 34f, panelPaint)
             panelPaint.shader = null
 
-            canvas.drawText("NurWallpaper", centerX, centerY - 5f, titlePaint)
-            val tagline = when (preferences.getString("language", "de")) {
-                "tr" -> "Önce mesaj, sonra efektler."
-                "en" -> "The message comes before the effects."
-                "ar" -> "الرسالة أولاً، ثم المؤثرات."
-                else -> "Erst die Botschaft, dann die Effekte."
+            val language = preferences.getString("language", "de") ?: "de"
+            val firstApproved = contentRepository.approved().firstOrNull()
+            if (firstApproved == null) {
+                canvas.drawText("NurWallpaper", centerX, centerY - 5f, titlePaint)
+                val tagline = when (language) {
+                    "tr" -> "Önce mesaj, sonra efektler."
+                    "en" -> "The message comes before the effects."
+                    "ar" -> "الرسالة أولاً، ثم المؤثرات."
+                    else -> "Erst die Botschaft, dann die Effekte."
+                }
+                canvas.drawText(tagline, centerX, centerY + 43f, subtitlePaint)
+            } else {
+                val width = (w * 0.82f).toInt().coerceAtLeast(1)
+                val arabic = makeLayout(firstApproved.originalText, contentPaint, width, Layout.Alignment.ALIGN_CENTER)
+                val translation = firstApproved.textFor(language)?.let {
+                    makeLayout(it, translationPaint, width, Layout.Alignment.ALIGN_CENTER)
+                }
+                var blockHeight = arabic.height + (translation?.height ?: 0) + 34f
+                val top = (centerY - blockHeight / 2f).coerceAtLeast(24f)
+                canvas.save()
+                canvas.translate((w - width) / 2f, top)
+                arabic.draw(canvas)
+                canvas.restore()
+                var nextY = top + arabic.height + 22f
+                if (translation != null) {
+                    canvas.save()
+                    canvas.translate((w - width) / 2f, nextY)
+                    translation.draw(canvas)
+                    canvas.restore()
+                    nextY += translation.height + 12f
+                }
+                canvas.drawText(
+                    "${firstApproved.source.collection} · ${firstApproved.source.locator}",
+                    centerX, nextY + 8f, sourcePaint
+                )
             }
-            canvas.drawText(tagline, centerX, centerY + 43f, subtitlePaint)
         }
+
+        private fun makeLayout(text: String, paint: TextPaint, width: Int, alignment: Layout.Alignment): StaticLayout =
+            StaticLayout.Builder.obtain(text, 0, text.length, paint, width)
+                .setAlignment(alignment)
+                .setTextDirection(android.text.TextDirectionHeuristics.FIRSTSTRONG_LTR)
+                .setIncludePad(true)
+                .build()
 
         private fun drawMountain(canvas: Canvas, width: Float, height: Float, base: Float, color: Int, variation: Float) {
             val path = Path().apply {
