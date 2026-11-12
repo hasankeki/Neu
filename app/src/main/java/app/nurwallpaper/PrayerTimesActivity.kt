@@ -63,7 +63,6 @@ class PrayerTimesActivity : Activity(), LocationListener {
             setOnClickListener { finish() }
         })
         setContentView(root)
-        findLocation()
     }
 
     override fun onResume() {
