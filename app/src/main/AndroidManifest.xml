@@ -26,6 +26,16 @@
         </service>
 
         <activity
+            android:name=".WallpaperPreviewActivity"
+            android:exported="false"
+            android:label="Vollbild-Vorschau" />
+
+        <activity
+            android:name=".QiblaActivity"
+            android:exported="false"
+            android:label="Qibla" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="NurWallpaper">
