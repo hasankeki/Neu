@@ -28,6 +28,7 @@ let tokenExpiresAt = 0;
 const rateBuckets = new Map();
 const RATE_WINDOW_MS = 60_000;
 const RATE_LIMIT = 60;
+const UPSTREAM_TIMEOUT_MS = 15_000;
 
 function sendJson(response, status, payload) {
   response.writeHead(status, {
@@ -91,7 +92,8 @@ async function qfGet(path, retried = false) {
       "x-client-id": QF_CLIENT_ID,
       accept: "application/json",
       "user-agent": "NurWallpaper-Audio-API/0.1"
-    }
+    },
+    signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS)
   });
   if (response.status === 401 && !retried) {
     cachedToken = null;
