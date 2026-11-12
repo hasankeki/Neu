@@ -89,12 +89,27 @@ class ContentRepositoryTest {
     }
 
     @Test
-    fun hadithFromBukhariIsAllowedWhenOtherChecksPass() {
+    fun misleadingHadithCollectionNameIsRejected() {
         val hadith = approvedItem().copy(
             category = ContentCategory.HADITH,
-            source = approvedItem().source.copy(collection = "Sahih al-Bukhari")
+            source = approvedItem().source.copy(collection = "Not Sahih al-Bukhari")
         )
-        assertTrue(hadith.isReleaseReady())
+        assertFalse(hadith.isReleaseReady())
+    }
+
+    @Test
+    fun exactBukhariAndMuslimCollectionNamesAreAllowed() {
+        val base = approvedItem()
+        val bukhari = base.copy(
+            category = ContentCategory.HADITH,
+            source = base.source.copy(collection = "Ṣaḥīḥ al-Bukhārī")
+        )
+        val muslim = base.copy(
+            category = ContentCategory.HADITH,
+            source = base.source.copy(collection = "Sahih Muslim")
+        )
+        assertTrue(bukhari.isReleaseReady())
+        assertTrue(muslim.isReleaseReady())
     }
 
     @Test
