@@ -168,19 +168,19 @@ Der Android-CI-Workflow führt diese Prüfung vor dem Gradle-Build aus. Dadurch 
 
 ## Konsolidierter Importstand – 12.11.2026
 
-Die nachfolgenden Zahlen ersetzen die früheren Zwischenstände oben. Die App-Datei `app/src/main/assets/content-library.json` enthält jetzt **141 Datensätze**:
+Die nachfolgenden Zahlen ersetzen die früheren Zwischenstände oben. Die App-Datei `app/src/main/assets/content-library.json` enthält jetzt **143 Datensätze**:
 
 | Bereich | Gesamt | Zur Veröffentlichung freigegeben | Noch in Prüfung |
 |---|---:|---:|---:|
-| Hadithe (nur Bukhārī/Muslim) | 24 | 3 | 21 |
+| Hadithe (nur Bukhārī/Muslim) | 26 | 3 | 23 |
 | Koranverse | 14 | 0 | 14 |
 | Allgemeiner Dhikr | 4 | 0 | 4 |
 | Esmaül Hüsna | 99 | 0 | 99 |
-| **Gesamt** | **141** | **3** | **138** |
+| **Gesamt** | **143** | **3** | **140** |
 
 Die 3 freigegebenen Hadith-Datensätze enthalten DE/TR/EN-HadeethEnc-Fassungen mit Version und Attribution. Alle übrigen bestätigten Auswahlen sind importiert und bleiben durch `ContentRepository.isReleaseReady()` unsichtbar, bis die konkreten Übersetzungs-, Rechte- und Fachprüfungen vollständig dokumentiert sind. Keine Tirmidhī- oder Ibn-Mājah-Hadithe wurden in die Hadith-Kategorie aufgenommen.
 
-Die 99 Esma-Datensätze speichern Nummer und Umschrift zusätzlich zur arabischen Schrift und den drei eigenen Kurz-Bedeutungen. Die Android-Ansicht zeigt Nummer und Umschrift an, sobald der jeweilige Datensatz nach der Prüfung freigegeben wird.
+Zusätzlich wurden die vollständigen Wortlaute Bukhārī 6311 (Schlafens-Duʿāʾ mit Wudūʾ) und Muslim 1342 (Reise-Duʿāʾ mit Rückkehrzusatz) ergänzt; beide bleiben wegen Übersetzungs-/Rechteprüfung gesperrt. Die 99 Esma-Datensätze speichern Nummer und Umschrift zusätzlich zur arabischen Schrift und den drei eigenen Kurz-Bedeutungen. Die Android-Ansicht zeigt Nummer und Umschrift an, sobald der jeweilige Datensatz nach der Prüfung freigegeben wird.
 
 Die in der Ayat-Ergänzung ausdrücklich ausgewählten Themen (Firʿaun, zwei Gewässer, Bienen, Zakariyyā, Yaʾjūj/Maʾjūj, Geduld, Erleichterung, Barmherzigkeit, Dhikr der Herzen, diesseitiges Leben und Ribā) sind als bestätigte, aber noch gesperrte Einträge abgelegt. Der arabische Arbeitswortlaut muss vor Freigabe zeichengetreu mit Tanzil Uthmani 1.1 abgeglichen und unverändert übernommen werden.
 
