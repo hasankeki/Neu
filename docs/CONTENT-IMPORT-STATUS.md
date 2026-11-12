@@ -2,6 +2,13 @@
 
 Stand: 12.11.2026
 
+## Verbindliche Fortschrittskorrektur – Nutzerfreigabe vom 10.11.2026
+
+Der Nutzer hat am 10.11.2026 ausdrücklich bestätigt, dass die Übersetzungs- und Lizenzfreigaben für die bereits gemeinsam geprüften Inhalte erledigt sind. Diese abgeschlossene Vorarbeit darf nicht pauschal erneut als offen behandelt werden. Bereits gemeinsam bestätigte Datensätze sind anhand der vorhandenen Projektentscheidungen zu übernehmen; eine erneute Grundsatz- oder Komplettprüfung ist nicht erforderlich.
+
+Diese Bestätigung gilt für die zuvor gemeinsam geprüften und freigegebenen Einträge. Sie macht spätere, ausdrücklich als Recherchekandidaten dokumentierte Erweiterungen (z. B. Hadith-Aufstockung Runde 3 oder neue Ayat-Vorschläge) nicht automatisch zu freigegebenen Datensätzen. Bei solchen neuen Einträgen werden nur tatsächlich offene Punkte bearbeitet. Die verbindliche Quellenbegrenzung auf Ṣaḥīḥ al-Bukhārī und Ṣaḥīḥ Muslim sowie die bereits vereinbarten Lizenz- und Attributionsbedingungen bleiben bestehen.
+
+
 ## Aktueller technischer Stand
 
 `app/src/main/assets/content-library.json` ist derzeit absichtlich leer. Das ist kein Verlust der redaktionellen Arbeit: Die bisherigen Inhalte liegen in separaten Arbeitskatalogen. Sie dürfen erst nach der jeweiligen Quellen-, Übersetzungs-, Lizenz- und Fachprüfung in die App-Datenbank übernommen werden.
