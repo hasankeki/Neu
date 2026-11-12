@@ -342,3 +342,13 @@ Der Nutzer hat ausdrücklich klargemacht: Er möchte nach der langen Planung sic
 - Projektgespräche vom 08.–12.11.2026 und die daraus festgehaltenen Nutzerentscheidungen.
 
 **Pflege-Regel:** Neue Entscheidungen werden mit Datum und Status ergänzt. Frühere Entscheidungen werden nicht stillschweigend überschrieben; Änderungen bekommen einen kurzen Änderungsvermerk mit Datum und Grund.
+
+## 11. Arbeitsstand – Designlabor 01 (12.11.2026)
+
+- Erste interaktive Designprobe erstellt: `docs/design/Designlabor-01.html`.
+- Enthält fünf auswählbare Bildszenen aus den geplanten Motivwelten (Polarlicht, Moschee-Innenhof, Milchstraße, Alpenpanorama, beleuchtetes Minarett), eine sechste Galerie-Kachel als ruhige Kosmos-Variante sowie vier unterschiedliche Kachel-Impulse (Emerald Pulse, Violet Aura, Golden Flow, Silver Mist).
+- Lichtimpulse werden durch Antippen ausgelöst und laufen von der Kantenlinie aus; Farbpalette ist umschaltbar.
+- Partikel sind bewusst sehr klein, spärlich und langsam; Animation kann pausiert oder weiter beruhigt werden. Wischen ist ausschließlich innerhalb des Wallpaper-Vorschaubereichs aktiv; Pfeile bieten eine alternative Bedienung.
+- Die Bildbeispiele stammen aus Unsplash und sind als Designreferenzen gekennzeichnet. Vor einer Produktionsaufnahme sind Bildqualität, konkrete Lizenz-/Attributionsdaten und die Eignung jedes Motivs separat zu prüfen.
+- HTML-/JavaScript-Syntax wurde lokal geprüft. Die Datei ist in der ChatGPT-Dateibibliothek unter `/NurWallpaper/Designlabor-01.html` gesichert.
+- Status: **Designprobe, keine finale Gestaltung und keine Android-Integration**. Nächster Schritt ist Feedback anhand dieser sichtbaren Probe und gezielte Überarbeitung – keine neue Grundsatz-Planungsrunde.
