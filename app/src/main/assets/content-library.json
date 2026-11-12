@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "NurWallpaper offline catalogue. CONFIRMED selections are retained with separate release readiness. Only records passing the strict release gate are shown in the app; incomplete translation/licence records remain hidden, not discarded.",
+  "description": "NurWallpaper offline catalogue: 141 confirmed/selected records across Hadith, Quran verses, general Dhikr and all 99 Asma ul Husna. Selection confirmation and release readiness are separate. Only records passing the strict human-review, translation and licence gate are shown in the app.",
   "items": [
     {
       "id": "hadith-bukhari-6306-sayyid-al-istighfar",
