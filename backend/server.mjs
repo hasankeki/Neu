@@ -73,7 +73,8 @@ async function getAccessToken() {
     body: new URLSearchParams({
       grant_type: "client_credentials",
       scope: "content.audio.read"
-    })
+    }),
+    signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS)
   });
   if (!response.ok) throw new Error(`Quran Foundation authentication failed (${response.status}).`);
   const body = await response.json();
