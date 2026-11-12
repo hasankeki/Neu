@@ -383,17 +383,12 @@ class NurWallpaperService : WallpaperService() {
                 drawGoldDust(canvas, w, h, 0f, false)
             }
 
-            val panel = RectF(w * 0.055f, centerY - h * 0.18f, w * 0.945f, centerY + h * 0.19f)
-            panelPaint.shader = LinearGradient(
-                panel.left, panel.top, panel.right, panel.bottom,
-                intArrayOf(0x00130E08, 0x7D0B0907, 0x00130E08),
-                null, Shader.TileMode.CLAMP
-            )
-            canvas.drawRoundRect(panel, 28f, 28f, panelPaint)
-            panelPaint.shader = null
-
             val firstApproved = selectedWallpaperContent()
             if (firstApproved == null) {
+                drawTextPanel(
+                    canvas,
+                    RectF(w * 0.08f, centerY - h * 0.09f, w * 0.92f, centerY + h * 0.09f)
+                )
                 canvas.drawText("NurWallpaper", centerX, centerY - 5f, titlePaint)
                 val language = preferences.getString("language", "de") ?: "de"
                 val tagline = when (language) {
@@ -411,8 +406,20 @@ class NurWallpaperService : WallpaperService() {
                 val translation = translatedText?.let {
                     makeLayout(it, translationPaint, width, Layout.Alignment.ALIGN_CENTER)
                 }
-                val blockHeight = arabic.height + (translation?.height ?: 0) + 46f
-                val top = (centerY - blockHeight / 2f).coerceAtLeast(h * 0.23f)
+                // Include the Arabic text, optional translation and source line in
+                // the measured block so the contrast panel grows with the real content.
+                val sourceBaselineOffset = arabic.height +
+                    (translation?.height ?: 0) +
+                    if (translation != null) 64f else 50f
+                val blockHeight = sourceBaselineOffset + 18f
+                val top = (centerY - blockHeight / 2f).coerceAtLeast(h * 0.16f)
+                val panel = RectF(
+                    w * 0.055f,
+                    (top - 26f).coerceAtLeast(0f),
+                    w * 0.945f,
+                    (top + blockHeight + 16f).coerceAtMost(h)
+                )
+                drawTextPanel(canvas, panel)
                 canvas.save()
                 canvas.translate((w - width) / 2f, top)
                 arabic.draw(canvas)
@@ -431,6 +438,18 @@ class NurWallpaperService : WallpaperService() {
                     centerX, nextY + 30f, sourcePaint
                 )
             }
+        }
+
+        /** Draws a soft vertical contrast fade sized to the actual text block. */
+        private fun drawTextPanel(canvas: Canvas, bounds: RectF) {
+            panelPaint.shader = LinearGradient(
+                bounds.left, bounds.top, bounds.left, bounds.bottom,
+                intArrayOf(0x00130E08, 0xD90B0907.toInt(), 0x00130E08),
+                floatArrayOf(0f, 0.5f, 1f),
+                Shader.TileMode.CLAMP
+            )
+            canvas.drawRoundRect(bounds, 28f, 28f, panelPaint)
+            panelPaint.shader = null
         }
 
         private fun drawGoldenFlow(canvas: Canvas, width: Float, height: Float, phase: Float) {
