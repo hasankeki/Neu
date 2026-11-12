@@ -113,7 +113,7 @@ class QiblaActivity : Activity(), SensorEventListener, LocationListener {
         var best: Location? = null
         for (provider in providers) {
             val candidate = runCatching { locationManager.getLastKnownLocation(provider) }.getOrNull()
-            if (candidate != null && System.currentTimeMillis() - candidate.time <= 6 * 60 * 60 * 1000L && (best == null || candidate.accuracy < best!!.accuracy)) best = candidate
+            if (candidate != null && isLocationTimestampFresh(candidate.time, System.currentTimeMillis()) && (best == null || candidate.accuracy < best!!.accuracy)) best = candidate
         }
         if (best != null) {
             updateQibla(best!!)
