@@ -12,6 +12,7 @@ import android.view.Gravity
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.ScrollView
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
@@ -64,7 +65,10 @@ class PrayerTimesActivity : Activity(), LocationListener {
             isAllCaps = false
             setOnClickListener { finish() }
         })
-        setContentView(root)
+        setContentView(ScrollView(this).apply {
+            isFillViewport = true
+            addView(root)
+        })
     }
 
     override fun onResume() {
