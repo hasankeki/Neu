@@ -23,7 +23,7 @@ class NurWallpaperService : WallpaperService() {
             getSharedPreferences("nurwallpaper_settings", MODE_PRIVATE)
         }
         private val settingsListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            if (key == "language" || key == "light_effect") drawFrame()
+            if (key == "language" || key == "light_effect" || key == "rotation" || key == "favorite_content_ids") drawFrame()
         }
 
         override fun onCreate(surfaceHolder: SurfaceHolder) {
@@ -136,7 +136,7 @@ class NurWallpaperService : WallpaperService() {
             panelPaint.shader = null
 
             val language = preferences.getString("language", "de") ?: "de"
-            val firstApproved = contentRepository.approved().firstOrNull()
+            val firstApproved = selectedWallpaperContent()
             if (firstApproved == null) {
                 canvas.drawText("NurWallpaper", centerX, centerY - 5f, titlePaint)
                 val tagline = when (language) {
@@ -171,6 +171,33 @@ class NurWallpaperService : WallpaperService() {
                     centerX, nextY + 8f, sourcePaint
                 )
             }
+        }
+
+        private fun selectedWallpaperContent(): ContentItem? {
+            val items = contentRepository.approved()
+            if (items.isEmpty()) return null
+            val mode = RotationMode.fromSetting(preferences.getString("rotation", "Nie"))
+            val favorites = FavoriteStore(preferences).all()
+            val currentId = preferences.getString("wallpaper_content_id", null)
+
+            val selected = when (mode) {
+                RotationMode.NEVER -> currentId?.let { id ->
+                    items.firstOrNull { it.id == id }
+                } ?: items.first()
+                RotationMode.FAVORITES_ONLY -> {
+                    val favoriteItems = items.filter { it.id in favorites }
+                    currentId?.let { id -> favoriteItems.firstOrNull { it.id == id } }
+                        ?: ContentRotationManager(preferences).next(items, mode, favorites, null)
+                }
+                RotationMode.RARE, RotationMode.OFTEN -> {
+                    currentId?.let { id -> items.firstOrNull { it.id == id } }
+                        ?: ContentRotationManager(preferences).next(items, mode, favorites, null)
+                }
+            }
+            if (selected != null && selected.id != currentId) {
+                preferences.edit().putString("wallpaper_content_id", selected.id).apply()
+            }
+            return selected
         }
 
         private fun makeLayout(text: String, paint: TextPaint, width: Int, alignment: Layout.Alignment): StaticLayout =
