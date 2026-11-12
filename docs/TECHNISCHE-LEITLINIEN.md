@@ -36,6 +36,30 @@ Ziel: Die Erstinstallation bleibt möglichst klein. Optionale Medien werden nich
 
 On-Demand-Medien sind optionale Ressourcen, keine Voraussetzung für das Live-Wallpaper. Textdarstellung, Favoriten, Rotation und Kontrastschutz müssen unabhängig von Netzwerk und optionalen Medienpaketen funktionieren. Gezeichnete lokale Standardszenen bleiben als Offline-Fallback erhalten.
 
-## 4. Umsetzungsstatus
+## 4. Zeitgesteuerte Inhaltsrotation
+
+Die kostenlosen Standardintervalle sind fest definiert:
+
+- **Oft:** 30 Minuten.
+- **Selten:** 3 Stunden.
+- **Nie:** keine automatische Rotation.
+- **Nur Favoriten:** alle 30 Minuten, ausschließlich aus dem Favoriten-Pool.
+
+Der nächste Wechselzeitpunkt wird dauerhaft gespeichert. Ein Entsperren allein löst keinen Wechsel aus und setzt den Timer nicht zurück. Ist das Wallpaper während eines Fälligkeitszeitpunkts nicht sichtbar, wird bei der nächsten Sichtbarkeit höchstens ein Wechsel ausgeführt; danach beginnt ein neues vollständiges Intervall. Der aktive Pool wird ohne Wiederholung durchlaufen, bevor Einträge erneut erscheinen. Erweiterte Intervallsteuerung bleibt eine PRO-Funktion.
+
+## 5. Geräte- und Herstellerkompatibilität
+
+Ein gemeinsames Android-APK soll auf mehreren Herstellern funktionieren. Die Abnahme muss deshalb mindestens folgende Plattformfamilien berücksichtigen:
+
+- Google Pixel / Android.
+- Samsung Galaxy / One UI.
+- Xiaomi / Redmi / POCO / HyperOS.
+- OnePlus / OxygenOS.
+- Motorola / My UX.
+- OPPO und vivo.
+
+Zu prüfen sind Auswahl und Wiederherstellung des Live-Wallpapers, Sichtbarkeit/Lifecycle, Rotation und Timer nach Standby/Neustart, Displaygrößen, RTL/Arabisch, Energieverbrauch und herstellerspezifische Hintergrundbeschränkungen. Emulatoren ersetzen keinen realen Gerätetest; nicht verfügbare Geräte werden als „nicht getestet“ dokumentiert.
+
+## 6. Umsetzungsstatus
 
 Diese Datei dokumentiert verbindliche Anforderungen und Architekturentscheidungen. Sie bedeutet ausdrücklich nicht, dass Downloadverwaltung, Cache, Audio oder der vollständige dynamische Kontrastschutz bereits implementiert oder getestet sind. Jede Funktion erhält erst nach Codeprüfung und Tests den Status „fertig“.
