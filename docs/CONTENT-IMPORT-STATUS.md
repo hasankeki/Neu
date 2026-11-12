@@ -149,7 +149,9 @@ Für die Koranverse ist die Tanzil-Lizenz CC BY 3.0 dokumentiert: unveränderte 
 
 ### 99 Namen – Esmaül Hüsna
 
-Die Auswahl aller 99 Namen wurde am 10.11.2026 angenommen. Sie ist im JSON unter `confirmedSelections` als bestätigte Sammlung mit Zielumfang 99 festgehalten. Das frühere Gespräch enthält die Zusage, dass 99/99 eingepflegt worden seien; die aktuelle Repository-Git-Historie und die auffindbaren Arbeitsdateien enthalten aber keine konkrete vollständige Namensliste mit Arabisch, DE/TR/EN-Bedeutungen, Quelle und Rechteangaben. Daher wird keine Liste aus dem Gedächtnis neu konstruiert oder fälschlich als verifiziert markiert. Der genaue zuvor bestätigte Datensatz muss aus dem ursprünglichen Arbeitsartefakt wiederhergestellt werden.
+Die ursprüngliche Datei `NurWallpaper-Esmaul-Husna-99.md` wurde wiedergefunden und alle 99 Einträge wurden in `content-library.json` übernommen. Jeder Datensatz enthält Nummer, arabische Schreibweise, Umschrift, eigene deutsche/türkische/englische Kurz-Bedeutung und den im Katalog angegebenen Beleg. Die Reihenfolge wird ausdrücklich als traditionelle Zusammenstellung geführt; Bukhārī 6410 und Muslim 2677 überliefern den Hadith über 99 Namen, nennen die Namen aber nicht einzeln. Die traditionelle Liste wird daher nicht als authentisch vollständig überlieferte Namensliste ausgegeben.
+
+Alle 99 Einträge haben den Status `IN_REVIEW` und sind in der App noch nicht sichtbar. Die Bedeutungen sind eigene redaktionelle Kurzfassungen; arabische Orthografie, Übersetzungen und menschliche Fachprüfung müssen vor Veröffentlichung protokolliert werden.
 
 ### Automatisierte Absicherung
 
@@ -162,3 +164,24 @@ Die Auswahl aller 99 Namen wurde am 10.11.2026 angenommen. Sie ist im JSON unter
 - die festgehaltene 99-Namen-Auswahl.
 
 Der Android-CI-Workflow führt diese Prüfung vor dem Gradle-Build aus. Dadurch können unvollständige Datensätze nicht versehentlich als veröffentlichungsfertig markiert werden.
+
+
+## Konsolidierter Importstand – 12.11.2026
+
+Die nachfolgenden Zahlen ersetzen die früheren Zwischenstände oben. Die App-Datei `app/src/main/assets/content-library.json` enthält jetzt **141 Datensätze**:
+
+| Bereich | Gesamt | Zur Veröffentlichung freigegeben | Noch in Prüfung |
+|---|---:|---:|---:|
+| Hadithe (nur Bukhārī/Muslim) | 24 | 3 | 21 |
+| Koranverse | 14 | 0 | 14 |
+| Allgemeiner Dhikr | 4 | 0 | 4 |
+| Esmaül Hüsna | 99 | 0 | 99 |
+| **Gesamt** | **141** | **3** | **138** |
+
+Die 3 freigegebenen Hadith-Datensätze enthalten DE/TR/EN-HadeethEnc-Fassungen mit Version und Attribution. Alle übrigen bestätigten Auswahlen sind importiert und bleiben durch `ContentRepository.isReleaseReady()` unsichtbar, bis die konkreten Übersetzungs-, Rechte- und Fachprüfungen vollständig dokumentiert sind. Keine Tirmidhī- oder Ibn-Mājah-Hadithe wurden in die Hadith-Kategorie aufgenommen.
+
+Die 99 Esma-Datensätze speichern Nummer und Umschrift zusätzlich zur arabischen Schrift und den drei eigenen Kurz-Bedeutungen. Die Android-Ansicht zeigt Nummer und Umschrift an, sobald der jeweilige Datensatz nach der Prüfung freigegeben wird.
+
+Die in der Ayat-Ergänzung ausdrücklich ausgewählten Themen (Firʿaun, zwei Gewässer, Bienen, Zakariyyā, Yaʾjūj/Maʾjūj, Geduld, Erleichterung, Barmherzigkeit, Dhikr der Herzen, diesseitiges Leben und Ribā) sind als bestätigte, aber noch gesperrte Einträge abgelegt. Der arabische Arbeitswortlaut muss vor Freigabe zeichengetreu mit Tanzil Uthmani 1.1 abgeglichen und unverändert übernommen werden.
+
+Die CI-Validierung und der Android-Build müssen nach diesem Batch erneut erfolgreich laufen. Ein bestandener JSON-/Build-Test ersetzt weder die menschliche religiöse Fachprüfung noch einen Gerätetest.
