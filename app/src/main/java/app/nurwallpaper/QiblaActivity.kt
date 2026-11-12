@@ -21,7 +21,6 @@ import android.hardware.SensorManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
 import kotlin.math.*
 
 class QiblaActivity : Activity(), SensorEventListener, LocationListener {
@@ -100,8 +99,8 @@ class QiblaActivity : Activity(), SensorEventListener, LocationListener {
     }
 
     private fun obtainLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+            checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
                 permissionRequest)
