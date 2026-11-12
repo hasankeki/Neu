@@ -71,6 +71,33 @@ class ContentRepositoryTest {
     }
 
     @Test
+    fun duplicateTranslationLanguageIsRejected() {
+        assertFalse(
+            approvedItem(
+                translations = listOf(translation("de"), translation("de"), translation("en"))
+            ).isReleaseReady()
+        )
+    }
+
+    @Test
+    fun hadithFromOutsideBukhariAndMuslimIsRejected() {
+        val hadith = approvedItem().copy(
+            category = ContentCategory.HADITH,
+            source = approvedItem().source.copy(collection = "Sunan collection")
+        )
+        assertFalse(hadith.isReleaseReady())
+    }
+
+    @Test
+    fun hadithFromBukhariIsAllowedWhenOtherChecksPass() {
+        val hadith = approvedItem().copy(
+            category = ContentCategory.HADITH,
+            source = approvedItem().source.copy(collection = "Sahih al-Bukhari")
+        )
+        assertTrue(hadith.isReleaseReady())
+    }
+
+    @Test
     fun repositoryNeverReturnsUnapprovedRecords() {
         val repository = ContentRepository(
             listOf(
