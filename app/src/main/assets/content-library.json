@@ -890,6 +890,144 @@
         "Umschrift und sprachliche Prüfung dokumentieren",
         "Menschliche fachkundige religiöse Freigabe dokumentieren"
       ]
+    },
+    {
+      "id": "quran-yunus-10-90-92-pharaoh",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "وَجَـٰوَزْنَا بِبَنِىٓ إِسْرَٰٓءِيلَ ٱلْبَحْرَ فَأَتْبَعَهُمْ فِرْعَوْنُ وَجُنُودُهُۥ بَغْيًۭا وَعَدْوًا ۖ حَتَّىٰٓ إِذَآ أَدْرَكَهُ ٱلْغَرَقُ قَالَ ءَامَنتُ أَنَّهُۥ لَآ إِلَـٰهَ إِلَّا ٱلَّذِىٓ ءَامَنَتْ بِهِۦ بَنُوٓا۟ إِسْرَٰٓءِيلَ وَأَنَا۠ مِنَ ٱلْمُسْلِمِينَ ۝ ءَآلْـَٔـٰنَ وَقَدْ عَصَيْتَ قَبْلُ وَكُنتَ مِنَ ٱلْمُفْسِدِينَ ۝ فَٱلْيَوْمَ نُنَجِّيكَ بِبَدَنِكَ لِتَكُونَ لِمَنْ خَلْفَكَ ءَايَةًۭ ۚ وَإِنَّ كَثِيرًۭا مِّنَ ٱلنَّاسِ عَنْ ءَايَـٰتِنَا لَغَـٰفِلُونَ",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Uthmani-Arbeitsabschrift; Tanzil Uthmani 1.1-Abgleich erforderlich",
+        "locator": "Yūnus 10:90–92",
+        "sourceUrl": "https://quran.com/10/90-92",
+        "license": "Wortlaut wurde anhand der Versreferenz abgeglichen, ist aber vor Release noch Zeichen für Zeichen mit Tanzil Uthmani 1.1 zu vergleichen und daraus unverändert zu übernehmen. Erst danach Tanzil CC BY 3.0 mit vollständigem Copyright-Hinweis und Link in der App verwenden.",
+        "attribution": "Quran Yūnus 10:90–92; Abgleichreferenz https://quran.com/10/90-92. Geplante verbindliche Textausgabe: Tanzil Quran Text (Uthmani, Version 1.1), Copyright © 2007–2026 Tanzil Project, CC BY 3.0 — https://tanzil.net."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf als Thema/Auswahl bestätigt. Firʿauns Glaubensruf beim Ertrinken, die Antwort und sein Körper als Zeichen. Keine bestimmte Mumie oder zusätzliche historische Identifizierung behaupten. Dieser Eintrag wird als bestätigte Auswahl geführt, bleibt aber bis zum Tanzil-Zeichenabgleich, lizenzierten DE/TR/EN-Übersetzungen und menschlicher Fachprüfung für die App gesperrt.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "quran-al-furqan-25-53-two-seas",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "وَهُوَ ٱلَّذِى مَرَجَ ٱلْبَحْرَيْنِ هَٰذَا عَذْبٌ فُرَاتٌ وَهَٰذَا مِلْحٌ أُجَاجٌ وَجَعَلَ بَيْنَهُمَا بَرْزَخًا وَحِجْرًا مَّحْجُورًا",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Uthmani-Arbeitsabschrift; Tanzil Uthmani 1.1-Abgleich erforderlich",
+        "locator": "Al-Furqān 25:53",
+        "sourceUrl": "https://quran.com/25/53",
+        "license": "Wortlaut wurde anhand der Versreferenz abgeglichen, ist aber vor Release noch Zeichen für Zeichen mit Tanzil Uthmani 1.1 zu vergleichen und daraus unverändert zu übernehmen. Erst danach Tanzil CC BY 3.0 mit vollständigem Copyright-Hinweis und Link in der App verwenden.",
+        "attribution": "Quran Al-Furqān 25:53; Abgleichreferenz https://quran.com/25/53. Geplante verbindliche Textausgabe: Tanzil Quran Text (Uthmani, Version 1.1), Copyright © 2007–2026 Tanzil Project, CC BY 3.0 — https://tanzil.net."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf als Thema/Auswahl bestätigt. Zwei Wasserarten und eine Barriere. Nicht behaupten, Süß- und Salzwasser würden sich physikalisch niemals vermischen; Misch- und Übergangszonen nicht leugnen. Dieser Eintrag wird als bestätigte Auswahl geführt, bleibt aber bis zum Tanzil-Zeichenabgleich, lizenzierten DE/TR/EN-Übersetzungen und menschlicher Fachprüfung für die App gesperrt.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "quran-an-nahl-16-68-69-bees",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "وَأَوْحَىٰ رَبُّكَ إِلَى ٱلنَّحْلِ أَنِ ٱتَّخِذِى مِنَ ٱلْجِبَالِ بُيُوتًۭا وَمِنَ ٱلشَّجَرِ وَمِمَّا يَعْرِشُونَ ۝ ثُمَّ كُلِى مِن كُلِّ ٱلثَّمَرَٰتِ فَٱسْلُكِى سُبُلَ رَبِّكِ ذُلُلًۭا ۚ يَخْرُجُ مِنۢ بُطُونِهَا شَرَابٌۭ مُّخْتَلِفٌ أَلْوَٰنُهُۥ فِيهِ شِفَآءٌۭ لِّلنَّاسِ ۗ إِنَّ فِى ذَٰلِكَ لَـَٔايَةًۭ لِّقَوْمٍۢ يَتَفَكَّرُونَ",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Uthmani-Arbeitsabschrift; Tanzil Uthmani 1.1-Abgleich erforderlich",
+        "locator": "An-Naḥl 16:68–69",
+        "sourceUrl": "https://quran.com/16/68-69",
+        "license": "Wortlaut wurde anhand der Versreferenz abgeglichen, ist aber vor Release noch Zeichen für Zeichen mit Tanzil Uthmani 1.1 zu vergleichen und daraus unverändert zu übernehmen. Erst danach Tanzil CC BY 3.0 mit vollständigem Copyright-Hinweis und Link in der App verwenden.",
+        "attribution": "Quran An-Naḥl 16:68–69; Abgleichreferenz https://quran.com/16/68-69. Geplante verbindliche Textausgabe: Tanzil Quran Text (Uthmani, Version 1.1), Copyright © 2007–2026 Tanzil Project, CC BY 3.0 — https://tanzil.net."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf als Thema/Auswahl bestätigt. Bienenverse. Die feminine Singularform der Imperative ist eine grammatische Beobachtung; daraus keine überzogene biologische Behauptung ableiten. Dieser Eintrag wird als bestätigte Auswahl geführt, bleibt aber bis zum Tanzil-Zeichenabgleich, lizenzierten DE/TR/EN-Übersetzungen und menschlicher Fachprüfung für die App gesperrt.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "quran-maryam-19-2-11-zakariya",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "ذِكْرُ رَحْمَتِ رَبِّكَ عَبْدَهُۥ زَكَرِيَّآ ۝ إِذْ نَادَىٰ رَبَّهُۥ نِدَآءً خَفِيًّۭا ۝ قَالَ رَبِّ إِنِّى وَهَنَ ٱلْعَظْمُ مِنِّى وَٱشْتَعَلَ ٱلرَّأْسُ شَيْبًۭا وَلَمْ أَكُنۢ بِدُعَآئِكَ رَبِّ شَقِيًّۭا ۝ وَإِنِّى خِفْتُ ٱلْمَوَٰلِىَ مِن وَرَآءِى وَكَانَتِ ٱمْرَأَتِى عَاقِرًۭا فَهَبْ لِى مِن لَّدُنكَ وَلِيًّۭا ۝ يَرِثُنِى وَيَرِثُ مِنْ ءَالِ يَعْقُوبَ ۖ وَٱجْعَلْهُ رَبِّ رَضِيًّۭا ۝ يَـٰزَكَرِيَّآ إِنَّا نُبَشِّرُكَ بِغُلَـٰمٍ ٱسْمُهُۥ يَحْيَىٰ لَمْ نَجْعَل لَّهُۥ مِن قَبْلُ سَمِيًّۭا ۝ قَالَ رَبِّ أَنَّىٰ يَكُونُ لِى غُلَـٰمٌۭ وَكَانَتِ ٱمْرَأَتِى عَاقِرًۭا وَقَدْ بَلَغْتُ مِنَ ٱلْكِبَرِ عِتِيًّۭا ۝ قَالَ كَذَٰلِكَ قَالَ رَبُّكَ هُوَ عَلَىَّ هَيِّنٌۭ وَقَدْ خَلَقْتُكَ مِن قَبْلُ وَلَمْ تَكُ شَيْـًۭٔا ۝ قَالَ رَبِّ ٱجْعَل لِّىٓ ءَايَةًۭ ۚ قَالَ ءَايَتُكَ أَلَّا تُكَلِّمَ ٱلنَّاسَ ثَلَـٰثَ لَيَالٍۢ سَوِيًّۭا ۝ فَخَرَجَ عَلَىٰ قَوْمِهِۦ مِنَ ٱلْمِحْرَابِ فَأَوْحَىٰٓ إِلَيْهِمْ أَن سَبِّحُوا۟ بُكْرَةًۭ وَعَشِيًّۭا",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Uthmani-Arbeitsabschrift; Tanzil Uthmani 1.1-Abgleich erforderlich",
+        "locator": "Maryam 19:2–11",
+        "sourceUrl": "https://quran.com/19/2-11",
+        "license": "Wortlaut wurde anhand der Versreferenz abgeglichen, ist aber vor Release noch Zeichen für Zeichen mit Tanzil Uthmani 1.1 zu vergleichen und daraus unverändert zu übernehmen. Erst danach Tanzil CC BY 3.0 mit vollständigem Copyright-Hinweis und Link in der App verwenden.",
+        "attribution": "Quran Maryam 19:2–11; Abgleichreferenz https://quran.com/19/2-11. Geplante verbindliche Textausgabe: Tanzil Quran Text (Uthmani, Version 1.1), Copyright © 2007–2026 Tanzil Project, CC BY 3.0 — https://tanzil.net."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf als Thema/Auswahl bestätigt. Zakariyyās Geschichte von der stillen Bitte bis zum Zeichen. Für eine kurze Wallpaper-Karte später eine passende zusammenhängende kürzere Passage auswählen; diesen Datensatz intern vollständig halten. Dieser Eintrag wird als bestätigte Auswahl geführt, bleibt aber bis zum Tanzil-Zeichenabgleich, lizenzierten DE/TR/EN-Übersetzungen und menschlicher Fachprüfung für die App gesperrt.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "quran-al-kahf-18-93-99-yajuj-majuj",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "حَتَّىٰٓ إِذَا بَلَغَ بَيْنَ ٱلسَّدَّيْنِ وَجَدَ مِن دُونِهِمَا قَوْمًۭا لَّا يَكَادُونَ يَفْقَهُونَ قَوْلًۭا ۝ قَالُوا۟ يَـٰذَا ٱلْقَرْنَيْنِ إِنَّ يَأْجُوجَ وَمَأْجُوجَ مُفْسِدُونَ فِى ٱلْأَرْضِ فَهَلْ نَجْعَلُ لَكَ خَرْجًا عَلَىٰٓ أَن تَجْعَلَ بَيْنَنَا وَبَيْنَهُمْ سَدًّۭا ۝ قَالَ مَا مَكَّنِّى فِيهِ رَبِّى خَيْرٌۭ فَأَعِينُونِى بِقُوَّةٍ أَجْعَلْ بَيْنَكُمْ وَبَيْنَهُمْ رَدْمًۭا ۝ ءَاتُونِى زُبَرَ ٱلْحَدِيدِ ۖ حَتَّىٰٓ إِذَا سَاوَىٰ بَيْنَ ٱلصَّدَفَيْنِ قَالَ ٱنفُخُوا۟ ۖ حَتَّىٰٓ إِذَا جَعَلَهُۥ نَارًۭا قَالَ ءَاتُونِىٓ أُفْرِغْ عَلَيْهِ قِطْرًۭا ۝ فَمَا ٱسْطَـٰعُوٓا۟ أَن يَظْهَرُوهُ وَمَا ٱسْتَطَـٰعُوا۟ لَهُۥ نَقْبًۭا ۝ قَالَ هَٰذَا رَحْمَةٞ مِّن رَّبِّىۖ فَإِذَا جَآءَ وَعْدُ رَبِّى جَعَلَهُۥ دَكَّآءَۖ وَكَانَ وَعْدُ رَبِّى حَقًّۭا ۝ وَتَرَكۡنَا بَعۡضَهُمۡ يَوۡمَئِذٖ يَمُوجُ فِى بَعۡضٍۖ وَنُفِخَ فِى ٱلصُّورِ فَجَمَعۡنَٰهُمۡ جَمۡعًۭا",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Uthmani-Arbeitsabschrift; Tanzil Uthmani 1.1-Abgleich erforderlich",
+        "locator": "Al-Kahf 18:93–99",
+        "sourceUrl": "https://quran.com/18/93-99",
+        "license": "Wortlaut wurde anhand der Versreferenz abgeglichen, ist aber vor Release noch Zeichen für Zeichen mit Tanzil Uthmani 1.1 zu vergleichen und daraus unverändert zu übernehmen. Erst danach Tanzil CC BY 3.0 mit vollständigem Copyright-Hinweis und Link in der App verwenden.",
+        "attribution": "Quran Al-Kahf 18:93–99; Abgleichreferenz https://quran.com/18/93-99. Geplante verbindliche Textausgabe: Tanzil Quran Text (Uthmani, Version 1.1), Copyright © 2007–2026 Tanzil Project, CC BY 3.0 — https://tanzil.net."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf als Thema/Auswahl bestätigt. Yaʾjūj und Maʾjūj im Kontext der Erzählung über Ḏū l-Qarnain. Keine unbelegten modernen Identifizierungen hinzufügen. Dieser Eintrag wird als bestätigte Auswahl geführt, bleibt aber bis zum Tanzil-Zeichenabgleich, lizenzierten DE/TR/EN-Übersetzungen und menschlicher Fachprüfung für die App gesperrt.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "quran-al-baqarah-2-275-riba",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "ٱلَّذِينَ يَأْكُلُونَ ٱلرِّبَوٰاْ لَا يَقُومُونَ إِلَّا كَمَا يَقُومُ ٱلَّذِى يَتَخَبَّطُهُ ٱلشَّيْطَٰنُ مِنَ ٱلْمَسِّۚ ذَٰلِكَ بِأَنَّهُمْ قَالُوٓاْ إِنَّمَا ٱلْبَيْعُ مِثْلُ ٱلرِّبَوٰاْۗ وَأَحَلَّ ٱللَّهُ ٱلْبَيْعَ وَحَرَّمَ ٱلرِّبَوٰاْۚ فَمَن جَآءَهُۥ مَوْعِظَةٞ مِّن رَّبِّهِۦ فَٱنتَهَىٰ فَلَهُۥ مَا سَلَفَ وَأَمْرُهُۥٓ إِلَى ٱللَّهِۖ وَمَنْ عَادَ فَأُوْلَٰٓئِكَ أَصْحَٰبُ ٱلنَّارِۖ هُمْ فِيهَا خَٰلِدُونَ",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Uthmani-Arbeitsabschrift; Tanzil Uthmani 1.1-Abgleich erforderlich",
+        "locator": "Al-Baqarah 2:275",
+        "sourceUrl": "https://quran.com/2/275",
+        "license": "Wortlaut wurde anhand der Versreferenz abgeglichen, ist aber vor Release noch Zeichen für Zeichen mit Tanzil Uthmani 1.1 zu vergleichen und daraus unverändert zu übernehmen. Erst danach Tanzil CC BY 3.0 mit vollständigem Copyright-Hinweis und Link in der App verwenden.",
+        "attribution": "Quran Al-Baqarah 2:275; Abgleichreferenz https://quran.com/2/275. Geplante verbindliche Textausgabe: Tanzil Quran Text (Uthmani, Version 1.1), Copyright © 2007–2026 Tanzil Project, CC BY 3.0 — https://tanzil.net."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf als Thema/Auswahl bestätigt. Der Vers stellt Handel und Ribā gegenüber. Keine unzulässige Verallgemeinerung auf jedes moderne Finanzprodukt in den Korantext oder Wallpaper-Text aufnehmen. Dieser Eintrag wird als bestätigte Auswahl geführt, bleibt aber bis zum Tanzil-Zeichenabgleich, lizenzierten DE/TR/EN-Übersetzungen und menschlicher Fachprüfung für die App gesperrt.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
     }
   ],
   "confirmedSelections": [
