@@ -775,6 +775,121 @@
         "Umschrift und sprachliche Prüfung dokumentieren",
         "Menschliche fachkundige religiöse Freigabe dokumentieren"
       ]
+    },
+    {
+      "id": "quran-al-anam-6-34",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "وَلَقَدْ كُذِّبَتْ رُسُلٌ مِّن قَبْلِكَ فَصَبَرُوا عَلَىٰ مَا كُذِّبُوا وَأُوذُوا حَتَّىٰ أَتَاهُمْ نَصْرُنَا ۚ وَلَا مُبَدِّلَ لِكَلِمَاتِ اللَّهِ ۚ وَلَقَدْ جَاءَكَ مِن نَّبَإِ الْمُرْسَلِينَ",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Arbeitsfassung, Abgleich mit Tanzil Uthmani 1.1 noch erforderlich",
+        "locator": "Al-Anʿām 6:34",
+        "sourceUrl": "https://quran.com/6/34",
+        "license": "Arabischer Wortlaut aus dem redaktionellen Ayat-Entwurf. Vor Veröffentlichung zeichengetreu gegen Tanzil Uthmani 1.1 abgleichen und ausschließlich dessen unveränderten Text mit CC BY 3.0-Attribution verwenden. Die vorliegende Entwurfsfassung ist keine eigenständige App-Textlizenz.",
+        "attribution": "Fundstelle Al-Anʿām 6:34; Arbeits-/Abgleichquelle https://quran.com/6/34. Geplante finale Textausgabe: Tanzil Uthmani 1.1, https://tanzil.net, CC BY 3.0."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf ausdrücklich aufgegriffene Ayah-Auswahl. Geduld und Standhaftigkeit der Gesandten. Wallpaper-Kurzgedanke redaktionell, nicht als Koranwortlaut kennzeichnen. Übersetzungen, Tanzil-Zeichenabgleich, Rechte-Metadaten und menschliche Fachprüfung bleiben vor Release gesondert zu dokumentieren.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "quran-ash-sharh-94-5-6",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Arbeitsfassung, Abgleich mit Tanzil Uthmani 1.1 noch erforderlich",
+        "locator": "Ash-Sharḥ 94:5–6",
+        "sourceUrl": "https://quran.com/94/5-6",
+        "license": "Arabischer Wortlaut aus dem redaktionellen Ayat-Entwurf. Vor Veröffentlichung zeichengetreu gegen Tanzil Uthmani 1.1 abgleichen und ausschließlich dessen unveränderten Text mit CC BY 3.0-Attribution verwenden. Die vorliegende Entwurfsfassung ist keine eigenständige App-Textlizenz.",
+        "attribution": "Fundstelle Ash-Sharḥ 94:5–6; Arbeits-/Abgleichquelle https://quran.com/94/5-6. Geplante finale Textausgabe: Tanzil Uthmani 1.1, https://tanzil.net, CC BY 3.0."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf ausdrücklich aufgegriffene Ayah-Auswahl. Zwei zusammengehörige Verse über Erleichterung mit der Erschwernis. Deutsche Arbeitsübersetzung im Entwurf; Lizenzversion separat dokumentieren. Übersetzungen, Tanzil-Zeichenabgleich, Rechte-Metadaten und menschliche Fachprüfung bleiben vor Release gesondert zu dokumentieren.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "quran-az-zumar-39-53",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "قُلْ يَٰعِبَادِيَ ٱلَّذِينَ أَسْرَفُوا۟ عَلَىٰٓ أَنفُسِهِمْ لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ ۚ إِنَّ ٱللَّهَ يَغْفِرُ ٱلذُّنُوبَ جَمِيعًا ۚ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Arbeitsfassung, Abgleich mit Tanzil Uthmani 1.1 noch erforderlich",
+        "locator": "Az-Zumar 39:53",
+        "sourceUrl": "https://quran.com/39/53",
+        "license": "Arabischer Wortlaut aus dem redaktionellen Ayat-Entwurf. Vor Veröffentlichung zeichengetreu gegen Tanzil Uthmani 1.1 abgleichen und ausschließlich dessen unveränderten Text mit CC BY 3.0-Attribution verwenden. Die vorliegende Entwurfsfassung ist keine eigenständige App-Textlizenz.",
+        "attribution": "Fundstelle Az-Zumar 39:53; Arbeits-/Abgleichquelle https://quran.com/39/53. Geplante finale Textausgabe: Tanzil Uthmani 1.1, https://tanzil.net, CC BY 3.0."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf ausdrücklich aufgegriffene Ayah-Auswahl. Verliere nicht die Hoffnung auf Allahs Barmherzigkeit. Vollständiger Vers, keine Verkürzung der Verheißung. Übersetzungen, Tanzil-Zeichenabgleich, Rechte-Metadaten und menschliche Fachprüfung bleiben vor Release gesondert zu dokumentieren.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "quran-ar-rad-13-28",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Arbeitsfassung, Abgleich mit Tanzil Uthmani 1.1 noch erforderlich",
+        "locator": "Ar-Raʿd 13:28",
+        "sourceUrl": "https://quran.com/13/28",
+        "license": "Arabischer Wortlaut aus dem redaktionellen Ayat-Entwurf. Vor Veröffentlichung zeichengetreu gegen Tanzil Uthmani 1.1 abgleichen und ausschließlich dessen unveränderten Text mit CC BY 3.0-Attribution verwenden. Die vorliegende Entwurfsfassung ist keine eigenständige App-Textlizenz.",
+        "attribution": "Fundstelle Ar-Raʿd 13:28; Arbeits-/Abgleichquelle https://quran.com/13/28. Geplante finale Textausgabe: Tanzil Uthmani 1.1, https://tanzil.net, CC BY 3.0."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf ausdrücklich aufgegriffene Ayah-Auswahl. Ruhe der Herzen im Gedenken Allahs. Vollständiger Vers. Übersetzungen, Tanzil-Zeichenabgleich, Rechte-Metadaten und menschliche Fachprüfung bleiben vor Release gesondert zu dokumentieren.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "quran-al-anam-6-32",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا لَعِبٌ وَلَهْوٌ ۖ وَلَلدَّارُ الْآخِرَةُ خَيْرٌ لِلَّذِينَ يَتَّقُونَ ۗ أَفَلَا تَعْقِلُونَ",
+      "translations": [],
+      "source": {
+        "collection": "Quran – Arbeitsfassung, Abgleich mit Tanzil Uthmani 1.1 noch erforderlich",
+        "locator": "Al-Anʿām 6:32",
+        "sourceUrl": "https://quran.com/6/32",
+        "license": "Arabischer Wortlaut aus dem redaktionellen Ayat-Entwurf. Vor Veröffentlichung zeichengetreu gegen Tanzil Uthmani 1.1 abgleichen und ausschließlich dessen unveränderten Text mit CC BY 3.0-Attribution verwenden. Die vorliegende Entwurfsfassung ist keine eigenständige App-Textlizenz.",
+        "attribution": "Fundstelle Al-Anʿām 6:32; Arbeits-/Abgleichquelle https://quran.com/6/32. Geplante finale Textausgabe: Tanzil Uthmani 1.1, https://tanzil.net, CC BY 3.0."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer im Projektverlauf ausdrücklich aufgegriffene Ayah-Auswahl. Das diesseitige Leben und die bessere jenseitige Wohnstätte. Türkische Diyanet-Arbeitsfassung wird wegen fehlender schriftlicher App-Erlaubnis nicht übernommen. Übersetzungen, Tanzil-Zeichenabgleich, Rechte-Metadaten und menschliche Fachprüfung bleiben vor Release gesondert zu dokumentieren.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Arabischen Wortlaut Zeichen für Zeichen gegen Tanzil Uthmani 1.1 abgleichen und unverändert übernehmen",
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
     }
   ],
   "confirmedSelections": [
