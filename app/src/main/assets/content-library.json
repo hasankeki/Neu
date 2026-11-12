@@ -6275,6 +6275,52 @@
         "Orthografie/Harakāt einheitlich gegen verlässliche Referenz prüfen",
         "Die traditionelle 99er-Reihenfolge nicht als authentische Einzelüberlieferung ausgeben"
       ]
+    },
+    {
+      "id": "hadith-bukhari-6311-sleep-wudu",
+      "category": "HADITH",
+      "originalLanguageCode": "ar",
+      "originalText": "حَدَّثَنَا مُسَدَّدٌ، حَدَّثَنَا مُعْتَمِرٌ، قَالَ سَمِعْتُ مَنْصُورًا، عَنْ سَعْدِ بْنِ عُبَيْدَةَ، قَالَ حَدَّثَنِي الْبَرَاءُ بْنُ عَازِبٍ ـ رضى الله عنهما ـ قَالَ قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم ‏\"‏ إِذَا أَتَيْتَ مَضْجَعَكَ فَتَوَضَّأْ وُضُوءَكَ لِلصَّلاَةِ، ثُمَّ اضْطَجِعْ عَلَى شِقِّكَ الأَيْمَنِ، وَقُلِ اللَّهُمَّ أَسْلَمْتُ وَجْهِي إِلَيْكَ، وَفَوَّضْتُ أَمْرِي إِلَيْكَ، وَأَلْجَأْتُ ظَهْرِي إِلَيْكَ، رَغْبَةً وَرَهْبَةً إِلَيْكَ، لاَ مَلْجَأَ وَلاَ مَنْجَا مِنْكَ إِلاَّ إِلَيْكَ، آمَنْتُ بِكِتَابِكَ الَّذِي أَنْزَلْتَ، وَبِنَبِيِّكَ الَّذِي أَرْسَلْتَ‏.‏ فَإِنْ مُتَّ مُتَّ عَلَى الْفِطْرَةِ، فَاجْعَلْهُنَّ آخِرَ مَا تَقُولُ‏.‏ فَقُلْتُ أَسْتَذْكِرُهُنَّ وَبِرَسُولِكَ الَّذِي أَرْسَلْتَ‏.‏ قَالَ ‏\"‏ لاَ، وَبِنَبِيِّكَ الَّذِي أَرْسَلْتَ ‏\"‏‏.‏",
+      "translations": [],
+      "source": {
+        "collection": "Sahih al-Bukhari",
+        "locator": "Sahih al-Bukhari 6311",
+        "sourceUrl": "https://sunnah.com/bukhari:6311",
+        "license": "Primärfundstelle und arabischer Wortlaut im konsolidierten Katalog und in der angegebenen Sammlung abgeglichen. Für die konkrete digitale Texttranskription liegt noch keine separate App-Wiederveröffentlichungslizenz vor; nicht für Release freigegeben.",
+        "attribution": "Sahih al-Bukhari 6311. Fundstellen- und Wortlautreferenz: https://sunnah.com/bukhari:6311."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Im konsolidierten Katalog v0.7 als TEXTGEGENPRÜFT dokumentiert. Vollständiger Wortlaut. Wichtige Korrektur des Propheten: „wa binabiyyika“ (mit Deinem Propheten), nicht „wa birasūlika“. Vor dem Schlafen Wudūʾ und rechte Seitenlage als Kontext behalten. DE/TR/EN-Übersetzungsrechte und menschliche Fachfreigabe bleiben offen.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Rechte an der konkreten digitalen arabischen Texttranskription separat dokumentieren",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
+    },
+    {
+      "id": "hadith-muslim-1342-travel-dua",
+      "category": "HADITH",
+      "originalLanguageCode": "ar",
+      "originalText": "حَدَّثَنِي هَارُونُ بْنُ عَبْدِ اللَّهِ، حَدَّثَنَا حَجَّاجُ بْنُ مُحَمَّدٍ، قَالَ قَالَ ابْنُ جُرَيْجٍ أَخْبَرَنِي أَبُو الزُّبَيْرِ، أَنَّ عَلِيًّا الْأَزْدِيَّ، أَخْبَرَهُ أَنَّ ابْنَ عُمَرَ عَلَّمَهُمْ أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم كَانَ إِذَا اسْتَوَى عَلَى بَعِيرِهِ خَارِجًا إِلَى سَفَرٍ كَبَّرَ ثَلاَثًا ثُمَّ قَالَ ‏\"‏ سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا الْبِرَّ وَالتَّقْوَى وَمِنَ الْعَمَلِ مَا تَرْضَى اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَذَا وَاطْوِ عَنَّا بُعْدَهُ اللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ وَالْخَلِيفَةُ فِي الأَهْلِ اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ وَعْثَاءِ السَّفَرِ وَكَآبَةِ الْمَنْظَرِ وَسُوءِ الْمُنْقَلَبِ فِي الْمَالِ وَالأَهْلِ ‏\"‏ ‏.‏ وَإِذَا رَجَعَ قَالَهُنَّ ‏.‏ وَزَادَ فِيهِنَّ ‏\"‏ آيِبُونَ تَائِبُونَ عَابِدُونَ لِرَبِّنَا حَامِدُونَ ‏\"‏ ‏.‏",
+      "translations": [],
+      "source": {
+        "collection": "Sahih Muslim",
+        "locator": "Sahih Muslim 1342",
+        "sourceUrl": "https://sunnah.com/muslim:1342",
+        "license": "Primärfundstelle und arabischer Wortlaut im konsolidierten Katalog und in der angegebenen Sammlung abgeglichen. Für die konkrete digitale Texttranskription liegt noch keine separate App-Wiederveröffentlichungslizenz vor; nicht für Release freigegeben.",
+        "attribution": "Sahih Muslim 1342. Fundstellen- und Wortlautreferenz: https://sunnah.com/muslim:1342."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Im konsolidierten Katalog v0.7 als TEXTGEGENPRÜFT dokumentiert. Vollständige arabische Überlieferung mit Aufbruch, Reisebitten, Zuflucht vor Reisebelastung und eigenem Zusatz bei Rückkehr. Keine Kurzfassung als Volltext ausgeben. DE/TR/EN-Übersetzungsrechte und menschliche Fachfreigabe bleiben offen.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Rechte an der konkreten digitalen arabischen Texttranskription separat dokumentieren",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
     }
   ],
   "confirmedSelections": [
