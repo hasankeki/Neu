@@ -117,6 +117,22 @@ class MainActivity : Activity() {
             showSettings()
         }
         root.addView(label("Oft: alle 30 Minuten · Selten: alle 3 Stunden · Nur Favoriten: alle 30 Minuten, ausschließlich aus deinen Favoriten. Der Wechsel erfolgt nach Zeitintervall, nicht bei jedem Entsperren.", 12f, 0xFFBBA77E.toInt()), margin(top = 8))
+        root.addView(label("Gebetszeiten", 13f, accent, true), margin(top = 22))
+        settingRow("Berechnungsmethode", prayerMethodLabel(), "Diyanet", "Muslim World League", "ISNA", "Ägypten", "Karachi") { value ->
+            val method = when (value) {
+                "Muslim World League" -> 3
+                "ISNA" -> 2
+                "Ägypten" -> 5
+                "Karachi" -> 1
+                else -> 13
+            }
+            prefs.edit().putInt("prayer_method", method).apply()
+            showSettings()
+        }
+        settingRow("Asr-Berechnung", asrSchoolLabel(), "Hanafi", "Shafi") { value ->
+            prefs.edit().putInt("prayer_school", if (value == "Hanafi") 1 else 0).apply()
+            showSettings()
+        }
         root.addView(label("Darstellung", 13f, accent, true), margin(top = 22))
         val animationEnabled = prefs.getBoolean("light_effect", true)
         root.addView(categoryButton("Lichtstreifen", if (animationEnabled) "Aktiviert" else "Deaktiviert") {
@@ -142,6 +158,12 @@ class MainActivity : Activity() {
     }
 
     private fun rotationLabel() = prefs.getString("rotation", "Nie") ?: "Nie"
+    
+    private fun prayerMethodLabel() = when (prefs.getInt("prayer_method", 13)) {
+        3 -> "Muslim World League"; 2 -> "ISNA"; 5 -> "Ägypten"; 1 -> "Karachi"; else -> "Diyanet"
+    }
+
+    private fun asrSchoolLabel() = if (prefs.getInt("prayer_school", 1) == 0) "Shafi" else "Hanafi"
 
     private fun settingRow(title: String, current: String, vararg options: String, onChoose: (String) -> Unit) {
         val row = LinearLayout(this).apply {
