@@ -273,7 +273,7 @@ class AudioPlayerActivity : Activity() {
             }
         }
         player = null
-        playButton.text = "▶ Abspielen"
+        if (::playButton.isInitialized) playButton.text = "▶ Abspielen"
     }
 
     override fun onPause() {
