@@ -71,7 +71,8 @@ data class ContentItem(
             source.isReleaseReady() &&
             reviewStatus == ContentReviewStatus.APPROVED_FOR_RELEASE &&
             translations.all { it.isReleaseReady() } &&
-            translations.map { it.languageCode }.distinct().size == translations.size
+            translations.map { it.languageCode }.toSet() == setOf("de", "tr", "en") &&
+            reviewerNote?.isNotBlank() == true
 
     /**
      * Arabic is always shown from the verified original. Other languages
