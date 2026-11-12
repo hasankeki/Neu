@@ -101,6 +101,12 @@ class NurWallpaperService : WallpaperService() {
             textAlign = Paint.Align.CENTER
             setShadowLayer(12f, 0f, 2f, Color.BLACK)
         }
+        private val transliterationPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
+            color = GoldenPalette.mutedGold
+            textSize = 19f
+            textAlign = Paint.Align.CENTER
+            setShadowLayer(5f, 0f, 1f, Color.BLACK)
+        }
         private val translationPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
             color = GoldenPalette.ivory
             textSize = 24f
@@ -401,7 +407,11 @@ class NurWallpaperService : WallpaperService() {
             } else {
                 val width = (w * 0.82f).toInt().coerceAtLeast(1)
                 val language = preferences.getString("language", "de") ?: "de"
-                val arabic = makeLayout(firstApproved.originalText, contentPaint, width, Layout.Alignment.ALIGN_CENTER)
+                val arabicText = if (firstApproved.number != null) "${firstApproved.number}. ${firstApproved.originalText}" else firstApproved.originalText
+                val arabic = makeLayout(arabicText, contentPaint, width, Layout.Alignment.ALIGN_CENTER)
+                val transliteration = firstApproved.transliteration?.let {
+                    makeLayout(it, transliterationPaint, width, Layout.Alignment.ALIGN_CENTER)
+                }
                 val translationLanguage = translationLanguageFor(
                     language,
                     preferences.getString("translation_language", "de") ?: "de"
@@ -413,8 +423,10 @@ class NurWallpaperService : WallpaperService() {
                 // Include the Arabic text, optional translation and source line in
                 // the measured block so the contrast panel grows with the real content.
                 val sourceBaselineOffset = arabic.height +
+                    (transliteration?.height ?: 0) +
                     (translation?.height ?: 0) +
-                    if (translation != null) 64f else 50f
+                    (if (transliteration != null) 28f else 0f) +
+                    (if (translation != null) 64f else 50f)
                 val blockHeight = sourceBaselineOffset + 18f
                 val top = (centerY - blockHeight / 2f).coerceAtLeast(h * 0.16f)
                 val panel = RectF(
@@ -428,7 +440,14 @@ class NurWallpaperService : WallpaperService() {
                 canvas.translate((w - width) / 2f, top)
                 arabic.draw(canvas)
                 canvas.restore()
-                var nextY = top + arabic.height + 20f
+                var nextY = top + arabic.height + 14f
+                if (transliteration != null) {
+                    canvas.save()
+                    canvas.translate((w - width) / 2f, nextY)
+                    transliteration.draw(canvas)
+                    canvas.restore()
+                    nextY += transliteration.height + 12f
+                }
                 if (translation != null) {
                     canvas.save()
                     canvas.translate((w - width) / 2f, nextY)
@@ -437,10 +456,13 @@ class NurWallpaperService : WallpaperService() {
                     nextY += translation.height + 14f
                 }
                 canvas.drawLine(w * 0.34f, nextY + 4f, w * 0.66f, nextY + 4f, dividerPaint)
-                canvas.drawText(
-                    "${firstApproved.source.collection} · ${firstApproved.source.locator}",
-                    centerX, nextY + 30f, sourcePaint
-                )
+                val sourceLabel = if (firstApproved.category == ContentCategory.ASMA_UL_HUSNA) {
+                    val quranReference = firstApproved.source.locator.substringBefore(";")
+                    if (quranReference.startsWith("Koran ")) quranReference else "Traditionelle Namensliste"
+                } else {
+                    "${firstApproved.source.collection} · ${firstApproved.source.locator}"
+                }
+                canvas.drawText(sourceLabel, centerX, nextY + 30f, sourcePaint)
             }
         }
 
