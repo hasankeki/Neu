@@ -49,7 +49,7 @@ class MainActivity : Activity() {
         root.addView(categoryButton("Duʿāʾ & Dhikr", "Bittgebete und Gedenken") { showCategory("Duʿāʾ & Dhikr") }, margin(top = 10))
         root.addView(categoryButton("Esmaül Hüsna", "Die 99 schönen Namen Allahs") { showCategory("Esmaül Hüsna") }, margin(top = 10))
         root.addView(sectionTitle("WALLPAPER"), margin(top = 26, bottom = 10))
-        root.addView(label("Wähle NurWallpaper als Hintergrund für deinen Start- oder Sperrbildschirm.", 14f, 0xFFB8C4D9.toInt()))
+        root.addView(label("Wähle NurWallpaper als Hintergrund für deinen Start- oder Sperrbildschirm.", 14f, 0xFFE8DDC7.toInt()))
         root.addView(actionButton("Live-Wallpaper auswählen") { openWallpaperPicker() }, margin(top = 12))
         root.addView(actionButton("Einstellungen") { showSettings() }, margin(top = 10))
         root.addView(label("Offline · Ohne Konto · Ohne Werbung", 12f, 0xFF9D855D.toInt()), margin(top = 20))
@@ -81,9 +81,12 @@ class MainActivity : Activity() {
         } else {
             val favorites = FavoriteStore(prefs)
             items.forEach { item ->
-                val text = item.textFor(language) ?: item.originalText
-                root.addView(label(text, 19f, Color.WHITE, true), margin(top = 16))
-                root.addView(label("${item.source.collection} · ${item.source.locator}", 12f, 0xFF9EADC4.toInt()), margin(top = 4))
+                root.addView(label(item.originalText, 21f, 0xFFFFD98A.toInt(), true), margin(top = 16))
+                val translation = item.textFor(language)
+                if (translation != null) {
+                    root.addView(label(translation, 16f, 0xFFF0E7D6.toInt()), margin(top = 10))
+                }
+                root.addView(label("${item.source.collection} · ${item.source.locator}", 12f, 0xFFE2B453.toInt()), margin(top = 8))
                 root.addView(actionButton(
                     if (favorites.contains(item.id)) "★ Favorit entfernen" else "☆ Als Favorit speichern"
                 ) {
@@ -110,14 +113,14 @@ class MainActivity : Activity() {
             prefs.edit().putString("rotation", value).apply()
             showSettings()
         }
-        root.addView(label("Oft: alle 30 Minuten · Selten: alle 3 Stunden · Nur Favoriten: alle 30 Minuten, ausschließlich aus deinen Favoriten. Der Wechsel erfolgt nach Zeitintervall, nicht bei jedem Entsperren.", 12f, 0xFF9EADC4.toInt()), margin(top = 8))
+        root.addView(label("Oft: alle 30 Minuten · Selten: alle 3 Stunden · Nur Favoriten: alle 30 Minuten, ausschließlich aus deinen Favoriten. Der Wechsel erfolgt nach Zeitintervall, nicht bei jedem Entsperren.", 12f, 0xFFBBA77E.toInt()), margin(top = 8))
         root.addView(label("Darstellung", 13f, accent, true), margin(top = 22))
         val animationEnabled = prefs.getBoolean("light_effect", true)
         root.addView(categoryButton("Lichtstreifen", if (animationEnabled) "Aktiviert" else "Deaktiviert") {
             prefs.edit().putBoolean("light_effect", !animationEnabled).apply()
             showSettings()
         }, margin(top = 10))
-        root.addView(label("Der dynamische Kontrastschutz bleibt immer aktiv, damit arabischer Text, Übersetzung und Quelle lesbar bleiben.", 13f, 0xFFB8C4D9.toInt()), margin(top = 18))
+        root.addView(label("Der dynamische Kontrastschutz bleibt immer aktiv, damit arabischer Text, Übersetzung und Quelle lesbar bleiben.", 13f, 0xFFE8DDC7.toInt()), margin(top = 18))
         root.addView(actionButton("Quellen und Lizenzen") { showSources() }, margin(top = 24))
         setContentView(scroll)
     }
@@ -126,7 +129,7 @@ class MainActivity : Activity() {
         val scroll = page()
         root.addView(actionButton("← Zurück zu Einstellungen") { showSettings() }, margin(bottom = 24))
         root.addView(label("Quellen und Lizenzen", 26f, Color.WHITE, true))
-        root.addView(label("Korantext: vorgesehene Grundlage ist die Tanzil-Ausgabe. Übersetzungen benötigen jeweils eine eigene Rechteprüfung und Attribution. Hadith-Quellen der offiziellen Bibliothek: Ṣaḥīḥ al-Bukhārī und Ṣaḥīḥ Muslim.", 15f, 0xFFD1DAE8.toInt()), margin(top = 18))
+        root.addView(label("Korantext: vorgesehene Grundlage ist die Tanzil-Ausgabe. Übersetzungen benötigen jeweils eine eigene Rechteprüfung und Attribution. Hadith-Quellen der offiziellen Bibliothek: Ṣaḥīḥ al-Bukhārī und Ṣaḥīḥ Muslim.", 15f, 0xFFF0E7D6.toInt()), margin(top = 18))
         root.addView(label("Ein Inhalt wird erst veröffentlicht, wenn Originalwortlaut, genaue Fundstelle, Übersetzung, Nutzungsrechte und fachliche Prüfung dokumentiert sind.", 14f, accent), margin(top = 16))
         setContentView(scroll)
     }
@@ -168,7 +171,7 @@ class MainActivity : Activity() {
             setOnClickListener { onClick() }
         }
         box.addView(label(title, 19f, Color.WHITE, true))
-        box.addView(label(subtitle, 13f, 0xFF9EADC4.toInt()), margin(top = 5))
+        box.addView(label(subtitle, 13f, 0xFFBBA77E.toInt()), margin(top = 5))
         return box
     }
 
