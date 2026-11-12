@@ -49,7 +49,7 @@ data class ContentSource(
     fun isReleaseReady(): Boolean =
         collection.isNotBlank() &&
             locator.isNotBlank() &&
-            sourceUrl.isNotBlank() &&
+            sourceUrl.startsWith("https://") &&
             license.isNotBlank() &&
             attribution.isNotBlank()
 }
@@ -69,7 +69,11 @@ data class ContentItem(
             originalLanguageCode == "ar" &&
             originalText.isNotBlank() &&
             source.isReleaseReady() &&
+            (category != ContentCategory.HADITH ||
+                source.collection.contains("bukh", ignoreCase = true) ||
+                source.collection.contains("muslim", ignoreCase = true)) &&
             reviewStatus == ContentReviewStatus.APPROVED_FOR_RELEASE &&
+            translations.size == 3 &&
             translations.all { it.isReleaseReady() } &&
             translations.map { it.languageCode }.toSet() == setOf("de", "tr", "en") &&
             reviewerNote?.isNotBlank() == true
