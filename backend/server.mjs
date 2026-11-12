@@ -5,6 +5,12 @@ const QF_CLIENT_ID = process.env.QF_CLIENT_ID;
 const QF_CLIENT_SECRET = process.env.QF_CLIENT_SECRET;
 const QF_API_BASE = process.env.QF_API_BASE || "https://apis.quran.foundation";
 const QF_OAUTH_BASE = process.env.QF_OAUTH_BASE || "https://oauth2.quran.foundation";
+const APPROVED_RECITATION_IDS = new Set(
+  (process.env.QF_APPROVED_RECITATION_IDS || "")
+    .split(",")
+    .map(value => Number(value.trim()))
+    .filter(value => Number.isInteger(value) && value > 0)
+);
 
 let cachedToken = null;
 let tokenExpiresAt = 0;
@@ -80,12 +86,18 @@ const server = createServer(async (request, response) => {
 
     if (request.method === "GET" && url.pathname === "/v1/reciters") {
       const data = await qfGet("/resources/recitations?language=en");
-      const reciters = (data.recitations || []).map(item => ({
+      const reciters = (data.recitations || []).filter(item =>
+        APPROVED_RECITATION_IDS.has(Number(item.id))
+      ).map(item => ({
         id: Number(item.id),
         name: String(item.reciter_name || item.translated_name?.name || "Unbekannter Rezitator"),
         style: item.style || null
       })).filter(item => Number.isInteger(item.id) && item.id > 0 && item.name);
-      return sendJson(response, 200, { reciters, source: "Quran Foundation" });
+      return sendJson(response, 200, {
+        reciters,
+        source: "Quran Foundation",
+        message: reciters.length ? undefined : "No reciters have been approved for this application yet."
+      });
     }
 
     if (request.method === "GET" && url.pathname === "/v1/audio") {
