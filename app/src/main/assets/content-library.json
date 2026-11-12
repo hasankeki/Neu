@@ -44,7 +44,9 @@
         "attribution": "Primary collection reference: Sahih al-Bukhari 6306. Arabic and multilingual text reference: HadeethEnc entry 5503; HadeethEnc.com — Rowad Translation Center; published by the Islamic Propagation Office in Rabwah."
       },
       "reviewStatus": "APPROVED_FOR_RELEASE",
-      "reviewerNote": "Nutzerbestätigte Inhaltsauswahl; Wortlaut und Übersetzungen aus dem passenden HadeethEnc-Datensatz übernommen. Der Hadith nennt Tag und Nacht; keine pauschale feste Uhrzeit oder zusätzliche Wiederholungszahl ergänzt. Lizenz-/Versionsangaben je Sprache im Datensatz hinterlegt."
+      "reviewerNote": "Nutzerbestätigte Inhaltsauswahl; Wortlaut und Übersetzungen aus dem passenden HadeethEnc-Datensatz übernommen. Der Hadith nennt Tag und Nacht; keine pauschale feste Uhrzeit oder zusätzliche Wiederholungszahl ergänzt. Lizenz-/Versionsangaben je Sprache im Datensatz hinterlegt.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": []
     },
     {
       "id": "hadith-muslim-713-mosque-entry-exit",
@@ -88,7 +90,9 @@
         "attribution": "Primary collection reference: Sahih Muslim 713a. Arabic and multilingual text reference: HadeethEnc entry 65092; HadeethEnc.com — Rowad Translation Center; published by the Islamic Propagation Office in Rabwah."
       },
       "reviewStatus": "APPROVED_FOR_RELEASE",
-      "reviewerNote": "Nutzerbestätigte Inhaltsauswahl; Wortlaut und Übersetzungen aus dem passenden HadeethEnc-Datensatz übernommen. Ein Datensatz enthält beide Anlässe (Moschee betreten und verlassen), wie in Muslim 713 überliefert. Lizenz-/Versionsangaben je Sprache im Datensatz hinterlegt."
+      "reviewerNote": "Nutzerbestätigte Inhaltsauswahl; Wortlaut und Übersetzungen aus dem passenden HadeethEnc-Datensatz übernommen. Ein Datensatz enthält beide Anlässe (Moschee betreten und verlassen), wie in Muslim 713 überliefert. Lizenz-/Versionsangaben je Sprache im Datensatz hinterlegt.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": []
     },
     {
       "id": "hadith-muslim-598-opening-supplication",
@@ -132,7 +136,9 @@
         "attribution": "Primary reference: Sahih Muslim 598a–b; parallel Sahih al-Bukhari 744. Translation source: HadeethEnc entry 3104. HadeethEnc.com — Rowad Translation Center; Islamic Propagation Office in Rabwah."
       },
       "reviewStatus": "APPROVED_FOR_RELEASE",
-      "reviewerNote": "Vom Nutzer bestätigte Eröffnungsbitte; beide Fundstellen sind als dieselbe Überlieferungsfamilie dokumentiert. Wortlautvariante nicht mit anderen Eröffnungs-Duʿāʾ vermischen. HadeethEnc-Übersetzungen unverändert mit Sprachversion und Attribution."
+      "reviewerNote": "Vom Nutzer bestätigte Eröffnungsbitte; beide Fundstellen sind als dieselbe Überlieferungsfamilie dokumentiert. Wortlautvariante nicht mit anderen Eröffnungs-Duʿāʾ vermischen. HadeethEnc-Übersetzungen unverändert mit Sprachversion und Attribution.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": []
     },
     {
       "id": "hadith-muslim-2692-subhanallahi-wa-bihamdihi",
