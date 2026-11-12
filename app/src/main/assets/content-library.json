@@ -89,6 +89,50 @@
       },
       "reviewStatus": "APPROVED_FOR_RELEASE",
       "reviewerNote": "Nutzerbestätigte Inhaltsauswahl; Wortlaut und Übersetzungen aus dem passenden HadeethEnc-Datensatz übernommen. Ein Datensatz enthält beide Anlässe (Moschee betreten und verlassen), wie in Muslim 713 überliefert. Lizenz-/Versionsangaben je Sprache im Datensatz hinterlegt."
+    },
+    {
+      "id": "hadith-muslim-598-opening-supplication",
+      "category": "HADITH",
+      "originalLanguageCode": "ar",
+      "originalText": "عَنْ أَبِي هُرَيْرَةَ رضي الله عنه قَالَ: كَانَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، إِذَا كَبَّرَ فِي الصَّلَاةِ، سَكَتَ هُنَيَّةً قَبْلَ أَنْ يَقْرَأَ، فَقُلْتُ: يَا رَسُولَ اللهِ بِأَبِي أَنْتَ وَأُمِّي أَرَأَيْتَ سُكُوتَكَ بَيْنَ التَّكْبِيرِ وَالْقِرَاءَةِ، مَا تَقُولُ؟ قَالَ «أَقُولُ: اللهُمَّ بَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللهُمَّ نَقِّنِي مِنْ خَطَايَايَ كَمَا يُنَقَّى الثَّوْبُ الْأَبْيَضُ مِنَ الدَّنَسِ، اللهُمَّ اغْسِلْنِي مِنْ خَطَايَايَ بِالثَّلْجِ وَالْمَاءِ وَالْبَرَدِ».",
+      "translations": [
+        {
+          "languageCode": "de",
+          "text": "Von Abu Hurayrah - möge Allah mit ihm zufrieden sein - wird überliefert, dass er sagte: Der Gesandte Allahs - Allahs Segen und Frieden auf ihm - pflegte, wenn er im Gebet den (Eröffnungs-)Takbir sprach, eine kurze Weile zu schweigen, bevor er las. Da sagte ich: „O Gesandter Allahs - mögen mein Vater und meine Mutter für dich geopfert werden -, siehst du dein Schweigen zwischen dem Takbir und der Rezitation? Was sagst du (während diesem)?“ Er sagte: „Ich sage: O Allah, entferne mich von meinen Sünden, so wie Du den Osten vom Westen entfernt hast. O Allah, reinige mich von meinen Sünden, wie das weiße Kleid von Schmutz gereinigt wird. O Allah, wasche mich von meinen Sünden mit Schnee, Wasser und Hagel.“",
+          "translator": "HadeethEnc / Rowad Translation Center",
+          "edition": "HadeethEnc entry 3104",
+          "version": "v1.58.0",
+          "license": "HadeethEnc republication terms: reproduce unchanged; credit HadeethEnc.com and publisher; retain transcript and language version information; notify source of notes; update to latest version; no inappropriate advertisements alongside hadith.",
+          "attribution": "HadeethEnc.com — Rowad Translation Center; Islamic Propagation Office in Rabwah. DE v1.58.0."
+        },
+        {
+          "languageCode": "tr",
+          "text": "Ebû Hureyre -radıyallahu anh-'dan rivayet edildiğine göre, şöyle demiştir: Rasûlullah -sallallahu aleyhi ve sellem- namaza başladığında tekbir ve kıraat arasında kısa bir süre sükût ederdi. Dedim ki: Ey Allah’ın Rasûlü! Anam babam sana feda olsun, tekbir ile kıraat arasındaki sükût etmenizde ne okuyorsunuz? Rasûlullah -sallallahu aleyhi ve sellem- şu duayı okuyorum, dedi: Allahumme bâid beynî ve beyne hatâyâye kemâ bâadte beyne’l-meşrikı ve’l-mağribi. Allâhumme nakkinî min hatâyâye kemâ yunakka’s-sevbu’l-ebyadu mine’d-denes. Allâhumme’ğsilnî min hatâyâye bi’s-selci ve’l-mâi ve’l-beradi. (Allah'ım! Doğu ve batının arasını uzaklaştırdığın gibi, beni de günahlarımdan uzaklaştır. Allah'ım! Beyaz elbisenin kirden temizlendiği gibi, beni de günahlarımdan temizle. Allah'ım! Beni günahlarımdan kar, su ve dolu ile arındır.)",
+          "translator": "HadeethEnc / Rowad Translation Center",
+          "edition": "HadeethEnc entry 3104",
+          "version": "v1.71.0",
+          "license": "HadeethEnc republication terms: reproduce unchanged; credit HadeethEnc.com and publisher; retain transcript and language version information; notify source of notes; update to latest version; no inappropriate advertisements alongside hadith.",
+          "attribution": "HadeethEnc.com — Rowad Translation Center; Islamic Propagation Office in Rabwah. TR v1.71.0."
+        },
+        {
+          "languageCode": "en",
+          "text": "Abu Hurayrah (may Allah be pleased with him) reported: When the Messenger of Allah (may Allah's peace and blessings be upon him) made Takbīr in the prayer, he would remain silent a while before reciting. I said: O Messenger of Allah, may my father and mother ransom you! Have you seen your silence between Takbīr and the recitation? What is it that you say? He said: I say: Allāhumma bā‘id bayni wa bayna khatāyāy kama bā‘dta bayna al-mashriqi wa al-maghrib. Allāhumma naqqini min khatāyāy kama yunaqqa ath-thawbu al-abyadu min ad-danas. Allāhumma ighsilni min khatāyāy bith-thalji wa al-mā’i wa al-barad (O Allah, distance me from my sins as You have distanced the east from the west. O Allah, purify me from my sins as a white garment is purified from dirt. O Allah, wash out my sins with water, snow, and hail).",
+          "translator": "HadeethEnc / Rowad Translation Center",
+          "edition": "HadeethEnc entry 3104",
+          "version": "v1.25.0",
+          "license": "HadeethEnc republication terms: reproduce unchanged; credit HadeethEnc.com and publisher; retain transcript and language version information; notify source of notes; update to latest version; no inappropriate advertisements alongside hadith.",
+          "attribution": "HadeethEnc.com — Rowad Translation Center; Islamic Propagation Office in Rabwah. EN v1.25.0."
+        }
+      ],
+      "source": {
+        "collection": "Sahih Muslim",
+        "locator": "Sahih Muslim 598a–b; parallel wording in Sahih al-Bukhari 744",
+        "sourceUrl": "https://sunnah.com/muslim:598",
+        "license": "Original hadith wording from the cited authentic collection; translations reproduced under the HadeethEnc terms stated separately for each language.",
+        "attribution": "Primary reference: Sahih Muslim 598a–b; parallel Sahih al-Bukhari 744. Translation source: HadeethEnc entry 3104. HadeethEnc.com — Rowad Translation Center; Islamic Propagation Office in Rabwah."
+      },
+      "reviewStatus": "APPROVED_FOR_RELEASE",
+      "reviewerNote": "Vom Nutzer bestätigte Eröffnungsbitte; beide Fundstellen sind als dieselbe Überlieferungsfamilie dokumentiert. Wortlautvariante nicht mit anderen Eröffnungs-Duʿāʾ vermischen. HadeethEnc-Übersetzungen unverändert mit Sprachversion und Attribution."
     }
   ]
 }
