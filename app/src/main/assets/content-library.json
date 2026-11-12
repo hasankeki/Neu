@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "Offline NurWallpaper catalogue. Records are filtered by the strict release gate; HadeethEnc translations are reproduced unchanged with language version and attribution.",
+  "description": "NurWallpaper offline catalogue. CONFIRMED selections are retained with separate release readiness. Only records passing the strict release gate are shown in the app; incomplete translation/licence records remain hidden, not discarded.",
   "items": [
     {
       "id": "hadith-bukhari-6306-sayyid-al-istighfar",
@@ -133,6 +133,274 @@
       },
       "reviewStatus": "APPROVED_FOR_RELEASE",
       "reviewerNote": "Vom Nutzer bestätigte Eröffnungsbitte; beide Fundstellen sind als dieselbe Überlieferungsfamilie dokumentiert. Wortlautvariante nicht mit anderen Eröffnungs-Duʿāʾ vermischen. HadeethEnc-Übersetzungen unverändert mit Sprachversion und Attribution."
+    },
+    {
+      "id": "hadith-muslim-2692-subhanallahi-wa-bihamdihi",
+      "category": "HADITH",
+      "originalLanguageCode": "ar",
+      "originalText": "مَنْ قَالَ حِينَ يُصْبِحُ وَحِينَ يُمْسِي سُبْحَانَ اللَّهِ وَبِحَمْدِهِ مِائَةَ مَرَّةٍ لَمْ يَأْتِ أَحَدٌ يَوْمَ الْقِيَامَةِ بِأَفْضَلَ مِمَّا جَاءَ بِهِ إِلَّا أَحَدٌ قَالَ مِثْلَ مَا قَالَ أَوْ زَادَ عَلَيْهِ",
+      "translations": [],
+      "source": {
+        "collection": "Sahih Muslim",
+        "locator": "Sahih Muslim 2692",
+        "sourceUrl": "https://sunnah.com/muslim:2692",
+        "license": "Originalüberlieferung als Primärtext referenziert; konkrete digitale Textausgabe/Transkription nicht als separate App-Lizenz dokumentiert. Keine Übersetzung von Sunnah.com übernommen.",
+        "attribution": "Sahih Muslim, Sahih Muslim 2692. Arabischer Wortlaut gegen die angegebene Fundstelle abgeglichen; Sunnah.com dient als Fundstellen-/Textreferenz."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Morgens und abends je 100-mal; keine abweichende Tagesroutine oder andere Zählvariante ergänzen.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte deutsche Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte türkische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte englische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Menschliche fachkundige Freigabe nicht im Datensatz dokumentiert"
+      ]
+    },
+    {
+      "id": "hadith-bukhari-3481-fear-and-forgiveness",
+      "category": "HADITH",
+      "originalLanguageCode": "ar",
+      "originalText": "كَانَ رَجُلٌ يُسْرِفُ عَلَى نَفْسِهِ فَلَمَّا حَضَرَهُ الْمَوْتُ قَالَ لِبَنِيهِ إِذَا أَنَا مُتُّ فَأَحْرِقُونِي ثُمَّ اطْحَنُونِي ثُمَّ ذَرُّونِي فِي الرِّيحِ فَوَاللَّهِ لَئِنْ قَدَرَ عَلَيَّ رَبِّي لَيُعَذِّبَنِّي عَذَابًا مَا عَذَّبَهُ أَحَدًا فَلَمَّا مَاتَ فُعِلَ بِهِ ذَلِكَ فَأَمَرَ اللَّهُ الْأَرْضَ فَقَالَ اجْمَعِي مَا فِيكِ مِنْهُ فَفَعَلَتْ فَإِذَا هُوَ قَائِمٌ فَقَالَ مَا حَمَلَكَ عَلَى مَا صَنَعْتَ قَالَ يَا رَبِّ خَشْيَتُكَ فَغَفَرَ لَهُ وَقَالَ غَيْرُهُ مَخَافَتُكَ يَا رَبِّ",
+      "translations": [],
+      "source": {
+        "collection": "Sahih al-Bukhari",
+        "locator": "Sahih al-Bukhari 3481",
+        "sourceUrl": "https://sunnah.com/bukhari:3481",
+        "license": "Originalüberlieferung als Primärtext referenziert; konkrete digitale Textausgabe/Transkription nicht als separate App-Lizenz dokumentiert. Keine Übersetzung von Sunnah.com übernommen.",
+        "attribution": "Sahih al-Bukhari, Sahih al-Bukhari 3481. Arabischer Wortlaut gegen die angegebene Fundstelle abgeglichen; Sunnah.com dient als Fundstellen-/Textreferenz."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Eigenständige Fassung; nicht mit Muslim 2756a zusammenlegen. Inhalt nicht als allgemeines Duʿāʾ ausgeben.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte deutsche Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte türkische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte englische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Menschliche fachkundige Freigabe nicht im Datensatz dokumentiert"
+      ]
+    },
+    {
+      "id": "hadith-muslim-2756a-fear-and-mercy",
+      "category": "HADITH",
+      "originalLanguageCode": "ar",
+      "originalText": "قَالَ رَجُلٌ لَمْ يَعْمَلْ حَسَنَةً قَطُّ لِأَهْلِهِ إِذَا مَاتَ فَحَرِّقُوهُ ثُمَّ اذْرُوا نِصْفَهُ فِي الْبَرِّ وَنِصْفَهُ فِي الْبَحْرِ فَوَاللَّهِ لَئِنْ قَدَرَ اللَّهُ عَلَيْهِ لَيُعَذِّبَنَّهُ عَذَابًا لَا يُعَذِّبُهُ أَحَدًا مِنَ الْعَالَمِينَ فَلَمَّا مَاتَ الرَّجُلُ فَعَلُوا مَا أَمَرَهُمْ فَأَمَرَ اللَّهُ الْبَرَّ فَجَمَعَ مَا فِيهِ وَأَمَرَ الْبَحْرَ فَجَمَعَ مَا فِيهِ ثُمَّ قَالَ لِمَ فَعَلْتَ هَذَا قَالَ مِنْ خَشْيَتِكَ يَا رَبِّ وَأَنْتَ أَعْلَمُ فَغَفَرَ اللَّهُ لَهُ",
+      "translations": [],
+      "source": {
+        "collection": "Sahih Muslim",
+        "locator": "Sahih Muslim 2756a",
+        "sourceUrl": "https://sunnah.com/muslim:2756a",
+        "license": "Originalüberlieferung als Primärtext referenziert; konkrete digitale Textausgabe/Transkription nicht als separate App-Lizenz dokumentiert. Keine Übersetzung von Sunnah.com übernommen.",
+        "attribution": "Sahih Muslim, Sahih Muslim 2756a. Arabischer Wortlaut gegen die angegebene Fundstelle abgeglichen; Sunnah.com dient als Fundstellen-/Textreferenz."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Eigene Muslim-Fassung mit Land und Meer; getrennt von Bukhārī 3481 dokumentiert.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte deutsche Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte türkische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte englische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Menschliche fachkundige Freigabe nicht im Datensatz dokumentiert"
+      ]
+    },
+    {
+      "id": "hadith-bukhari-6224-sneezing-response",
+      "category": "HADITH",
+      "originalLanguageCode": "ar",
+      "originalText": "إِذَا عَطَسَ أَحَدُكُمْ فَلْيَقُلِ الْحَمْدُ لِلَّهِ وَلْيَقُلْ لَهُ أَخُوهُ أَوْ صَاحِبُهُ يَرْحَمُكَ اللَّهُ فَإِذَا قَالَ لَهُ يَرْحَمُكَ اللَّهُ فَلْيَقُلْ يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ",
+      "translations": [],
+      "source": {
+        "collection": "Sahih al-Bukhari",
+        "locator": "Sahih al-Bukhari 6224",
+        "sourceUrl": "https://sunnah.com/bukhari:6224",
+        "license": "Originalüberlieferung als Primärtext referenziert; konkrete digitale Textausgabe/Transkription nicht als separate App-Lizenz dokumentiert. Keine Übersetzung von Sunnah.com übernommen.",
+        "attribution": "Sahih al-Bukhari, Sahih al-Bukhari 6224. Arabischer Wortlaut gegen die angegebene Fundstelle abgeglichen; Sunnah.com dient als Fundstellen-/Textreferenz."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Dreiteilige Gesprächsfolge: Lobpreisung, Barmherzigkeitswunsch, Bitte um Rechtleitung und gutes Befinden.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte deutsche Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte türkische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte englische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Menschliche fachkundige Freigabe nicht im Datensatz dokumentiert"
+      ]
+    },
+    {
+      "id": "hadith-muslim-2991a-sneezing-praise",
+      "category": "HADITH",
+      "originalLanguageCode": "ar",
+      "originalText": "عَطَسَ عِنْدَ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ رَجُلَانِ فَشَمَّتَ أَحَدَهُمَا وَلَمْ يُشَمِّتِ الْآخَرَ فَقَالَ الَّذِي لَمْ يُشَمِّتْهُ عَطَسَ فُلَانٌ فَشَمَّتَّهُ وَعَطَسْتُ أَنَا فَلَمْ تُشَمِّتْنِي قَالَ إِنَّ هَذَا حَمِدَ اللَّهَ وَإِنَّكَ لَمْ تَحْمَدِ اللَّهَ",
+      "translations": [],
+      "source": {
+        "collection": "Sahih Muslim",
+        "locator": "Sahih Muslim 2991a",
+        "sourceUrl": "https://sunnah.com/muslim:2991a",
+        "license": "Originalüberlieferung als Primärtext referenziert; konkrete digitale Textausgabe/Transkription nicht als separate App-Lizenz dokumentiert. Keine Übersetzung von Sunnah.com übernommen.",
+        "attribution": "Sahih Muslim, Sahih Muslim 2991a. Arabischer Wortlaut gegen die angegebene Fundstelle abgeglichen; Sunnah.com dient als Fundstellen-/Textreferenz."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Eigenständiger Kontextbericht: erklärt, dass die Barmherzigkeitsbitte an das Lob Allahs gebunden ist; nicht mit Bukhārī 6224 zu einer Mischfassung verbinden.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte deutsche Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte türkische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Lizenzierte englische Übersetzung fehlt oder nicht dem exakten Datensatz zugeordnet",
+        "Menschliche fachkundige Freigabe nicht im Datensatz dokumentiert"
+      ]
+    },
+    {
+      "id": "quran-adh-dhariyat-51-22",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "وَفِى ٱلسَّمَآءِ رِزْقُكُمْ وَمَا تُوعَدُونَ",
+      "translations": [],
+      "source": {
+        "collection": "Tanzil Quran Text (Uthmani, Version 1.1)",
+        "locator": "Adh-Dhāriyāt 51:22",
+        "sourceUrl": "https://tanzil.net/docs/Text_License",
+        "license": "CC BY 3.0. Text muss wortgetreu bleiben; Quellenangabe, Link zu tanzil.net und vollständiger Copyright-/Lizenzhinweis in der App erforderlich.",
+        "attribution": "Tanzil Quran Text (Uthmani, Version 1.1), Copyright © 2007–2026 Tanzil Project, CC BY 3.0 — https://tanzil.net"
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Vom Nutzer eingebrachte Formulierung „Wa fis-samāʾi rizqukum wa mā tūʿadūn“. Vollständigen Vers als Tanzil-Uthmani-Text dokumentiert.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte deutsche Übersetzung mit genauer QuranEnc-Version fehlt",
+        "Lizenzierte türkische Übersetzung fehlt; Diyanet darf nicht ohne schriftliche Erlaubnis kopiert werden",
+        "Lizenzierte englische Übersetzung mit genauer Version/Attribution fehlt",
+        "Menschliche fachkundige Freigabe nicht im Datensatz dokumentiert"
+      ]
+    },
+    {
+      "id": "quran-al-imran-3-173",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "ٱلَّذِينَ قَالَ لَهُمُ ٱلنَّاسُ إِنَّ ٱلنَّاسَ قَدۡ جَمَعُواْ لَكُمۡ فَٱخۡشَوۡهُمۡ فَزَادَهُمۡ إِيمَٰنٗا وَقَالُواْ حَسۡبُنَا ٱللَّهُ وَنِعۡمَ ٱلۡوَكِيلُ",
+      "translations": [],
+      "source": {
+        "collection": "Tanzil Quran Text (Uthmani, Version 1.1)",
+        "locator": "Āl ʿImrān 3:173",
+        "sourceUrl": "https://tanzil.net/docs/Text_License",
+        "license": "CC BY 3.0. Text muss wortgetreu bleiben; Quellenangabe, Link zu tanzil.net und vollständiger Copyright-/Lizenzhinweis in der App erforderlich.",
+        "attribution": "Tanzil Quran Text (Uthmani, Version 1.1), Copyright © 2007–2026 Tanzil Project, CC BY 3.0 — https://tanzil.net"
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Vom Nutzer eingebrachte Formulierung „Ḥasbunallāhu wa niʿma-l-wakīl“. Vollständiger Vers, nicht nur die Schlussformel.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte deutsche Übersetzung mit genauer QuranEnc-Version fehlt",
+        "Lizenzierte türkische Übersetzung fehlt; Diyanet darf nicht ohne schriftliche Erlaubnis kopiert werden",
+        "Lizenzierte englische Übersetzung mit genauer Version/Attribution fehlt",
+        "Menschliche fachkundige Freigabe nicht im Datensatz dokumentiert"
+      ]
+    },
+    {
+      "id": "quran-al-qasas-28-24",
+      "category": "VERSE",
+      "originalLanguageCode": "ar",
+      "originalText": "فَسَقَىٰ لَهُمَا ثُمَّ تَوَلَّىٰٓ إِلَى ٱلظِّلِّ فَقَالَ رَبِّ إِنِّي لِمَآ أَنزَلۡتَ إِلَيَّ مِنۡ خَيۡرٖ فَقِيرٞ",
+      "translations": [],
+      "source": {
+        "collection": "Tanzil Quran Text (Uthmani, Version 1.1)",
+        "locator": "Al-Qaṣaṣ 28:24",
+        "sourceUrl": "https://tanzil.net/docs/Text_License",
+        "license": "CC BY 3.0. Text muss wortgetreu bleiben; Quellenangabe, Link zu tanzil.net und vollständiger Copyright-/Lizenzhinweis in der App erforderlich.",
+        "attribution": "Tanzil Quran Text (Uthmani, Version 1.1), Copyright © 2007–2026 Tanzil Project, CC BY 3.0 — https://tanzil.net"
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Vom Nutzer eingebrachte Formulierung „Rabbi innī limā anzalta ilayya min khayrin faqīr“. Vollständiger Vers.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte deutsche Übersetzung mit genauer QuranEnc-Version fehlt",
+        "Lizenzierte türkische Übersetzung fehlt; Diyanet darf nicht ohne schriftliche Erlaubnis kopiert werden",
+        "Lizenzierte englische Übersetzung mit genauer Version/Attribution fehlt",
+        "Menschliche fachkundige Freigabe nicht im Datensatz dokumentiert"
+      ]
+    },
+    {
+      "id": "dhikr-astaghfirullah",
+      "category": "DUA_DHIKR",
+      "originalLanguageCode": "ar",
+      "originalText": "أَسْتَغْفِرُ اللَّهَ",
+      "translations": [],
+      "source": {
+        "collection": "Allgemeiner Dhikr – keine bestimmte Hadith-Fundstelle oder feste Wiederholungszahl zugeordnet",
+        "locator": "Allgemeine Formel; keine feste Zahl behauptet",
+        "sourceUrl": "https://sunnah.com/",
+        "license": "Arabische Kurzform als allgemeiner Dhikr; keine moderne Übersetzung oder Drittanbieter-Textkopie eingebunden.",
+        "attribution": "Allgemeiner Dhikr. Keine feste Anzahl oder besondere Verheißung ohne eigenen Beleg zuordnen."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Bedeutungshinweis zur späteren lizenzierten Übersetzung: Ich bitte Allah um Vergebung..",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte DE/TR/EN-Übersetzungen und genaue Versionsangaben fehlen",
+        "Menschliche sprachliche/fachkundige Freigabe nicht dokumentiert"
+      ]
+    },
+    {
+      "id": "dhikr-allahu-akbar",
+      "category": "DUA_DHIKR",
+      "originalLanguageCode": "ar",
+      "originalText": "اللَّهُ أَكْبَرُ",
+      "translations": [],
+      "source": {
+        "collection": "Allgemeiner Dhikr – keine bestimmte Hadith-Fundstelle oder feste Wiederholungszahl zugeordnet",
+        "locator": "Allgemeine Formel; keine feste Zahl behauptet",
+        "sourceUrl": "https://sunnah.com/",
+        "license": "Arabische Kurzform als allgemeiner Dhikr; keine moderne Übersetzung oder Drittanbieter-Textkopie eingebunden.",
+        "attribution": "Allgemeiner Dhikr. Keine feste Anzahl oder besondere Verheißung ohne eigenen Beleg zuordnen."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Bedeutungshinweis zur späteren lizenzierten Übersetzung: Allah ist größer..",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte DE/TR/EN-Übersetzungen und genaue Versionsangaben fehlen",
+        "Menschliche sprachliche/fachkundige Freigabe nicht dokumentiert"
+      ]
+    },
+    {
+      "id": "dhikr-la-ilaha-illallah",
+      "category": "DUA_DHIKR",
+      "originalLanguageCode": "ar",
+      "originalText": "لَا إِلَهَ إِلَّا اللَّهُ",
+      "translations": [],
+      "source": {
+        "collection": "Allgemeiner Dhikr – keine bestimmte Hadith-Fundstelle oder feste Wiederholungszahl zugeordnet",
+        "locator": "Allgemeine Formel; keine feste Zahl behauptet",
+        "sourceUrl": "https://sunnah.com/",
+        "license": "Arabische Kurzform als allgemeiner Dhikr; keine moderne Übersetzung oder Drittanbieter-Textkopie eingebunden.",
+        "attribution": "Allgemeiner Dhikr. Keine feste Anzahl oder besondere Verheißung ohne eigenen Beleg zuordnen."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Bedeutungshinweis zur späteren lizenzierten Übersetzung: Es gibt keinen Gott außer Allah..",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte DE/TR/EN-Übersetzungen und genaue Versionsangaben fehlen",
+        "Menschliche sprachliche/fachkundige Freigabe nicht dokumentiert"
+      ]
+    },
+    {
+      "id": "dhikr-alhamdulillah",
+      "category": "DUA_DHIKR",
+      "originalLanguageCode": "ar",
+      "originalText": "الْحَمْدُ لِلَّهِ",
+      "translations": [],
+      "source": {
+        "collection": "Allgemeiner Dhikr – keine bestimmte Hadith-Fundstelle oder feste Wiederholungszahl zugeordnet",
+        "locator": "Allgemeine Formel; keine feste Zahl behauptet",
+        "sourceUrl": "https://sunnah.com/",
+        "license": "Arabische Kurzform als allgemeiner Dhikr; keine moderne Übersetzung oder Drittanbieter-Textkopie eingebunden.",
+        "attribution": "Allgemeiner Dhikr. Keine feste Anzahl oder besondere Verheißung ohne eigenen Beleg zuordnen."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Inhalt ausgewählt/bestätigt. Die Auswahl wird nicht erneut zur Diskussion gestellt. Release-Gate bleibt bis zur dokumentierten lizenzierten DE/TR/EN-Übersetzung und menschlichen Fachprüfung geschlossen. Bedeutungshinweis zur späteren lizenzierten Übersetzung: Alles Lob gebührt Allah..",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte DE/TR/EN-Übersetzungen und genaue Versionsangaben fehlen",
+        "Menschliche sprachliche/fachkundige Freigabe nicht dokumentiert"
+      ]
     }
   ]
 }
