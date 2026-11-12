@@ -15,6 +15,7 @@ import android.view.Gravity
 import android.view.Surface
 import android.view.View
 import android.hardware.Sensor
+import android.hardware.GeomagneticField
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
@@ -31,6 +32,7 @@ class QiblaActivity : Activity(), SensorEventListener, LocationListener {
     private lateinit var directionText: TextView
     private var qiblaBearing: Float? = null
     private var azimuth = 0f
+    private var magneticDeclination = 0f
     private val permissionRequest = 41
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -144,6 +146,14 @@ class QiblaActivity : Activity(), SensorEventListener, LocationListener {
         val y = sin(dLon) * cos(lat2)
         val x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)
         qiblaBearing = ((Math.toDegrees(atan2(y, x)) + 360.0) % 360.0).toFloat()
+        // The phone compass reports magnetic north; Qibla bearing is relative to true north.
+        // Correct the heading with the local geomagnetic declination.
+        magneticDeclination = GeomagneticField(
+            location.latitude.toFloat(),
+            location.longitude.toFloat(),
+            location.altitude.toFloat(),
+            System.currentTimeMillis()
+        ).declination
         status.text = "Standortgenauigkeit: ±${location.accuracy.toInt()} m"
         updateDisplay()
     }
@@ -164,7 +174,7 @@ class QiblaActivity : Activity(), SensorEventListener, LocationListener {
         SensorManager.remapCoordinateSystem(matrix, axisX, axisY, adjusted)
         val orientation = FloatArray(3)
         SensorManager.getOrientation(adjusted, orientation)
-        azimuth = ((Math.toDegrees(orientation[0].toDouble()) + 360.0) % 360.0).toFloat()
+        azimuth = ((Math.toDegrees(orientation[0].toDouble()) + magneticDeclination + 360.0) % 360.0).toFloat()
         updateDisplay()
     }
 
