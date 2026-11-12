@@ -54,6 +54,25 @@ data class ContentSource(
             attribution.isNotBlank()
 }
 
+private fun isOfficialHadithCollection(collection: String): Boolean {
+    // Compare complete canonical collection names, not loose substrings.
+    // This prevents values such as "Not Sahih al-Bukhari" from passing.
+    val normalized = collection.trim()
+        .lowercase()
+        .replace("ṣ", "s")
+        .replace("ḥ", "h")
+        .replace("ī", "i")
+        .replace("ā", "a")
+        .replace("ū", "u")
+        .replace(Regex("\\s+"), " ")
+
+    return normalized in setOf(
+        "sahih al-bukhari",
+        "sahih bukhari",
+        "sahih muslim"
+    )
+}
+
 data class ContentItem(
     val id: String,
     val category: ContentCategory,
@@ -70,8 +89,7 @@ data class ContentItem(
             originalText.isNotBlank() &&
             source.isReleaseReady() &&
             (category != ContentCategory.HADITH ||
-                source.collection.contains("bukh", ignoreCase = true) ||
-                source.collection.contains("muslim", ignoreCase = true)) &&
+                isOfficialHadithCollection(source.collection)) &&
             reviewStatus == ContentReviewStatus.APPROVED_FOR_RELEASE &&
             translations.size == 3 &&
             translations.all { it.isReleaseReady() } &&
