@@ -85,7 +85,11 @@ class MainActivity : Activity() {
             val favorites = FavoriteStore(prefs)
             items.forEach { item ->
                 root.addView(label(item.originalText, 21f, 0xFFFFD98A.toInt(), true), margin(top = 16))
-                val translation = item.textFor(language)
+                val translationLanguage = translationLanguageFor(
+                    language,
+                    prefs.getString("translation_language", "de") ?: "de"
+                )
+                val translation = item.textFor(translationLanguage)
                 if (translation != null) {
                     root.addView(label(translation, 16f, 0xFFF0E7D6.toInt()), margin(top = 10))
                 }
@@ -116,6 +120,13 @@ class MainActivity : Activity() {
             prefs.edit().putString("language", code).apply()
             showSettings()
         }
+        root.addView(label("Übersetzung", 13f, accent, true), margin(top = 22))
+        settingRow("Übersetzungssprache bei arabischer Anzeige", translationLanguageLabel(), "Deutsch", "Türkçe", "English") { value ->
+            val code = when (value) { "Türkçe" -> "tr"; "English" -> "en"; else -> "de" }
+            prefs.edit().putString("translation_language", code).apply()
+            showSettings()
+        }
+        root.addView(label("Der arabische Originaltext bleibt immer sichtbar. Die Übersetzung wird unabhängig davon ausgewählt.", 12f, 0xFFBBA77E.toInt()), margin(top = 8))
         root.addView(label("Rotation", 13f, accent, true), margin(top = 22))
         settingRow("Wie oft soll sich der Inhalt ändern?", rotationLabel(), "Nie", "Selten", "Oft", "Nur Favoriten") { value ->
             prefs.edit().putString("rotation", value).apply()
@@ -193,6 +204,10 @@ class MainActivity : Activity() {
 
     private fun languageLabel() = when (prefs.getString("language", "de")) {
         "tr" -> "Türkçe"; "en" -> "English"; "ar" -> "العربية"; else -> "Deutsch"
+    }
+
+    private fun translationLanguageLabel() = when (prefs.getString("translation_language", "de")) {
+        "tr" -> "Türkçe"; "en" -> "English"; else -> "Deutsch"
     }
 
     private fun rotationLabel() = prefs.getString("rotation", "Nie") ?: "Nie"
