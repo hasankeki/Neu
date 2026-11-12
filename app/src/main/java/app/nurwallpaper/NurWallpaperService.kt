@@ -157,9 +157,9 @@ class NurWallpaperService : WallpaperService() {
                         val deltaX = event.x - touchStartX
                         val deltaY = event.y - touchStartY
                         val threshold = 64f * resources.displayMetrics.density
-                        // Only deliberate horizontal gestures change the displayed content.
+                        // Swipe right selects a random new item; swipe left goes back in history.
                         if (abs(deltaX) >= threshold && abs(deltaX) > abs(deltaY) * 1.25f) {
-                            showAdjacentContent(if (deltaX < 0f) 1 else -1)
+                            if (deltaX > 0f) showRandomNextContent() else showPreviousContent()
                         }
                     }
                     touchTracking = false
@@ -169,33 +169,90 @@ class NurWallpaperService : WallpaperService() {
             super.onTouchEvent(event)
         }
 
-        /**
-         * Manual swipes move through the approved content pool immediately.
-         * They deliberately do not reset the automatic-rotation deadline.
-         */
-        private fun showAdjacentContent(direction: Int) {
+        private fun eligibleSwipeContent(): List<ContentItem> {
             val approved = contentRepository.approved()
-            if (approved.isEmpty()) return
-
             val mode = RotationMode.fromSetting(preferences.getString("rotation", "Nie"))
             val favorites = FavoriteStore(preferences).all()
-            val pool = if (mode == RotationMode.FAVORITES_ONLY) {
+            return if (mode == RotationMode.FAVORITES_ONLY) {
                 approved.filter { it.id in favorites }
             } else {
                 approved
             }
+        }
+
+        private fun readSwipeHistory(): MutableList<String> {
+            val stored = preferences.getString("swipe_content_history", "").orEmpty()
+            return stored.split("|").filter { it.isNotBlank() }.toMutableList()
+        }
+
+        private fun saveSwipeHistory(history: List<String>, index: Int) {
+            preferences.edit()
+                .putString("swipe_content_history", history.joinToString("|"))
+                .putInt("swipe_content_history_index", index)
+                .apply()
+        }
+
+        /** Swipe right: pick a random eligible item, without following library order. */
+        private fun showRandomNextContent() {
+            val pool = eligibleSwipeContent()
             if (pool.isEmpty()) return
 
             val currentId = preferences.getString(KEY_WALLPAPER_CONTENT_ID, null)
-            val currentIndex = pool.indexOfFirst { it.id == currentId }
-            val nextIndex = if (currentIndex < 0) {
-                if (direction > 0) 0 else pool.lastIndex
-            } else {
-                Math.floorMod(currentIndex + direction, pool.size)
+            val history = readSwipeHistory()
+            var index = preferences.getInt("swipe_content_history_index", -1)
+
+            // If the user went back, moving right replays the already-seen next item.
+            if (index >= 0 && index < history.lastIndex) {
+                val nextId = history[index + 1]
+                val next = pool.firstOrNull { it.id == nextId }
+                if (next != null) {
+                    saveSwipeHistory(history, index + 1)
+                    preferences.edit().putString(KEY_WALLPAPER_CONTENT_ID, next.id).apply()
+                    drawFrame()
+                    return
+                }
             }
-            preferences.edit()
-                .putString(KEY_WALLPAPER_CONTENT_ID, pool[nextIndex].id)
-                .apply()
+
+            val candidates = pool.filter { it.id != currentId }
+            if (candidates.isEmpty()) return
+            val selected = candidates.random()
+            val validHistory = history.take(index + 1).filter { id -> pool.any { it.id == id } }.toMutableList()
+            if (validHistory.isEmpty() && currentId != null && pool.any { it.id == currentId }) {
+                validHistory.add(currentId)
+            }
+            if (validHistory.lastOrNull() != currentId && currentId != null && pool.any { it.id == currentId }) {
+                validHistory.add(currentId)
+            }
+            validHistory.add(selected.id)
+            saveSwipeHistory(validHistory, validHistory.lastIndex)
+            preferences.edit().putString(KEY_WALLPAPER_CONTENT_ID, selected.id).apply()
+            drawFrame()
+        }
+
+        /** Swipe left: return to the previously displayed eligible item. */
+        private fun showPreviousContent() {
+            val pool = eligibleSwipeContent()
+            if (pool.isEmpty()) return
+
+            val history = readSwipeHistory()
+            var index = preferences.getInt("swipe_content_history_index", -1)
+            if (index < 0 || history.isEmpty()) {
+                val currentId = preferences.getString(KEY_WALLPAPER_CONTENT_ID, null)
+                if (currentId != null && pool.any { it.id == currentId }) {
+                    saveSwipeHistory(listOf(currentId), 0)
+                }
+                return
+            }
+
+            var previousIndex = index - 1
+            while (previousIndex >= 0 && pool.none { it.id == history[previousIndex] }) {
+                previousIndex--
+            }
+            if (previousIndex < 0) return
+
+            val previous = pool.firstOrNull { it.id == history[previousIndex] } ?: return
+            saveSwipeHistory(history, previousIndex)
+            preferences.edit().putString(KEY_WALLPAPER_CONTENT_ID, previous.id).apply()
             drawFrame()
         }
 
