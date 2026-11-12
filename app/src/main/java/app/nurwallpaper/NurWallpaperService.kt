@@ -17,6 +17,9 @@ import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
 import kotlin.random.Random
 
+private const val KEY_WALLPAPER_CONTENT_ID = "wallpaper_content_id"
+private const val KEY_NEXT_ROTATION_AT = "wallpaper_next_rotation_at"
+
 class NurWallpaperService : WallpaperService() {
     override fun onCreateEngine(): Engine = NurEngine()
 
@@ -286,11 +289,6 @@ class NurWallpaperService : WallpaperService() {
                 .setTextDirection(android.text.TextDirectionHeuristics.FIRSTSTRONG_LTR)
                 .setIncludePad(true)
                 .build()
-
-        private companion object {
-            const val KEY_WALLPAPER_CONTENT_ID = "wallpaper_content_id"
-            const val KEY_NEXT_ROTATION_AT = "wallpaper_next_rotation_at"
-        }
 
         private fun drawMountain(canvas: Canvas, width: Float, height: Float, base: Float, color: Int, variation: Float) {
             val path = Path().apply {
