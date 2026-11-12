@@ -71,3 +71,22 @@ Der konsolidierte Katalog dokumentiert bereits Wortlaut- und Fundstellenprüfung
 7. Automatisierte Tests ergänzen: Pflichtfelder, eindeutige IDs, gültige Statuswerte, keine Hadith-Quelle außerhalb Bukhārī/Muslim, keine Freigabe bei fehlender Lizenz oder Prüfung.
 
 Bis dahin bleibt der Katalog leer in der App. Das ist der korrekte Schutz gegen ungeprüfte religiöse Inhalte – nicht ein Grund, die bisherige Recherche zu verwerfen.
+
+## Neue Ayah-Ergänzung – Ar-Raʿd 13:25
+
+**Status: RESEARCH / NICHT FÜR RELEASE FREIGEGEBEN**
+
+- Fundstelle: Sure 13 (Ar-Raʿd), Vers 25.
+- Thema: Den Bund Allahs brechen, Verbindungen trennen, die Allah zu verbinden geboten hat, und Unheil auf der Erde stiften.
+- Arabischer Recherchewortlaut (Uthmani-Darstellung; vor Import Zeichen-für-Zeichen gegen Tanzil Uthmani 1.1 abgleichen):
+
+  وَٱلَّذِينَ يَنقُضُونَ عَهْدَ ٱللَّهِ مِنۢ بَعْدِ مِيثَـٰقِهِۦ وَيَقْطَعُونَ مَآ أَمَرَ ٱللَّهُ بِهِۦٓ أَن يُوصَلَ وَيُفْسِدُونَ فِى ٱلْأَرْضِ ۙ أُو۟لَٰٓئِكَ لَهُمُ ٱللَّعْنَةُ وَلَهُمْ سُوءُ ٱلدَّارِ
+
+- Korantext-Primärbasis für die App: Tanzil Uthmani 1.1; vorgeschriebene CC-BY-3.0-Attribution und unveränderte Übernahme beachten.
+- Rechercheabgleich: Quran.com, Ar-Raʿd 13:25 (https://quran.com/ar-rad/25/translations/de).
+- Übersetzung: noch nicht für die App festgelegt. Keine Web-Übersetzung ungeprüft übernehmen; Übersetzungsrecht und konkrete Lizenz/Attribution separat nachweisen.
+- Redaktionelle Kurzfassung nur als interne Themenbeschreibung: „Wer Allahs Bund bricht, Verbindungen trennt und auf der Erde Unheil stiftet.“
+- Nächster Schritt: Tanzil-Wortlaut direkt prüfen, kurze lizenzierte Übersetzung auswählen und menschliche Fachprüfung dokumentieren.
+
+Der Eintrag bleibt außerhalb von `content-library.json`, bis alle Release-Kriterien erfüllt sind.
+
