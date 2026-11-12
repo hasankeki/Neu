@@ -265,10 +265,12 @@ class AudioPlayerActivity : Activity() {
     }
 
     private fun stopPlayback() {
-        player?.runCatching {
-            if (isPlaying) stop()
-            reset()
-            release()
+        player?.let { media ->
+            runCatching {
+                if (media.isPlaying) media.stop()
+                media.reset()
+                media.release()
+            }
         }
         player = null
         playButton.text = "▶ Abspielen"
