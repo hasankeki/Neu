@@ -97,3 +97,18 @@ Bis dahin bleibt der Katalog leer in der App. Das ist der korrekte Schutz gegen 
 
 Der Eintrag bleibt außerhalb von `content-library.json`, bis alle Release-Kriterien erfüllt sind.
 
+
+
+## App-Import – erste bestätigte Hadith-Datensätze (12.11.2026)
+
+Die zuvor vom Nutzer bestätigten Inhalte wurden in `app/src/main/assets/content-library.json` übernommen. Die Einträge verwenden die vorhandene Schema-Version 1 und bestehen den aktuellen technischen Release-Gate (arabischer Originaltext, exakte Sammlung/Fundstelle, DE/TR/EN-Übersetzungen, Sprachversionen, Lizenzbedingungen, Attribution und Nutzerfreigabe-Vermerk):
+
+| ID | Sammlung / Fundstelle | HadeethEnc-Datensatz |
+|---|---|---|
+| `hadith-bukhari-6306-sayyid-al-istighfar` | Ṣaḥīḥ al-Bukhārī 6306 | 5503 |
+| `hadith-muslim-713-mosque-entry-exit` | Ṣaḥīḥ Muslim 713a | 65092 |
+| `hadith-muslim-598-opening-supplication` | Ṣaḥīḥ Muslim 598a–b; parallele Fassung Bukhārī 744 | 3104 |
+
+Die HadeethEnc-Übersetzungen werden unverändert mit den dokumentierten Sprachversionen und den Wiederveröffentlichungsbedingungen geführt: DE v1.58.0, TR v1.71.0, EN v1.25.0. Die jeweiligen HadeethEnc-Einträge sind in den Datensätzen als Übersetzungsquelle und Attribution eingetragen. Die Hadith-Sammlung bleibt strikt auf Bukhārī und Muslim beschränkt.
+
+Der App-Katalog enthält damit erstmals **3 technisch vollständige Hadith-Datensätze**. Die restlichen vom Nutzer bestätigten Auswahl-Einträge werden in den nächsten Import-Batches ergänzt; neue Recherchekandidaten werden nicht mit bestätigten Auswahlen vermischt.
