@@ -133,7 +133,8 @@ class NurWallpaperService : WallpaperService() {
             }
             val due = RotationSchedule.isDue(now, nextAt)
 
-            if (!currentIsEligible || (due && !resetDeadline)) {
+            val shouldRotate = !currentIsEligible || (due && !resetDeadline)
+            if (shouldRotate) {
                 val selected = ContentRotationManager(preferences).next(items, mode, favorites, currentId)
                 val editor = preferences.edit()
                 if (selected != null) editor.putString(KEY_WALLPAPER_CONTENT_ID, selected.id)
@@ -141,11 +142,14 @@ class NurWallpaperService : WallpaperService() {
                 editor.apply()
             }
 
-            // A changed mode starts a full new interval instead of causing an
-            // unexpected immediate content change.
-            preferences.edit()
-                .putLong(KEY_NEXT_ROTATION_AT, now + interval)
-                .apply()
+            // Preserve an existing deadline on ordinary unlock/visibility changes.
+            // A mode change, a completed interval, or a missing deadline starts a
+            // fresh interval.
+            if (resetDeadline || shouldRotate || nextAt <= 0L) {
+                preferences.edit()
+                    .putLong(KEY_NEXT_ROTATION_AT, now + interval)
+                    .apply()
+            }
         }
 
         private fun scheduleNextRotation() {
