@@ -1,0 +1,83 @@
+package app.nurwallpaper
+
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.Test
+
+class ContentRepositoryTest {
+
+    private fun approvedItem(
+        status: ContentReviewStatus = ContentReviewStatus.APPROVED_FOR_RELEASE,
+        translations: List<TranslationText> = listOf(
+            translation("de"),
+            translation("tr"),
+            translation("en")
+        ),
+        reviewerNote: String? = "Reviewed against the cited source"
+    ) = ContentItem(
+        id = "test-verse-1",
+        category = ContentCategory.VERSE,
+        originalText = "نَصٌّ عَرَبِيٌّ",
+        translations = translations,
+        source = ContentSource(
+            collection = "Test source",
+            locator = "2:255",
+            sourceUrl = "https://example.org/source",
+            license = "Test license",
+            attribution = "Test attribution"
+        ),
+        reviewStatus = status,
+        reviewerNote = reviewerNote
+    )
+
+    private fun translation(language: String) = TranslationText(
+        languageCode = language,
+        text = "Verified $language translation",
+        translator = "Named translator",
+        edition = "Test edition",
+        version = "1.0",
+        license = "Test translation license",
+        attribution = "Test attribution"
+    )
+
+    @Test
+    fun completeHumanReviewedRecordPassesReleaseGate() {
+        assertTrue(approvedItem().isReleaseReady())
+    }
+
+    @Test
+    fun recordWithoutAllThreeTranslationsIsRejected() {
+        assertFalse(approvedItem(translations = listOf(translation("de"), translation("tr"))).isReleaseReady())
+    }
+
+    @Test
+    fun recordWithoutHumanReviewNoteIsRejected() {
+        assertFalse(approvedItem(reviewerNote = null).isReleaseReady())
+    }
+
+    @Test
+    fun recordNotApprovedForReleaseIsRejected() {
+        assertFalse(approvedItem(status = ContentReviewStatus.IN_REVIEW).isReleaseReady())
+    }
+
+    @Test
+    fun arabicUsesOriginalAndOtherLanguagesUseTheirOwnTranslation() {
+        val item = approvedItem()
+        assertEquals("نَصٌّ عَرَبِيٌّ", item.textFor("ar"))
+        assertEquals("Verified de translation", item.textFor("de"))
+        assertNull(item.textFor("fr"))
+    }
+
+    @Test
+    fun repositoryNeverReturnsUnapprovedRecords() {
+        val repository = ContentRepository(
+            listOf(
+                approvedItem(),
+                approvedItem(status = ContentReviewStatus.DRAFT).copy(id = "draft")
+            )
+        )
+        assertEquals(listOf("test-verse-1"), repository.approved().map { it.id })
+    }
+}
