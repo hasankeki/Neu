@@ -32,6 +32,11 @@
             android:label="Vollbild-Vorschau" />
 
         <activity
+            android:name=".AudioPlayerActivity"
+            android:exported="false"
+            android:label="Aya anhören" />
+
+        <activity
             android:name=".PrayerTimesActivity"
             android:exported="false"
             android:label="Gebetszeiten" />
