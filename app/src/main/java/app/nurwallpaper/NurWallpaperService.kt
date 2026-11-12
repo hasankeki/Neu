@@ -11,6 +11,8 @@ import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import android.content.SharedPreferences
+import android.os.Handler
+import android.os.Looper
 import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
 import kotlin.random.Random
@@ -22,7 +24,22 @@ class NurWallpaperService : WallpaperService() {
         private val preferences by lazy {
             getSharedPreferences("nurwallpaper_settings", MODE_PRIVATE)
         }
+        private val rotationHandler = Handler(Looper.getMainLooper())
+        private val rotationTick = object : Runnable {
+            override fun run() {
+                if (isVisible) {
+                    updateRotationIfDue()
+                    drawFrame()
+                    scheduleNextRotation()
+                }
+            }
+        }
         private val settingsListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == "rotation" || key == "favorite_content_ids") {
+                rotationHandler.removeCallbacks(rotationTick)
+                updateRotationIfDue(resetDeadline = key == "rotation")
+                scheduleNextRotation()
+            }
             if (key == "language" || key == "light_effect" || key == "rotation" || key == "favorite_content_ids") drawFrame()
         }
 
@@ -32,6 +49,7 @@ class NurWallpaperService : WallpaperService() {
         }
 
         override fun onDestroy() {
+            rotationHandler.removeCallbacks(rotationTick)
             preferences.unregisterOnSharedPreferenceChangeListener(settingsListener)
             super.onDestroy()
         }
@@ -85,7 +103,64 @@ class NurWallpaperService : WallpaperService() {
 
         override fun onVisibilityChanged(visible: Boolean) {
             super.onVisibilityChanged(visible)
-            if (visible) drawFrame()
+            if (visible) {
+                updateRotationIfDue()
+                drawFrame()
+                scheduleNextRotation()
+            } else {
+                rotationHandler.removeCallbacks(rotationTick)
+            }
+        }
+
+        /**
+         * Rotation is driven by elapsed wall-clock deadlines, not by screen unlocks.
+         * While the wallpaper is not visible no callbacks run; on return at most one
+         * due change is applied, then a fresh interval starts.
+         */
+        private fun updateRotationIfDue(resetDeadline: Boolean = false) {
+            val mode = RotationMode.fromSetting(preferences.getString("rotation", "Nie"))
+            val interval = RotationSchedule.intervalMillis(mode) ?: run {
+                rotationHandler.removeCallbacks(rotationTick)
+                return
+            }
+            val now = System.currentTimeMillis()
+            val nextAt = preferences.getLong(KEY_NEXT_ROTATION_AT, 0L)
+            val items = contentRepository.approved()
+            val favorites = FavoriteStore(preferences).all()
+            val currentId = preferences.getString(KEY_WALLPAPER_CONTENT_ID, null)
+            val currentIsEligible = items.any { item ->
+                item.id == currentId && (mode != RotationMode.FAVORITES_ONLY || item.id in favorites)
+            }
+            val due = RotationSchedule.isDue(now, nextAt)
+
+            if (!currentIsEligible || (due && !resetDeadline)) {
+                val selected = ContentRotationManager(preferences).next(items, mode, favorites, currentId)
+                val editor = preferences.edit()
+                if (selected != null) editor.putString(KEY_WALLPAPER_CONTENT_ID, selected.id)
+                else editor.remove(KEY_WALLPAPER_CONTENT_ID)
+                editor.apply()
+            }
+
+            // A changed mode starts a full new interval instead of causing an
+            // unexpected immediate content change.
+            preferences.edit()
+                .putLong(KEY_NEXT_ROTATION_AT, now + interval)
+                .apply()
+        }
+
+        private fun scheduleNextRotation() {
+            rotationHandler.removeCallbacks(rotationTick)
+            val mode = RotationMode.fromSetting(preferences.getString("rotation", "Nie"))
+            val interval = RotationSchedule.intervalMillis(mode) ?: return
+            if (!isVisible) return
+
+            val now = System.currentTimeMillis()
+            var nextAt = preferences.getLong(KEY_NEXT_ROTATION_AT, 0L)
+            if (nextAt <= 0L) {
+                nextAt = now + interval
+                preferences.edit().putLong(KEY_NEXT_ROTATION_AT, nextAt).apply()
+            }
+            rotationHandler.postDelayed(rotationTick, (nextAt - now).coerceAtLeast(0L))
         }
 
         private fun drawFrame() {
@@ -176,26 +251,27 @@ class NurWallpaperService : WallpaperService() {
         private fun selectedWallpaperContent(): ContentItem? {
             val items = contentRepository.approved()
             if (items.isEmpty()) return null
+
             val mode = RotationMode.fromSetting(preferences.getString("rotation", "Nie"))
             val favorites = FavoriteStore(preferences).all()
-            val currentId = preferences.getString("wallpaper_content_id", null)
+            val currentId = preferences.getString(KEY_WALLPAPER_CONTENT_ID, null)
+            val eligible = items.filter { mode != RotationMode.FAVORITES_ONLY || it.id in favorites }
+            val current = eligible.firstOrNull { it.id == currentId }
+            if (current != null) return current
 
-            val selected = when (mode) {
-                RotationMode.NEVER -> currentId?.let { id ->
-                    items.firstOrNull { it.id == id }
-                } ?: items.first()
-                RotationMode.FAVORITES_ONLY -> {
-                    val favoriteItems = items.filter { it.id in favorites }
-                    currentId?.let { id -> favoriteItems.firstOrNull { it.id == id } }
-                        ?: ContentRotationManager(preferences).next(items, mode, favorites, null)
-                }
-                RotationMode.RARE, RotationMode.OFTEN -> {
-                    currentId?.let { id -> items.firstOrNull { it.id == id } }
-                        ?: ContentRotationManager(preferences).next(items, mode, favorites, null)
-                }
+            val selected = if (mode == RotationMode.NEVER) {
+                items.firstOrNull()
+            } else {
+                ContentRotationManager(preferences).next(items, mode, favorites, currentId)
             }
-            if (selected != null && selected.id != currentId) {
-                preferences.edit().putString("wallpaper_content_id", selected.id).apply()
+            if (selected != null) {
+                preferences.edit().putString(KEY_WALLPAPER_CONTENT_ID, selected.id).apply()
+            } else {
+                preferences.edit().remove(KEY_WALLPAPER_CONTENT_ID).apply()
+            }
+
+            RotationSchedule.nextAt(System.currentTimeMillis(), mode)?.let { deadline ->
+                preferences.edit().putLong(KEY_NEXT_ROTATION_AT, deadline).apply()
             }
             return selected
         }
@@ -206,6 +282,11 @@ class NurWallpaperService : WallpaperService() {
                 .setTextDirection(android.text.TextDirectionHeuristics.FIRSTSTRONG_LTR)
                 .setIncludePad(true)
                 .build()
+
+        private companion object {
+            const val KEY_WALLPAPER_CONTENT_ID = "wallpaper_content_id"
+            const val KEY_NEXT_ROTATION_AT = "wallpaper_next_rotation_at"
+        }
 
         private fun drawMountain(canvas: Canvas, width: Float, height: Float, base: Float, color: Int, variation: Float) {
             val path = Path().apply {
