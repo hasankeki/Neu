@@ -6321,6 +6321,29 @@
         "Umschrift und sprachliche Prüfung dokumentieren",
         "Menschliche fachkundige religiöse Freigabe dokumentieren"
       ]
+    },
+    {
+      "id": "hadith-muslim-2702a-istighfar-100",
+      "category": "HADITH",
+      "originalLanguageCode": "ar",
+      "originalText": "حَدَّثَنَا يَحْيَى بْنُ يَحْيَى، وَقُتَيْبَةُ بْنُ سَعِيدٍ، وَأَبُو الرَّبِيعِ الْعَتَكِيُّ، جَمِيعًا عَنْ حَمَّادٍ، قَالَ يَحْيَى أَخْبَرَنَا حَمَّادُ بْنُ زَيْدٍ، عَنْ ثَابِتٍ، عَنْ أَبِي بُرْدَةَ، عَنِ الأَغَرِّ الْمُزَنِيِّ، وَكَانَتْ لَهُ صُحْبَةٌ، أَنَّ رَسُولَ اللَّهِ صلى الله عليه وسلم قَالَ ‏\"‏ إِنَّهُ لَيُغَانُ عَلَى قَلْبِي وَإِنِّي لأَسْتَغْفِرُ اللَّهَ فِي الْيَوْمِ مِائَةَ مَرَّةٍ ‏\"‏",
+      "translations": [],
+      "source": {
+        "collection": "Sahih Muslim",
+        "locator": "Sahih Muslim 2702a",
+        "sourceUrl": "https://sunnah.com/muslim:2702a",
+        "license": "Primärfundstelle und arabischer Wortlaut im konsolidierten Katalog und in der angegebenen Sammlung abgeglichen. Für die konkrete digitale Texttranskription liegt noch keine separate App-Wiederveröffentlichungslizenz vor; nicht für Release freigegeben.",
+        "attribution": "Sahih Muslim 2702a. Fundstellen- und Wortlautreferenz: https://sunnah.com/muslim:2702a."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zuvor als Astaghfirullah-Dhikr mit Fundstelle Muslim 2702a ausgewählt. Der Hadith nennt das Bitten um Vergebung hundertmal am Tag; keine andere Formel oder zusätzliche Zählung damit vermischen. Übersetzungsrechte, Sprachfassungen, Umschrift und menschliche Fachprüfung bleiben offen.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte DE/TR/EN-Übersetzungen mit exakter Ausgabe und Version fehlen",
+        "Rechte an der konkreten digitalen arabischen Texttranskription separat dokumentieren",
+        "Umschrift und sprachliche Prüfung dokumentieren",
+        "Menschliche fachkundige religiöse Freigabe dokumentieren"
+      ]
     }
   ],
   "confirmedSelections": [
