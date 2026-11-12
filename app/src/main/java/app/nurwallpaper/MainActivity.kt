@@ -16,14 +16,16 @@ import android.widget.ScrollView
 import android.widget.TextView
 
 class MainActivity : Activity() {
-    private val backgroundColorValue = Color.rgb(7, 12, 29)
-    private val surface = Color.rgb(17, 26, 48)
-    private val accent = Color.rgb(74, 222, 224)
+    private val backgroundColorValue = Color.rgb(7, 6, 5)
+    private val surface = Color.rgb(24, 19, 12)
+    private val accent = Color.rgb(226, 180, 83)
     private val prefs by lazy { getSharedPreferences("nurwallpaper_settings", MODE_PRIVATE) }
     private lateinit var root: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = Color.rgb(7, 6, 5)
+        window.navigationBarColor = Color.rgb(7, 6, 5)
         showHome()
     }
 
@@ -40,7 +42,7 @@ class MainActivity : Activity() {
         val scroll = page()
         root.addView(label("NUR", 13f, accent, true))
         root.addView(label("NurWallpaper", 30f, Color.WHITE, true), margin(top = 5))
-        root.addView(label("Erinnerungen, die dich durch den Tag begleiten.", 15f, 0xFFB8C4D9.toInt()), margin(top = 8, bottom = 22))
+        root.addView(label("Erinnerungen, die dich durch den Tag begleiten.", 15f, 0xFFE8DDC7.toInt()), margin(top = 8, bottom = 22))
         root.addView(sectionTitle("DEINE BIBLIOTHEK"))
         root.addView(categoryButton("Verse", "Koranverse mit Quelle und Übersetzung") { showCategory("Verse") }, margin(top = 12))
         root.addView(categoryButton("Hadithe", "Ausschließlich Bukhārī und Muslim") { showCategory("Hadithe") }, margin(top = 10))
@@ -50,7 +52,7 @@ class MainActivity : Activity() {
         root.addView(label("Wähle NurWallpaper als Hintergrund für deinen Start- oder Sperrbildschirm.", 14f, 0xFFB8C4D9.toInt()))
         root.addView(actionButton("Live-Wallpaper auswählen") { openWallpaperPicker() }, margin(top = 12))
         root.addView(actionButton("Einstellungen") { showSettings() }, margin(top = 10))
-        root.addView(label("Offline · Ohne Konto · Ohne Werbung", 12f, 0xFF8492AA.toInt()), margin(top = 20))
+        root.addView(label("Offline · Ohne Konto · Ohne Werbung", 12f, 0xFF9D855D.toInt()), margin(top = 20))
         setContentView(scroll)
     }
 
@@ -74,8 +76,8 @@ class MainActivity : Activity() {
         }
         val items = repository.approved(category)
         if (items.isEmpty()) {
-            root.addView(label("Noch keine Inhalte zur Veröffentlichung freigegeben.", 15f, 0xFFD1DAE8.toInt()), margin(top = 4))
-            root.addView(label("Ungeprüfte oder unvollständige Einträge bleiben bewusst unsichtbar. Sobald geprüfte Inhalte samt Übersetzungen und Lizenzangaben freigegeben sind, erscheinen sie hier automatisch.", 13f, 0xFF9EADC4.toInt()), margin(top = 12))
+            root.addView(label("Noch keine Inhalte zur Veröffentlichung freigegeben.", 15f, 0xFFF0E7D6.toInt()), margin(top = 4))
+            root.addView(label("Ungeprüfte oder unvollständige Einträge bleiben bewusst unsichtbar. Sobald geprüfte Inhalte samt Übersetzungen und Lizenzangaben freigegeben sind, erscheinen sie hier automatisch.", 13f, 0xFFBBA77E.toInt()), margin(top = 12))
         } else {
             val favorites = FavoriteStore(prefs)
             items.forEach { item ->
@@ -177,7 +179,7 @@ class MainActivity : Activity() {
             this.text = text
             isAllCaps = false
             textSize = 15f
-            setTextColor(backgroundColorValue)
+            setTextColor(Color.rgb(20, 15, 8))
             setBackgroundTintList(android.content.res.ColorStateList.valueOf(accent))
             setOnClickListener { onClick() }
         }
@@ -193,7 +195,7 @@ class MainActivity : Activity() {
     private fun rounded(color: Int, radius: Int) = GradientDrawable().apply {
         setColor(color)
         cornerRadius = dp(radius).toFloat()
-        setStroke(dp(1), 0xFF263653.toInt())
+        setStroke(dp(1), 0xFF6D5125.toInt())
     }
 
     private fun margin(top: Int = 0, bottom: Int = 0): LinearLayout.LayoutParams =
