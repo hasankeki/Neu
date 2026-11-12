@@ -22,6 +22,7 @@ Set these environment variables on the server platform:
 - `QF_CLIENT_SECRET` — secret stored only in server environment variables.
 - `PORT` — optional, defaults to 8080.
 - `QF_API_BASE` and `QF_OAUTH_BASE` — optional; production defaults are used.
+- `QF_APPROVED_RECITATION_IDS` — comma-separated ayah-recitation IDs that have passed the project's recording-rights and attribution review. Leave empty until that review is complete; unreviewed reciters are not exposed.
 
 Create a Backend/server app in the Quran Foundation Developer Console and request the
 `content.audio.read` permission. Do not use mobile/frontend credentials for this server
