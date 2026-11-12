@@ -87,7 +87,9 @@ data class ContentItem(
     val translations: List<TranslationText>,
     val source: ContentSource,
     val reviewStatus: ContentReviewStatus,
-    val reviewerNote: String? = null
+    val reviewerNote: String? = null,
+    val transliteration: String? = null,
+    val number: Int? = null
 ) {
     fun isReleaseReady(): Boolean =
         id.isNotBlank() &&
