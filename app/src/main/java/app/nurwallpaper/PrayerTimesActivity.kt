@@ -18,6 +18,8 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
+import java.net.URLEncoder
 
 class PrayerTimesActivity : Activity(), LocationListener {
     private lateinit var locationManager: LocationManager
@@ -130,7 +132,7 @@ class PrayerTimesActivity : Activity(), LocationListener {
         val date = SimpleDateFormat("dd-MM-yyyy", Locale.US).format(Date())
         val address = "https://api.aladhan.com/v1/timings/$date" +
             "?latitude=${location.latitude}&longitude=${location.longitude}" +
-            "&method=13&school=1&latitudeAdjustmentMethod=3&timezonestring=Europe%2FBerlin"
+            "&method=13&school=1&latitudeAdjustmentMethod=3&timezonestring=" + URLEncoder.encode(TimeZone.getDefault().id, "UTF-8")
         Thread {
             var connection: HttpURLConnection? = null
             try {
@@ -176,7 +178,7 @@ class PrayerTimesActivity : Activity(), LocationListener {
                     }
                     status.text = "Diyanet · Hanafi · Standortgenauigkeit ±${location.accuracy.toInt()} m"
                     timesContainer.addView(TextView(this).apply {
-                        text = "Berechnung über AlAdhan. Zeiten können von deinem örtlichen Moschee-Kalender abweichen."
+                        text = "Berechnung über AlAdhan. Dein Standort wird zur Berechnung übermittelt. Zeiten können vom örtlichen Moschee-Kalender abweichen."
                         textSize = 12f
                         setTextColor(muted)
                         setPadding(2, 12, 2, 4)
