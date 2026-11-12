@@ -1,32 +1,33 @@
 # NurWallpaper Audio API
 
-A small server-side adapter for Quran Foundation's authenticated Content Audio API.
-The Android app must call this service; it must never contain the Quran Foundation
+A server-side adapter for Quran Foundation's authenticated Content Audio API.
+The Android app calls this service; it must never contain the Quran Foundation
 `client_secret` or request Content API tokens itself.
 
 ## Routes
 
 - `GET /health` — health check.
-- `GET /v1/reciters` — available ayah-by-ayah reciters and their Quran Foundation IDs.
-- `GET /v1/audio?verse_key=2:255&recitation_id=7` — audio URL for exactly one verse.
+- `GET /v1/reciters` — approved ayah-by-ayah reciters and their Quran Foundation IDs.
+- `GET /v1/audio?verse_key=2:255&recitation_id=7` — URL for exactly one verse.
 
-Audio is streamed by Android directly from the HTTPS URL returned by Quran Foundation.
-The service returns URL metadata only; it does not download, bundle, cache, or redistribute
-audio files. The Android client must request audio only after the user taps Play.
+Android streams the returned HTTPS URL only after the user taps Play. The service does
+not download, bundle, cache, or redistribute audio files.
 
 ## Configuration
 
-Set these environment variables on the server platform:
-
 - `QF_CLIENT_ID` — Quran Foundation backend app client ID.
 - `QF_CLIENT_SECRET` — secret stored only in server environment variables.
+- `QF_ENV` — `prelive` (default) or `production`.
 - `PORT` — optional, defaults to 8080.
-- `QF_API_BASE` and `QF_OAUTH_BASE` — optional; production defaults are used.
-- `QF_APPROVED_RECITATION_IDS` — comma-separated ayah-recitation IDs that have passed the project's recording-rights and attribution review. Leave empty until that review is complete; unreviewed reciters are not exposed.
+- `QF_API_BASE` and `QF_OAUTH_BASE` — optional HTTPS overrides for the matching environment.
+- `QF_APPROVED_RECITATION_IDS` — comma-separated ayah-recitation IDs that have passed
+  recording-rights and attribution review. Leave empty until that review is complete.
 
-Create a Backend/server app in the Quran Foundation Developer Console and request the
-`content.audio.read` permission. Do not use mobile/frontend credentials for this server
-flow. Test in pre-live first, then use production credentials only after access is approved.
+Create a Backend/server app in the Quran Foundation Developer Console and enable the
+Client Credentials grant with `content.audio.read`. New backend apps use granular
+Content scopes. Start with pre-live credentials and endpoints; move to production only
+after production access is approved. Never mix credentials and endpoints from different
+environments.
 
 ## Run locally
 
@@ -34,18 +35,21 @@ flow. Test in pre-live first, then use production credentials only after access 
 QF_CLIENT_ID="..." QF_CLIENT_SECRET="..." npm start
 ```
 
-The server requires Node.js 20 or later and uses only built-in modules.
+Run automated checks with `npm test`. Node.js 20 or later is required; no runtime
+dependencies are used.
 
 ## Security and release requirements
 
 - Serve this API over HTTPS in production.
 - Keep credentials in platform environment variables; never commit them.
-- Restrict public access/rate usage before production deployment.
-- Publish NurWallpaper's privacy policy and terms before enabling the feature.
-- Review Quran Foundation's current Developer Terms and any reciter-specific recording
-  permissions/attribution before publishing a reciter in the app.
+- The process applies a basic per-IP limit (60 requests/minute); configure an additional
+  gateway/platform rate limit for production and multi-instance deployments.
+- Health checks are intentionally unauthenticated and contain no sensitive data.
+- Review Quran Foundation's current Developer Terms and reciter-specific permissions/
+  attribution before publishing any reciter. The allowlist is enforced on both listing
+  and playback endpoints.
 - Do not cache QF content beyond the limits in its Developer Terms.
-- Only expose reciters whose recording permissions and attribution have been reviewed.
+- Publish NurWallpaper's privacy policy and terms before enabling the feature.
 
-This adapter intentionally returns the source URL and reciter ID; it does not assert that
-every available recording is independently cleared for every commercial use.
+The adapter returns the original audio URL and reciter ID. It does not assert that every
+available recording is independently cleared for every commercial use.
