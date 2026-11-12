@@ -58,7 +58,9 @@ object ContentLibraryLoader {
                 attribution = sourceJson.getString("attribution")
             ),
             reviewStatus = ContentReviewStatus.valueOf(getString("reviewStatus")),
-            reviewerNote = optString("reviewerNote").takeIf { it.isNotBlank() }
+            reviewerNote = optString("reviewerNote").takeIf { it.isNotBlank() },
+            transliteration = optString("transliteration").takeIf { it.isNotBlank() },
+            number = if (has("number")) optInt("number") else null
         )
     }
 }
