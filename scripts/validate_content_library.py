@@ -52,14 +52,23 @@ def main() -> None:
             assert item.get("releaseBlockers"), item.get("id")
             pending.append(item)
 
-    # The traditional 99-name selection is recorded separately until its exact
-    # approved source artifact can be recovered; it is not fabricated here.
+    # The exact 99-name source artifact is imported as a separate content category.
     manifests = data.get("confirmedSelections", [])
-    asma = [entry for entry in manifests if entry.get("id") == "asma-ul-husna-99"]
-    assert len(asma) == 1 and asma[0].get("expectedCount") == 99
-    assert asma[0].get("selectionStatus") == "CONFIRMED"
+    asma_manifest = [entry for entry in manifests if entry.get("id") == "asma-ul-husna-99"]
+    assert len(asma_manifest) == 1 and asma_manifest[0].get("expectedCount") == 99
+    assert asma_manifest[0].get("selectionStatus") == "CONFIRMED"
 
-    print(f"Catalogue OK: {len(items)} records; {len(approved)} release-ready; {len(pending)} confirmed but blocked.")
+    asma_items = [item for item in items if item["category"] == "ASMA_UL_HUSNA"]
+    assert len(asma_items) == 99, f"Expected 99 Asma records, got {len(asma_items)}"
+    expected_asma_ids = {f"asma-{number:02d}" for number in range(1, 100)}
+    assert {item["id"] for item in asma_items} == expected_asma_ids
+    for item in asma_items:
+        assert item.get("number") in range(1, 100), item.get("id")
+        assert item.get("transliteration", "").strip(), item.get("id")
+        assert {t.get("languageCode") for t in item.get("translations", [])} == REQUIRED_LANGUAGES, item.get("id")
+        assert item.get("reviewStatus") == "IN_REVIEW", item.get("id")
+
+    print(f"Catalogue OK: {len(items)} records; {len(approved)} release-ready; {len(pending)} confirmed but blocked; 99 Asma records present.")
     print("Hadith source allowlist OK: Sahih al-Bukhari and Sahih Muslim only.")
 
 
