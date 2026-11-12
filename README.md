@@ -22,7 +22,7 @@ Android-Live-Wallpaper-App mit einer offline nutzbaren Bibliothek religiöser In
 - Die Audioplayer-Wiedergabe nach Track-Ende wurde korrigiert.
 - Die Android-Build-Prüfung läuft auch auf dem Entwicklungszweig.
 - Ein echter Test auf Pixel, Samsung und Xiaomi steht noch aus.
-- Die lokale Inhaltsbibliothek ist derzeit leer. Inhalte werden erst nach vollständiger Quellen-, Übersetzungs- und Rechteprüfung freigegeben.
+- Die lokale Inhaltsbibliothek ist derzeit leer. Die vorhandenen Arbeitskataloge und der genaue Import-/Freigabestand sind in [docs/CONTENT-IMPORT-STATUS.md](docs/CONTENT-IMPORT-STATUS.md) dokumentiert; Inhalte werden erst nach vollständiger Quellen-, Übersetzungs- und Rechteprüfung freigegeben.
 - Quran-Foundation-Audio ist noch nicht live verbunden: kein Backend deployed, keine Zugangsdaten konfiguriert, keine Rezitatoren freigeschaltet.
 - Offline-Audio ist ebenfalls noch nicht implementiert. Die Rechte- und Paketfreigabe ist in [docs/AUDIO-REZITATOREN-RECHTEPRUEFUNG.md](docs/AUDIO-REZITATOREN-RECHTEPRUEFUNG.md) dokumentiert.
 
