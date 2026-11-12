@@ -199,7 +199,7 @@ class NurWallpaperService : WallpaperService() {
 
             val currentId = preferences.getString(KEY_WALLPAPER_CONTENT_ID, null)
             val history = readSwipeHistory()
-            var index = preferences.getInt("swipe_content_history_index", -1)
+            var index = preferences.getInt("swipe_content_history_index", -1).coerceIn(-1, history.lastIndex)
 
             // If the user went back, moving right replays the already-seen next item.
             if (index >= 0 && index < history.lastIndex) {
@@ -235,7 +235,7 @@ class NurWallpaperService : WallpaperService() {
             if (pool.isEmpty()) return
 
             val history = readSwipeHistory()
-            var index = preferences.getInt("swipe_content_history_index", -1)
+            var index = preferences.getInt("swipe_content_history_index", -1).coerceIn(-1, history.lastIndex)
             if (index < 0 || history.isEmpty()) {
                 val currentId = preferences.getString(KEY_WALLPAPER_CONTENT_ID, null)
                 if (currentId != null && pool.any { it.id == currentId }) {
