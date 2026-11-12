@@ -130,6 +130,21 @@ class ContentRepositoryTest {
     }
 
     @Test
+    fun asmaNamesRemainHiddenUntilTheirOwnReviewIsComplete() {
+        val asma = approvedItem().copy(
+            id = "asma-01",
+            category = ContentCategory.ASMA_UL_HUSNA,
+            reviewStatus = ContentReviewStatus.IN_REVIEW,
+            transliteration = "Allah",
+            number = 1
+        )
+        assertFalse(asma.isReleaseReady())
+        assertTrue(ContentRepository(listOf(asma)).approved(ContentCategory.ASMA_UL_HUSNA).isEmpty())
+        assertEquals("Allah", asma.transliteration)
+        assertEquals(1, asma.number)
+    }
+
+    @Test
     fun repositoryNeverReturnsUnapprovedRecords() {
         val repository = ContentRepository(
             listOf(
