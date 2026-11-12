@@ -80,7 +80,8 @@ class MainActivity : Activity() {
             val favorites = FavoriteStore(prefs)
             items.forEach { item ->
                 val text = item.textFor(language) ?: item.originalText
-                root.addView(categoryButton(text, "${item.source.collection} · ${item.source.locator}") {}, margin(top = 10))
+                root.addView(label(text, 19f, Color.WHITE, true), margin(top = 16))
+                root.addView(label("${item.source.collection} · ${item.source.locator}", 12f, 0xFF9EADC4.toInt()), margin(top = 4))
                 root.addView(actionButton(
                     if (favorites.contains(item.id)) "★ Favorit entfernen" else "☆ Als Favorit speichern"
                 ) {
