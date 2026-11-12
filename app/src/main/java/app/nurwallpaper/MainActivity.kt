@@ -53,6 +53,7 @@ class MainActivity : Activity() {
         root.addView(actionButton("Vollbild-Vorschau") { startActivity(Intent(this, WallpaperPreviewActivity::class.java)) }, margin(top = 12))
         root.addView(actionButton("Live-Wallpaper auswählen") { openWallpaperPicker() }, margin(top = 10))
         root.addView(actionButton("Qibla finden") { startActivity(Intent(this, QiblaActivity::class.java)) }, margin(top = 10))
+        root.addView(actionButton("Gebetszeiten") { startActivity(Intent(this, PrayerTimesActivity::class.java)) }, margin(top = 10))
         root.addView(actionButton("Einstellungen") { showSettings() }, margin(top = 10))
         root.addView(label("Offline · Ohne Konto · Ohne Werbung", 12f, 0xFF9D855D.toInt()), margin(top = 20))
         setContentView(scroll)
