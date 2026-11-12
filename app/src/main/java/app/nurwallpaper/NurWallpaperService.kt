@@ -71,7 +71,7 @@ class NurWallpaperService : WallpaperService() {
                 updateRotationIfDue(resetDeadline = key == "rotation")
                 scheduleNextRotation()
             }
-            if (key == "language" || key == "light_effect" || key == "rotation" || key == "favorite_content_ids") {
+            if (key == "language" || key == "translation_language" || key == "light_effect" || key == "rotation" || key == "favorite_content_ids") {
                 drawFrame()
                 scheduleVisualAnimation()
             }
@@ -402,7 +402,11 @@ class NurWallpaperService : WallpaperService() {
                 val width = (w * 0.82f).toInt().coerceAtLeast(1)
                 val language = preferences.getString("language", "de") ?: "de"
                 val arabic = makeLayout(firstApproved.originalText, contentPaint, width, Layout.Alignment.ALIGN_CENTER)
-                val translatedText = if (language == "ar") null else firstApproved.textFor(language)
+                val translationLanguage = translationLanguageFor(
+                    language,
+                    preferences.getString("translation_language", "de") ?: "de"
+                )
+                val translatedText = firstApproved.textFor(translationLanguage)
                 val translation = translatedText?.let {
                     makeLayout(it, translationPaint, width, Layout.Alignment.ALIGN_CENTER)
                 }
