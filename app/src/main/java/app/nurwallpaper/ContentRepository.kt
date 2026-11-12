@@ -73,6 +73,12 @@ private fun isOfficialHadithCollection(collection: String): Boolean {
     )
 }
 
+fun translationLanguageFor(displayLanguage: String, selectedTranslationLanguage: String): String {
+    val supported = setOf("de", "tr", "en")
+    return if (displayLanguage in supported) displayLanguage
+    else selectedTranslationLanguage.takeIf { it in supported } ?: "de"
+}
+
 data class ContentItem(
     val id: String,
     val category: ContentCategory,
