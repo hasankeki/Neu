@@ -98,6 +98,8 @@ data class ContentItem(
             source.isReleaseReady() &&
             (category != ContentCategory.HADITH ||
                 isOfficialHadithCollection(source.collection)) &&
+            (category != ContentCategory.ASMA_UL_HUSNA ||
+                (number in 1..99 && transliteration?.isNotBlank() == true)) &&
             reviewStatus == ContentReviewStatus.APPROVED_FOR_RELEASE &&
             translations.size == 3 &&
             translations.all { it.isReleaseReady() } &&
