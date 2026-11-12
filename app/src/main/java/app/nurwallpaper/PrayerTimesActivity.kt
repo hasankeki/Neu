@@ -130,9 +130,12 @@ class PrayerTimesActivity : Activity(), LocationListener {
     private fun loadPrayerTimes(location: Location) {
         status.text = "Gebetszeiten für deinen Standort werden geladen …"
         val date = SimpleDateFormat("dd-MM-yyyy", Locale.US).format(Date())
+        val preferences = getSharedPreferences("nurwallpaper_settings", MODE_PRIVATE)
+        val method = preferences.getInt("prayer_method", 13)
+        val school = preferences.getInt("prayer_school", 1)
         val address = "https://api.aladhan.com/v1/timings/$date" +
             "?latitude=${location.latitude}&longitude=${location.longitude}" +
-            "&method=13&school=1&latitudeAdjustmentMethod=3&timezonestring=" + URLEncoder.encode(TimeZone.getDefault().id, "UTF-8")
+            "&method=$method&school=$school&latitudeAdjustmentMethod=3&timezonestring=" + URLEncoder.encode(TimeZone.getDefault().id, "UTF-8")
         Thread {
             var connection: HttpURLConnection? = null
             try {
@@ -176,7 +179,9 @@ class PrayerTimesActivity : Activity(), LocationListener {
                             bottomMargin = (6 * resources.displayMetrics.density).toInt()
                         })
                     }
-                    status.text = "Diyanet · Hanafi · Standortgenauigkeit ±${location.accuracy.toInt()} m"
+                    val methodLabel = when (method) { 3 -> "Muslim World League"; 2 -> "ISNA"; 5 -> "Ägypten"; 1 -> "Karachi"; else -> "Diyanet" }
+                    val schoolLabel = if (school == 1) "Hanafi" else "Shafi"
+                    status.text = "$methodLabel · $schoolLabel · Standortgenauigkeit ±${location.accuracy.toInt()} m"
                     timesContainer.addView(TextView(this).apply {
                         text = "Berechnung über AlAdhan. Dein Standort wird zur Berechnung übermittelt. Zeiten können vom örtlichen Moschee-Kalender abweichen."
                         textSize = 12f
