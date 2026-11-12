@@ -11,7 +11,7 @@ Wichtig: Auswahl-/Inhaltsfreigabe und technische Veröffentlichungsreife sind ge
 
 ## Aktueller technischer Stand
 
-`app/src/main/assets/content-library.json` ist derzeit absichtlich leer. Das ist kein Verlust der redaktionellen Arbeit: Die bisherigen Inhalte liegen in separaten Arbeitskatalogen. Sie dürfen erst nach der jeweiligen Quellen-, Übersetzungs-, Lizenz- und Fachprüfung in die App-Datenbank übernommen werden.
+`app/src/main/assets/content-library.json` enthält inzwischen 15 Datensätze: 3 bestehen den technischen Release-Gate und werden in der App angezeigt; 12 bestätigte Auswahl-Einträge sind mit arabischem Originalwortlaut und genauer Fundstelle gesichert, bleiben aber wegen noch fehlender lizenzierter Übersetzungen und/oder dokumentierter Fachprüfung verborgen. Die Auswahl wird nicht erneut zur Diskussion gestellt.
 
 Die vorhandene Arbeitsgrundlage umfasst:
 - `NurWallpaper-Dua-Dhikr-Katalog-v0.7.md` (878 Zeilen; konsolidierter Redaktions- und Quellen-Audit-Katalog).
@@ -77,7 +77,7 @@ Der konsolidierte Katalog dokumentiert bereits Wortlaut- und Fundstellenprüfung
 6. Nur vollständig belegte Einträge in `content-library.json` übertragen.
 7. Automatisierte Tests ergänzen: Pflichtfelder, eindeutige IDs, gültige Statuswerte, keine Hadith-Quelle außerhalb Bukhārī/Muslim, keine Freigabe bei fehlender Lizenz oder Prüfung.
 
-Bis dahin bleibt der Katalog leer in der App. Das ist der korrekte Schutz gegen ungeprüfte religiöse Inhalte – nicht ein Grund, die bisherige Recherche zu verwerfen.
+Die App zeigt ausschließlich die drei Datensätze, die den aktuellen Release-Gate bestehen. Die übrigen bestätigten Inhalte sind im JSON gesichert und werden erst nach Schließen der konkret dokumentierten Übersetzungs-/Rechte-/Fachprüfungsblocker sichtbar.
 
 ## Neue Ayah-Ergänzung – Ar-Raʿd 13:25
 
@@ -112,3 +112,53 @@ Die zuvor vom Nutzer bestätigten Inhalte wurden in `app/src/main/assets/content
 Die HadeethEnc-Übersetzungen werden unverändert mit den dokumentierten Sprachversionen und den Wiederveröffentlichungsbedingungen geführt: DE v1.58.0, TR v1.71.0, EN v1.25.0. Die jeweiligen HadeethEnc-Einträge sind in den Datensätzen als Übersetzungsquelle und Attribution eingetragen. Die Hadith-Sammlung bleibt strikt auf Bukhārī und Muslim beschränkt.
 
 Der App-Katalog enthält damit erstmals **3 technisch vollständige Hadith-Datensätze**. Die restlichen vom Nutzer bestätigten Auswahl-Einträge werden in den nächsten Import-Batches ergänzt; neue Recherchekandidaten werden nicht mit bestätigten Auswahlen vermischt.
+
+
+## Import-Batch – bestätigte Auswahlen (12.11.2026)
+
+Die bestätigte Auswahl wurde ohne erneute Rückfrage in die App-Datenbank übertragen. Der Import unterscheidet ausdrücklich zwischen **Auswahl bestätigt** und **zur Veröffentlichung freigegeben**.
+
+### Release-ready (3)
+
+| Inhalt | Primärfundstelle | Übersetzungsquelle |
+|---|---|---|
+| Sayyid al-Istighfār | Bukhārī 6306 | HadeethEnc 5503 (DE/TR/EN) |
+| Moschee betreten/verlassen | Muslim 713a | HadeethEnc 65092 (DE/TR/EN) |
+| Eröffnungs-Duʿāʾ innerhalb des Gebets | Muslim 598a–b; Parallelbeleg Bukhārī 744 | HadeethEnc 3104 (DE/TR/EN) |
+
+Die drei HadeethEnc-Datensätze enthalten konkrete Sprachversionen und Attributionen. Die Auswahl, Primärfundstellen und HadeethEnc-Zuordnung sind in den JSON-Datensätzen gespeichert. Quellenabgleich: HadeethEnc 5503, 65092 und 3104.
+
+### Bestätigt importiert, aber noch nicht sichtbar (12)
+
+| Kategorie | Inhalt | Fundstelle | Grund für den geschlossenen Release-Gate |
+|---|---|---|---|
+| Hadith | Subḥānallāhi wa biḥamdih, morgens/abends 100-mal | Muslim 2692 | Exakte lizenzierte Übersetzungen DE/TR/EN fehlen |
+| Hadith | Geschichte des Mannes, der aus Gottesfurcht um Vergebung bat | Bukhārī 3481 | DE/TR/EN-Rechte/Übersetzungen fehlen |
+| Hadith | Eigenständige Land-und-Meer-Fassung derselben Erzählung | Muslim 2756a | DE/TR/EN-Rechte/Übersetzungen fehlen; nicht mit Bukhārī 3481 vermischen |
+| Hadith | Niesen: Lobpreisung, Barmherzigkeitswunsch, Erwiderung | Bukhārī 6224 | DE/TR/EN-Rechte/Übersetzungen fehlen |
+| Hadith | Zwei Personen niesen; Erklärung, warum nur einer Barmherzigkeit erhielt | Muslim 2991a | Eigenständiger Kontextbericht; DE/TR/EN-Rechte/Übersetzungen fehlen |
+| Quran | Wa fis-samāʾi rizqukum wa mā tūʿadūn | Adh-Dhāriyāt 51:22 | Tanzil-Text hinterlegt; DE/TR/EN-Übersetzungsnachweise fehlen |
+| Quran | Ḥasbunallāhu wa niʿma-l-wakīl im vollständigen Verskontext | Āl ʿImrān 3:173 | Tanzil-Text hinterlegt; türkische und weitere Übersetzungsrechte fehlen |
+| Quran | Rabbi innī limā anzalta ilayya min khayrin faqīr im vollständigen Verskontext | Al-Qaṣaṣ 28:24 | Tanzil-Text hinterlegt; DE/TR/EN-Übersetzungsnachweise fehlen |
+| Dhikr | Astaghfirullāh | Allgemeine Formel | Lizenzierte Übersetzungen und menschliche Sprachprüfung fehlen |
+| Dhikr | Allāhu akbar | Allgemeine Formel | Lizenzierte Übersetzungen und menschliche Sprachprüfung fehlen |
+| Dhikr | Lā ilāha illā Allāh | Allgemeine Formel | Lizenzierte Übersetzungen und menschliche Sprachprüfung fehlen |
+| Dhikr | Alḥamdulillāh | Allgemeine Formel | Lizenzierte Übersetzungen und menschliche Sprachprüfung fehlen |
+
+Für die Koranverse ist die Tanzil-Lizenz CC BY 3.0 dokumentiert: unveränderte Wiedergabe, klare Quellenangabe, Link zu tanzil.net und Copyright-/Lizenzhinweis. Die Lizenzbedingungen erlauben App-Nutzung, aber nicht die Veränderung des arabischen Textes. Für Quran-Übersetzungen bleiben die Rechte pro Sprache separat. Quellen: https://tanzil.net/docs/Text_License und https://quranenc.com/en/home/terms.
+
+### 99 Namen – Esmaül Hüsna
+
+Die Auswahl aller 99 Namen wurde am 10.11.2026 angenommen. Sie ist im JSON unter `confirmedSelections` als bestätigte Sammlung mit Zielumfang 99 festgehalten. Das frühere Gespräch enthält die Zusage, dass 99/99 eingepflegt worden seien; die aktuelle Repository-Git-Historie und die auffindbaren Arbeitsdateien enthalten aber keine konkrete vollständige Namensliste mit Arabisch, DE/TR/EN-Bedeutungen, Quelle und Rechteangaben. Daher wird keine Liste aus dem Gedächtnis neu konstruiert oder fälschlich als verifiziert markiert. Der genaue zuvor bestätigte Datensatz muss aus dem ursprünglichen Arbeitsartefakt wiederhergestellt werden.
+
+### Automatisierte Absicherung
+
+`scripts/validate_content_library.py` prüft jetzt:
+- eindeutige IDs und Pflichtfelder,
+- erlaubte Kategorien und Statuswerte,
+- Hadith-Sammlungen ausschließlich Bukhārī/Muslim,
+- vollständige DE/TR/EN-Metadaten für jeden freigegebenen Datensatz,
+- bestätigten Auswahlstatus und dokumentierte Blocker bei jedem noch nicht freigegebenen Eintrag,
+- die festgehaltene 99-Namen-Auswahl.
+
+Der Android-CI-Workflow führt diese Prüfung vor dem Gradle-Build aus. Dadurch können unvollständige Datensätze nicht versehentlich als veröffentlichungsfertig markiert werden.
