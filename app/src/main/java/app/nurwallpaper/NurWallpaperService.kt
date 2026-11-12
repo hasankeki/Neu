@@ -16,7 +16,9 @@ import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import android.content.SharedPreferences
+import android.view.MotionEvent
 import android.view.SurfaceHolder
+import kotlin.math.abs
 import kotlin.math.sin
 import kotlin.random.Random
 
@@ -43,6 +45,9 @@ class NurWallpaperService : WallpaperService() {
         private val rotationHandler = Handler(Looper.getMainLooper())
         private val visualHandler = Handler(Looper.getMainLooper())
         private val animationStartedAt = SystemClock.uptimeMillis()
+        private var touchStartX = 0f
+        private var touchStartY = 0f
+        private var touchTracking = false
         private val visualTick = object : Runnable {
             override fun run() {
                 if (isVisible && preferences.getBoolean("light_effect", true)) {
@@ -75,6 +80,8 @@ class NurWallpaperService : WallpaperService() {
         override fun onCreate(surfaceHolder: SurfaceHolder) {
             super.onCreate(surfaceHolder)
             preferences.registerOnSharedPreferenceChangeListener(settingsListener)
+            // Live wallpapers do not receive home-screen gestures unless explicitly enabled.
+            setTouchEventsEnabled(true)
         }
 
         override fun onDestroy() {
@@ -136,6 +143,60 @@ class NurWallpaperService : WallpaperService() {
             textAlign = Paint.Align.CENTER
             textSize = 25f
             setShadowLayer(7f, 0f, 1f, Color.BLACK)
+        }
+
+        override fun onTouchEvent(event: MotionEvent) {
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> {
+                    touchStartX = event.x
+                    touchStartY = event.y
+                    touchTracking = true
+                }
+                MotionEvent.ACTION_UP -> {
+                    if (touchTracking) {
+                        val deltaX = event.x - touchStartX
+                        val deltaY = event.y - touchStartY
+                        val threshold = 64f * resources.displayMetrics.density
+                        // Only deliberate horizontal gestures change the displayed content.
+                        if (abs(deltaX) >= threshold && abs(deltaX) > abs(deltaY) * 1.25f) {
+                            showAdjacentContent(if (deltaX < 0f) 1 else -1)
+                        }
+                    }
+                    touchTracking = false
+                }
+                MotionEvent.ACTION_CANCEL -> touchTracking = false
+            }
+            super.onTouchEvent(event)
+        }
+
+        /**
+         * Manual swipes move through the approved content pool immediately.
+         * They deliberately do not reset the automatic-rotation deadline.
+         */
+        private fun showAdjacentContent(direction: Int) {
+            val approved = contentRepository.approved()
+            if (approved.isEmpty()) return
+
+            val mode = RotationMode.fromSetting(preferences.getString("rotation", "Nie"))
+            val favorites = FavoriteStore(preferences).all()
+            val pool = if (mode == RotationMode.FAVORITES_ONLY) {
+                approved.filter { it.id in favorites }
+            } else {
+                approved
+            }
+            if (pool.isEmpty()) return
+
+            val currentId = preferences.getString(KEY_WALLPAPER_CONTENT_ID, null)
+            val currentIndex = pool.indexOfFirst { it.id == currentId }
+            val nextIndex = if (currentIndex < 0) {
+                if (direction > 0) 0 else pool.lastIndex
+            } else {
+                Math.floorMod(currentIndex + direction, pool.size)
+            }
+            preferences.edit()
+                .putString(KEY_WALLPAPER_CONTENT_ID, pool[nextIndex].id)
+                .apply()
+            drawFrame()
         }
 
         override fun onSurfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
