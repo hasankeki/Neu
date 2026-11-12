@@ -22,7 +22,7 @@ Android-Live-Wallpaper-App mit einer offline nutzbaren Bibliothek religiöser In
 - Die Audioplayer-Wiedergabe nach Track-Ende wurde korrigiert.
 - Die Android-Build-Prüfung läuft auch auf dem Entwicklungszweig.
 - Ein echter Test auf Pixel, Samsung und Xiaomi steht noch aus.
-- Die lokale Inhaltsbibliothek ist derzeit leer. Die vorhandenen Arbeitskataloge und der genaue Import-/Freigabestand sind in [docs/CONTENT-IMPORT-STATUS.md](docs/CONTENT-IMPORT-STATUS.md) dokumentiert; Inhalte werden erst nach vollständiger Quellen-, Übersetzungs- und Rechteprüfung freigegeben.
+- Die lokale Inhaltsbibliothek enthält 141 Datensätze: 24 Hadithe (nur Bukhārī/Muslim), 14 Koranverse, 4 allgemeine Dhikr-Formeln und 99 Esmaül-Hüsna-Namen. Davon sind 3 Hadithe technisch zur Veröffentlichung freigegeben; 138 Datensätze bleiben bis zur vollständigen Übersetzungs-, Rechte- und Fachprüfung unsichtbar. Details: [docs/CONTENT-IMPORT-STATUS.md](docs/CONTENT-IMPORT-STATUS.md).
 - Quran-Foundation-Audio ist noch nicht live verbunden: kein Backend deployed, keine Zugangsdaten konfiguriert, keine Rezitatoren freigeschaltet.
 - Offline-Audio ist ebenfalls noch nicht implementiert. Die Rechte- und Paketfreigabe ist in [docs/AUDIO-REZITATOREN-RECHTEPRUEFUNG.md](docs/AUDIO-REZITATOREN-RECHTEPRUEFUNG.md) dokumentiert.
 
