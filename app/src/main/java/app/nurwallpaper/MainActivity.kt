@@ -51,6 +51,19 @@ class MainActivity : Activity() {
         root.addView(categoryButton("Esmaül Hüsna", "Die 99 schönen Namen Allahs") { showCategory("Esmaül Hüsna") }, margin(top = 10))
         root.addView(sectionTitle("WALLPAPER"), margin(top = 26, bottom = 10))
         root.addView(label("Wähle NurWallpaper als Hintergrund für deinen Start- oder Sperrbildschirm.", 14f, 0xFFE8DDC7.toInt()))
+        root.addView(sectionTitle("DREI BESONDERE HINTERGRUNDWELTEN"), margin(top = 20, bottom = 8))
+        root.addView(categoryButton("01 · Islamische Traumwelten", "Mondlicht, Moschee-Silhouetten und atmosphärische Tiefen") {
+            prefs.edit().putString("wallpaper_design", "dreamscape").apply()
+            startActivity(Intent(this, WallpaperPreviewActivity::class.java))
+        }, margin(top = 8))
+        root.addView(categoryButton("02 · Elegante islamische Kunst", "Feine Ornamente, helle Stein- und Elfenbeintöne") {
+            prefs.edit().putString("wallpaper_design", "ornament").apply()
+            startActivity(Intent(this, WallpaperPreviewActivity::class.java))
+        }, margin(top = 8))
+        root.addView(categoryButton("03 · Moderne 3D-Lichtwelten", "Fließende Glasformen, Reflexionen und blaue Lichtbahnen") {
+            prefs.edit().putString("wallpaper_design", "glass").apply()
+            startActivity(Intent(this, WallpaperPreviewActivity::class.java))
+        }, margin(top = 8))
         root.addView(actionButton("Vollbild-Vorschau") { startActivity(Intent(this, WallpaperPreviewActivity::class.java)) }, margin(top = 12))
         root.addView(actionButton("Live-Wallpaper auswählen") { openWallpaperPicker() }, margin(top = 10))
         root.addView(actionButton("Qibla finden") { startActivity(Intent(this, QiblaActivity::class.java)) }, margin(top = 10))
