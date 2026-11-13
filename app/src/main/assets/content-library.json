@@ -6344,6 +6344,27 @@
         "Umschrift und sprachliche Prüfung dokumentieren",
         "Menschliche fachkundige religiöse Freigabe dokumentieren"
       ]
+    },
+    {
+      "id": "dua-audhu-bi-kalimatillahi-tammati",
+      "category": "DUA_DHIKR",
+      "originalLanguageCode": "ar",
+      "originalText": "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",
+      "translations": [],
+      "source": {
+        "collection": "Sahih Muslim",
+        "locator": "Sahih Muslim 2708a (Book 48, Hadith 72)",
+        "sourceUrl": "https://sunnah.com/muslim:2708a",
+        "license": "Arabischer Originalwortlaut aus der Hadith-Quelle. Übersetzungen erst nach dokumentierter Lizenz- und Versionsprüfung veröffentlichen.",
+        "attribution": "Sahih Muslim 2708a; Überlieferung von Khawla bint Hakim As-Sulamiyya."
+      },
+      "reviewStatus": "IN_REVIEW",
+      "reviewerNote": "Vom Nutzer zur Aufnahme in NurWallpaper ausgewählt. Umschrift: Aʿūdhu bi-kalimāti llāhi t-tāmmāti min sharri mā khalaq. Deutsche Sinnübersetzung für die Vorschau: Ich suche Zuflucht bei den vollkommenen Worten Allahs vor dem Übel dessen, was Er erschaffen hat. Hadith-Kontext: beim Niederlassen an einem Ort; keine allgemeine Schutzgarantie außerhalb des überlieferten Wortlauts behaupten. Lizenzierte DE/TR/EN-Übersetzungen und fachliche Freigabe vor Veröffentlichung ergänzen.",
+      "selectionStatus": "CONFIRMED",
+      "releaseBlockers": [
+        "Lizenzierte DE/TR/EN-Übersetzungen mit genauer Quelle, Version und Attribution fehlen",
+        "Menschliche fachkundige Prüfung/Freigabe nicht dokumentiert"
+      ]
     }
   ],
   "confirmedSelections": [
