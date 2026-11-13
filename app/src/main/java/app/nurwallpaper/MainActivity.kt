@@ -10,6 +10,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -41,6 +42,22 @@ class MainActivity : Activity() {
         root.addView(label("NUR", 13f, accent, true))
         root.addView(label("NurWallpaper", 30f, Color.WHITE, true), margin(top = 5))
         root.addView(label("Erinnerungen, die dich durch den Tag begleiten.", 15f, 0xFFB8C4D9.toInt()), margin(top = 8, bottom = 22))
+        root.addView(sectionTitle("LIVE-VORSCHAU"), margin(top = 22, bottom = 10))
+        val preview = TilePreviewView(this).apply {
+            layoutParams = FrameLayout.LayoutParams(-1, dp(270))
+        }
+        val previewFrame = FrameLayout(this).apply {
+            background = rounded(Color.rgb(5, 22, 27), 20)
+            clipToOutline = true
+            addView(preview)
+        }
+        root.addView(previewFrame, margin(bottom = 10))
+        val pauseButton = actionButton("Lichtspiel pausieren") {
+            preview.isLightPaused = !preview.isLightPaused
+            (it as? Button)?.text = if (preview.isLightPaused) "Lichtspiel fortsetzen" else "Lichtspiel pausieren"
+        }
+        root.addView(pauseButton, margin(bottom = 4))
+        root.addView(label("Die Kachel-Animation läuft nur in dieser Vorschau. Du kannst das Licht jederzeit anhalten.", 12f, 0xFF9EADC4.toInt()), margin(bottom = 18))
         root.addView(sectionTitle("DEINE BIBLIOTHEK"))
         root.addView(categoryButton("Verse", "Koranverse mit Quelle und Übersetzung") { showCategory("Verse") }, margin(top = 12))
         root.addView(categoryButton("Hadithe", "Ausschließlich Bukhārī und Muslim") { showCategory("Hadithe") }, margin(top = 10))
@@ -163,7 +180,7 @@ class MainActivity : Activity() {
             background = rounded(surface, 16)
             isClickable = true
             isFocusable = true
-            setOnClickListener { onClick() }
+            setOnClickListener { onClick(it) }
         }
         box.addView(label(title, 19f, Color.WHITE, true))
         box.addView(label(subtitle, 13f, 0xFF9EADC4.toInt()), margin(top = 5))
@@ -172,7 +189,7 @@ class MainActivity : Activity() {
 
     private fun sectionTitle(text: String) = label(text, 12f, accent, true)
 
-    private fun actionButton(text: String, onClick: () -> Unit): Button =
+    private fun actionButton(text: String, onClick: (View) -> Unit): Button =
         Button(this).apply {
             this.text = text
             isAllCaps = false
