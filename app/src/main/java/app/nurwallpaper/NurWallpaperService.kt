@@ -354,40 +354,9 @@ class NurWallpaperService : WallpaperService() {
             val elapsed = (SystemClock.uptimeMillis() - animationStartedAt) / 1000f
             val phase = if (animated) elapsed else 0f
 
-            // Deep black foundation with a warm, subtle golden atmosphere.
-            canvas.drawColor(GoldenPalette.black)
-            backgroundPaint.shader = RadialGradient(
-                centerX, centerY, w * 0.82f,
-                intArrayOf(0x302B1B0B, 0x181A1209, 0x00000000),
-                floatArrayOf(0f, 0.62f, 1f),
-                Shader.TileMode.CLAMP
-            )
-            canvas.drawRect(0f, 0f, w, h, backgroundPaint)
-            backgroundPaint.shader = null
-
-            // Fine ornamental geometry frames the content without competing with it.
-            val ornament = RectF(w * 0.075f, h * 0.19f, w * 0.925f, h * 0.78f)
-            canvas.drawRoundRect(ornament, 42f, 42f, ornamentPaint)
-            val inner = RectF(w * 0.095f, h * 0.205f, w * 0.905f, h * 0.765f)
-            ornamentPaint.alpha = 95
-            canvas.drawRoundRect(inner, 36f, 36f, ornamentPaint)
-            ornamentPaint.alpha = 255
-
-            // A soft halo adds warmth behind the verse.
-            glowPaint.shader = RadialGradient(
-                centerX, centerY, w * 0.52f,
-                intArrayOf(0x35E8B85A, 0x16B77B32, 0x00000000),
-                floatArrayOf(0f, 0.48f, 1f),
-                Shader.TileMode.CLAMP
-            )
-            canvas.drawCircle(centerX, centerY, w * 0.52f, glowPaint)
-            glowPaint.shader = null
-
-            if (animated) {
-                drawGoldenFlow(canvas, w, h, phase)
-            } else {
-                drawGoldDust(canvas, w, h, 0f, false)
-            }
+            // Each design world has its own composition and motion language.
+            val design = preferences.getString("wallpaper_design", "dreamscape") ?: "dreamscape"
+            WallpaperDesignRenderer.draw(canvas, design, phase, animated)
 
             val firstApproved = selectedWallpaperContent()
             if (firstApproved == null) {
