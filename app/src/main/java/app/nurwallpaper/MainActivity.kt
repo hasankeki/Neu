@@ -17,9 +17,9 @@ import android.widget.ScrollView
 import android.widget.TextView
 
 class MainActivity : Activity() {
-    private val backgroundColorValue = Color.rgb(7, 12, 29)
-    private val surface = Color.rgb(17, 26, 48)
-    private val accent = Color.rgb(74, 222, 224)
+    private val backgroundColorValue = Color.rgb(4, 20, 21)
+    private val surface = Color.rgb(10, 42, 37)
+    private val accent = Color.rgb(201, 170, 110)
     private val prefs by lazy { getSharedPreferences("nurwallpaper_settings", MODE_PRIVATE) }
     private lateinit var root: LinearLayout
 
