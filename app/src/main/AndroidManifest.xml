@@ -4,6 +4,10 @@
         android:name="android.software.live_wallpaper"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="false"
         android:label="NurWallpaper"
@@ -21,6 +25,26 @@
                 android:name="android.service.wallpaper"
                 android:resource="@xml/wallpaper" />
         </service>
+
+        <activity
+            android:name=".WallpaperPreviewActivity"
+            android:exported="false"
+            android:label="Vollbild-Vorschau" />
+
+        <activity
+            android:name=".AudioPlayerActivity"
+            android:exported="false"
+            android:label="Aya anhören" />
+
+        <activity
+            android:name=".PrayerTimesActivity"
+            android:exported="false"
+            android:label="Gebetszeiten" />
+
+        <activity
+            android:name=".QiblaActivity"
+            android:exported="false"
+            android:label="Qibla" />
 
         <activity
             android:name=".MainActivity"

@@ -71,6 +71,23 @@ class ContentRepositoryTest {
     }
 
     @Test
+    fun arabicDisplayKeepsArabicAndUsesSelectedTranslation() {
+        assertEquals("de", translationLanguageFor("ar", "de"))
+        assertEquals("tr", translationLanguageFor("ar", "tr"))
+        assertEquals("en", translationLanguageFor("ar", "en"))
+    }
+
+    @Test
+    fun unsupportedDisplayLanguageFallsBackToGermanTranslation() {
+        assertEquals("de", translationLanguageFor("ar", "fr"))
+    }
+
+    @Test
+    fun normalDisplayLanguageRemainsTheTranslationLanguage() {
+        assertEquals("tr", translationLanguageFor("tr", "de"))
+    }
+
+    @Test
     fun duplicateTranslationLanguageIsRejected() {
         assertFalse(
             approvedItem(
@@ -110,6 +127,23 @@ class ContentRepositoryTest {
         )
         assertTrue(bukhari.isReleaseReady())
         assertTrue(muslim.isReleaseReady())
+    }
+
+    @Test
+    fun asmaNamesRemainHiddenUntilTheirOwnReviewIsComplete() {
+        val asma = approvedItem().copy(
+            id = "asma-01",
+            category = ContentCategory.ASMA_UL_HUSNA,
+            reviewStatus = ContentReviewStatus.IN_REVIEW,
+            transliteration = "Allah",
+            number = 1
+        )
+        assertFalse(asma.isReleaseReady())
+        assertTrue(ContentRepository(listOf(asma)).approved(ContentCategory.ASMA_UL_HUSNA).isEmpty())
+        assertEquals("Allah", asma.transliteration)
+        assertEquals(1, asma.number)
+        assertTrue(asma.copy(reviewStatus = ContentReviewStatus.APPROVED_FOR_RELEASE).isReleaseReady())
+        assertFalse(asma.copy(number = null, reviewStatus = ContentReviewStatus.APPROVED_FOR_RELEASE).isReleaseReady())
     }
 
     @Test

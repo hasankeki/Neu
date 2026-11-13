@@ -73,6 +73,12 @@ private fun isOfficialHadithCollection(collection: String): Boolean {
     )
 }
 
+fun translationLanguageFor(displayLanguage: String, selectedTranslationLanguage: String): String {
+    val supported = setOf("de", "tr", "en")
+    return if (displayLanguage in supported) displayLanguage
+    else selectedTranslationLanguage.takeIf { it in supported } ?: "de"
+}
+
 data class ContentItem(
     val id: String,
     val category: ContentCategory,
@@ -81,7 +87,9 @@ data class ContentItem(
     val translations: List<TranslationText>,
     val source: ContentSource,
     val reviewStatus: ContentReviewStatus,
-    val reviewerNote: String? = null
+    val reviewerNote: String? = null,
+    val transliteration: String? = null,
+    val number: Int? = null
 ) {
     fun isReleaseReady(): Boolean =
         id.isNotBlank() &&
@@ -90,6 +98,8 @@ data class ContentItem(
             source.isReleaseReady() &&
             (category != ContentCategory.HADITH ||
                 isOfficialHadithCollection(source.collection)) &&
+            (category != ContentCategory.ASMA_UL_HUSNA ||
+                (number?.let { it in 1..99 } == true && transliteration?.isNotBlank() == true)) &&
             reviewStatus == ContentReviewStatus.APPROVED_FOR_RELEASE &&
             translations.size == 3 &&
             translations.all { it.isReleaseReady() } &&
