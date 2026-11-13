@@ -6,13 +6,13 @@
 
     <application
         android:allowBackup="false"
-        android:label="NurWallpaper"
+        android:label="NurWallpaper Test"
         android:supportsRtl="true">
 
         <service
             android:name=".NurWallpaperService"
             android:exported="true"
-            android:label="NurWallpaper"
+            android:label="NurWallpaper Test"
             android:permission="android.permission.BIND_WALLPAPER">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
