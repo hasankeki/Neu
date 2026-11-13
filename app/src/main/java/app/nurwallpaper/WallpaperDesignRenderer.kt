@@ -133,7 +133,7 @@ internal object WallpaperDesignRenderer {
             val y = h*(.20f + row*.15f)
             drawRosette(c, x, y, radius, if ((row+col)%2==0) 0x558E7857 else 0x447C9A86)
         }
-        drawRosette(c, w*.5f, h*.50f, w*.25f, 0x887F6B4E)
+        drawRosette(c, w*.5f, h*.50f, w*.25f, 0x887F6B4E.toInt())
         drawRosette(c, w*.5f, h*.50f, w*.19f, 0x668F7958)
         // A restrained central light breathes slowly.
         fill.shader = RadialGradient(w*.5f, h*.5f, w*.42f,
