@@ -120,27 +120,11 @@ class WallpaperPreviewActivity : Activity() {
             val h = height.toFloat()
             val cx = w / 2f
             val cy = h * 0.48f
-            canvas.drawColor(Color.rgb(5, 5, 7))
-            glowPaint.shader = RadialGradient(cx, cy, w * 0.8f,
-                intArrayOf(0x403B2812, 0x18251A0D, 0x00000000),
-                floatArrayOf(0f, 0.55f, 1f), Shader.TileMode.CLAMP)
-            canvas.drawRect(0f, 0f, w, h, glowPaint)
-            glowPaint.shader = null
-
-            val framePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-                style = Paint.Style.STROKE
-                strokeWidth = 1.4f
-                color = 0x557F612F
-            }
-            canvas.drawRoundRect(w * .075f, h * .19f, w * .925f, h * .78f, 38f, 38f, framePaint)
-            val shimmer = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = 0x22E8BD69 }
-            for (i in 0 until 42) {
-                val x = ((i * 83) % 997) / 997f * w
-                val y = ((i * 137) % 991) / 991f * h
-                val alpha = (35 + 20 * sin(i.toDouble())).toInt().coerceIn(10, 60)
-                shimmer.alpha = alpha
-                canvas.drawCircle(x, y, if (i % 6 == 0) 2.2f else 1.1f, shimmer)
-            }
+            val design = prefs.getString("wallpaper_design", "dreamscape") ?: "dreamscape"
+            val animated = prefs.getBoolean("light_effect", true)
+            val phase = android.os.SystemClock.uptimeMillis() / 1000f
+            WallpaperDesignRenderer.draw(canvas, design, phase, animated)
+            if (animated) postInvalidateDelayed(50L)
 
             val content = item
             if (content == null) {
