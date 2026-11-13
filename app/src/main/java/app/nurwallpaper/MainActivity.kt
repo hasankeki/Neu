@@ -52,9 +52,10 @@ class MainActivity : Activity() {
             addView(preview)
         }
         root.addView(previewFrame, margin(bottom = 10))
-        val pauseButton = actionButton("Lichtspiel pausieren") {
+        lateinit var pauseButton: Button
+        pauseButton = actionButton("Lichtspiel pausieren") {
             preview.isLightPaused = !preview.isLightPaused
-            (it as? Button)?.text = if (preview.isLightPaused) "Lichtspiel fortsetzen" else "Lichtspiel pausieren"
+            pauseButton.text = if (preview.isLightPaused) "Lichtspiel fortsetzen" else "Lichtspiel pausieren"
         }
         root.addView(pauseButton, margin(bottom = 4))
         root.addView(label("Die Kachel-Animation läuft nur in dieser Vorschau. Du kannst das Licht jederzeit anhalten.", 12f, 0xFF9EADC4.toInt()), margin(bottom = 18))
@@ -180,7 +181,7 @@ class MainActivity : Activity() {
             background = rounded(surface, 16)
             isClickable = true
             isFocusable = true
-            setOnClickListener { onClick(it) }
+            setOnClickListener { onClick() }
         }
         box.addView(label(title, 19f, Color.WHITE, true))
         box.addView(label(subtitle, 13f, 0xFF9EADC4.toInt()), margin(top = 5))
@@ -189,7 +190,7 @@ class MainActivity : Activity() {
 
     private fun sectionTitle(text: String) = label(text, 12f, accent, true)
 
-    private fun actionButton(text: String, onClick: (View) -> Unit): Button =
+    private fun actionButton(text: String, onClick: () -> Unit): Button =
         Button(this).apply {
             this.text = text
             isAllCaps = false
