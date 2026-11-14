@@ -13,6 +13,7 @@ import android.text.TextPaint
 import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
 import kotlin.random.Random
@@ -28,6 +29,15 @@ class NurWallpaperService : WallpaperService() {
             getSharedPreferences("nurwallpaper_settings", MODE_PRIVATE)
         }
         private val rotationHandler = Handler(Looper.getMainLooper())
+        private val prestigeRenderer = PrestigeTileRenderer()
+        private val animationTick = object : Runnable {
+            override fun run() {
+                if (isVisible && preferences.getBoolean("light_effect", true)) {
+                    drawFrame()
+                    rotationHandler.postDelayed(this, 33L)
+                }
+            }
+        }
         private val rotationTick = object : Runnable {
             override fun run() {
                 if (isVisible) {
@@ -44,6 +54,7 @@ class NurWallpaperService : WallpaperService() {
                 scheduleNextRotation()
             }
             if (key == "language" || key == "light_effect" || key == "rotation" || key == "favorite_content_ids") drawFrame()
+            if (key == "light_effect") scheduleAnimation()
         }
 
         override fun onCreate(surfaceHolder: SurfaceHolder) {
@@ -53,6 +64,7 @@ class NurWallpaperService : WallpaperService() {
 
         override fun onDestroy() {
             rotationHandler.removeCallbacks(rotationTick)
+            rotationHandler.removeCallbacks(animationTick)
             preferences.unregisterOnSharedPreferenceChangeListener(settingsListener)
             super.onDestroy()
         }
@@ -110,8 +122,10 @@ class NurWallpaperService : WallpaperService() {
                 updateRotationIfDue()
                 drawFrame()
                 scheduleNextRotation()
+                scheduleAnimation()
             } else {
                 rotationHandler.removeCallbacks(rotationTick)
+                rotationHandler.removeCallbacks(animationTick)
             }
         }
 
@@ -184,43 +198,17 @@ class NurWallpaperService : WallpaperService() {
         private fun drawScene(canvas: Canvas) {
             val w = canvas.width.toFloat()
             val h = canvas.height.toFloat()
-            skyPaint.shader = LinearGradient(
-                0f, 0f, 0f, h,
-                Color.rgb(7, 13, 35),
-                Color.rgb(19, 35, 61),
-                Shader.TileMode.CLAMP
-            )
-            canvas.drawRect(0f, 0f, w, h, skyPaint)
-            skyPaint.shader = null
-
-            val random = Random(19)
-            repeat(85) {
-                val x = random.nextFloat() * w
-                val y = random.nextFloat() * h * 0.62f
-                val radius = 0.7f + random.nextFloat() * 1.5f
-                canvas.drawCircle(x, y, radius, starsPaint)
-            }
-
-            drawMountain(canvas, w, h, 0.67f, Color.rgb(18, 35, 59), 0.12f)
-            drawMountain(canvas, w, h, 0.76f, Color.rgb(11, 25, 47), 0.19f)
-            drawMountain(canvas, w, h, 0.86f, Color.rgb(5, 15, 32), 0.25f)
+            val lightEnabled = preferences.getBoolean("light_effect", true)
+            val phase = (SystemClock.uptimeMillis() % 9000L) / 9000f
+            prestigeRenderer.draw(canvas, phase, animated = lightEnabled)
 
             val centerX = w / 2f
-            val centerY = h * 0.48f
-            val panel = RectF(w * 0.07f, centerY - 92f, w * 0.93f, centerY + 94f)
-            panelPaint.shader = LinearGradient(
-                panel.left, panel.top, panel.right, panel.bottom,
-                intArrayOf(0x00202B3C, 0xB8000818.toInt(), 0x00202B3C),
-                null,
-                Shader.TileMode.CLAMP
-            )
-            canvas.drawRoundRect(panel, 34f, 34f, panelPaint)
-            panelPaint.shader = null
-
-            val language = preferences.getString("language", "de") ?: "de"
+            val centerY = h * 0.49f
             val firstApproved = selectedWallpaperContent()
             if (firstApproved == null) {
+                drawTextPanel(canvas, centerX, centerY, w)
                 canvas.drawText("NurWallpaper", centerX, centerY - 5f, titlePaint)
+                val language = preferences.getString("language", "de") ?: "de"
                 val tagline = when (language) {
                     "tr" -> "Önce mesaj, sonra efektler."
                     "en" -> "The message comes before the effects."
@@ -230,17 +218,22 @@ class NurWallpaperService : WallpaperService() {
                 canvas.drawText(tagline, centerX, centerY + 43f, subtitlePaint)
             } else {
                 val width = (w * 0.82f).toInt().coerceAtLeast(1)
+                val language = preferences.getString("language", "de") ?: "de"
                 val arabic = makeLayout(firstApproved.originalText, contentPaint, width, Layout.Alignment.ALIGN_CENTER)
                 val translation = firstApproved.textFor(language)?.let {
                     makeLayout(it, translationPaint, width, Layout.Alignment.ALIGN_CENTER)
                 }
-                var blockHeight = arabic.height + (translation?.height ?: 0) + 34f
-                val top = (centerY - blockHeight / 2f).coerceAtLeast(24f)
+                val sourceText = "${firstApproved.source.collection} · ${firstApproved.source.locator}"
+                val sourceLayout = makeLayout(sourceText, sourcePaintAsText(), width, Layout.Alignment.ALIGN_CENTER)
+                val totalHeight = arabic.height + (translation?.height ?: 0) + sourceLayout.height + 54f
+                val top = (centerY - totalHeight / 2f).coerceAtLeast(24f)
+                drawTextPanel(canvas, centerX, top + totalHeight / 2f, w, totalHeight + 34f)
+
                 canvas.save()
                 canvas.translate((w - width) / 2f, top)
                 arabic.draw(canvas)
                 canvas.restore()
-                var nextY = top + arabic.height + 22f
+                var nextY = top + arabic.height + 18f
                 if (translation != null) {
                     canvas.save()
                     canvas.translate((w - width) / 2f, nextY)
@@ -248,10 +241,30 @@ class NurWallpaperService : WallpaperService() {
                     canvas.restore()
                     nextY += translation.height + 12f
                 }
-                canvas.drawText(
-                    "${firstApproved.source.collection} · ${firstApproved.source.locator}",
-                    centerX, nextY + 8f, sourcePaint
-                )
+                canvas.save()
+                canvas.translate((w - width) / 2f, nextY)
+                sourceLayout.draw(canvas)
+                canvas.restore()
+            }
+        }
+
+        private fun drawTextPanel(canvas: Canvas, centerX: Float, centerY: Float, width: Float, height: Float = 180f) {
+            val panel = RectF(width * .055f, centerY - height/2f, width * .945f, centerY + height/2f)
+            panelPaint.shader = LinearGradient(panel.left, panel.top, panel.right, panel.bottom,
+                intArrayOf(0x00101E19, 0xD9001713.toInt(), 0x00101E19), null, Shader.TileMode.CLAMP)
+            canvas.drawRoundRect(panel, 28f, 28f, panelPaint)
+            panelPaint.shader = null
+        }
+
+        private fun sourcePaintAsText(): TextPaint = TextPaint(sourcePaint).apply {
+            textAlign = Paint.Align.CENTER
+            textSize = 17f
+        }
+
+        private fun scheduleAnimation() {
+            rotationHandler.removeCallbacks(animationTick)
+            if (isVisible && preferences.getBoolean("light_effect", true)) {
+                rotationHandler.postDelayed(animationTick, 33L)
             }
         }
 
