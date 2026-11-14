@@ -137,7 +137,16 @@ internal class PrestigeTileRenderer {
         val sy = (h-(rows-1)*cell)/2f
         for (row in -1 until rows) for (col in -1 until cols) {
             val cx=sx+col*cell; val cy=sy+row*cell; val r=cell*.49f
-            drawStar(canvas,cx,cy,r*.79f,r*.49f)
+            path.reset()
+            for (i in 0 until 16) {
+                val a = Math.PI*i/8.0 - Math.PI/2.0
+                val radius = if (i%2==0) r*.79f else r*.49f
+                val px = cx + cos(a).toFloat()*radius
+                val py = cy + sin(a).toFloat()*radius
+                if (i==0) path.moveTo(px,py) else path.lineTo(px,py)
+            }
+            path.close()
+            canvas.drawPath(path, glow)
         }
         canvas.restore()
         glow.shader = null
