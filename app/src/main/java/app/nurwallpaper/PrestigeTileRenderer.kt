@@ -13,151 +13,154 @@ import kotlin.math.min
 import kotlin.math.sin
 
 /**
- * One procedural source of truth for the app preview and the actual live wallpaper.
- * The geometry, palette, bevels and travelling highlights are deliberately shared.
+ * Continuous Islamic geometric ornament field. Preview and live wallpaper share
+ * this renderer so the geometry and edge-light animation stay identical.
  */
 internal class PrestigeTileRenderer {
-    private val background = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val tile = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val bevel = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE }
-    private val ornament = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE }
-    private val glow = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeCap = Paint.Cap.ROUND; strokeJoin = Paint.Join.ROUND }
+    private val bg = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val fill = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val line = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.STROKE
+        strokeJoin = Paint.Join.ROUND
+        strokeCap = Paint.Cap.ROUND
+    }
+    private val halo = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.STROKE
+        strokeCap = Paint.Cap.ROUND
+        strokeJoin = Paint.Join.ROUND
+    }
+    private val core = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.STROKE
+        strokeCap = Paint.Cap.ROUND
+        strokeJoin = Paint.Join.ROUND
+    }
     private val path = Path()
-    private val lightPath = Path()
+    private val pulsePath = Path()
 
     fun draw(canvas: Canvas, phase: Float, animated: Boolean) {
         val w = canvas.width.toFloat()
         val h = canvas.height.toFloat()
         if (w <= 0f || h <= 0f) return
         val unit = min(w, h)
-        background.shader = LinearGradient(0f, 0f, w, h,
-            intArrayOf(0xFF031715.toInt(), 0xFF073B32.toInt(), 0xFF021C1D.toInt()),
-            floatArrayOf(0f, .52f, 1f), Shader.TileMode.CLAMP)
-        canvas.drawRect(0f, 0f, w, h, background)
-        background.shader = null
+        bg.shader = LinearGradient(0f, 0f, w, h,
+            intArrayOf(0xFF031512.toInt(), 0xFF064334.toInt(), 0xFF021D1B.toInt()),
+            null, Shader.TileMode.CLAMP)
+        canvas.drawRect(0f, 0f, w, h, bg)
+        bg.shader = null
 
-        // Quiet radial depth behind the tessellation.
-        background.shader = LinearGradient(w * .5f, 0f, w * .5f, h,
-            intArrayOf(0x3326A982, 0x00101B18, 0x55000000), null, Shader.TileMode.CLAMP)
-        canvas.drawRect(0f, 0f, w, h, background)
-        background.shader = null
+        // Deep translucent emerald panels are continuous; no isolated square tiles.
+        val spacing = unit * .53f
+        val radius = spacing * .47f
+        val cols = (w / spacing).toInt() + 4
+        val rows = (h / spacing).toInt() + 4
+        val ox = (w - (cols - 1) * spacing) * .5f
+        val oy = (h - (rows - 1) * spacing) * .5f
 
-        val cell = unit * .235f
-        val radius = cell * .49f
-        val cols = (w / cell).toInt() + 3
-        val rows = (h / cell).toInt() + 3
-        val startX = (w - (cols - 1) * cell) / 2f
-        val startY = (h - (rows - 1) * cell) / 2f
         for (row in -1 until rows) for (col in -1 until cols) {
-            val cx = startX + col * cell
-            val cy = startY + row * cell
-            drawTile(canvas, cx, cy, radius, phase, col, row, animated)
-        }
-    }
-
-    private fun drawTile(canvas: Canvas, cx: Float, cy: Float, r: Float,
-                         phase: Float, col: Int, row: Int, animated: Boolean) {
-        val rect = RectF(cx-r, cy-r, cx+r, cy+r)
-        tile.shader = LinearGradient(rect.left, rect.top, rect.right, rect.bottom,
-            intArrayOf(0xFF286B59.toInt(), 0xFF0D4439.toInt(), 0xFF062A27.toInt()),
-            floatArrayOf(0f, .48f, 1f), Shader.TileMode.CLAMP)
-        canvas.drawRoundRect(rect, r*.10f, r*.10f, tile)
-        tile.shader = null
-
-        // A restrained top-left bevel and dark lower edge create physical depth.
-        bevel.strokeWidth = r*.055f
-        bevel.color = 0x887DE0B2.toInt()
-        path.reset()
-        path.moveTo(rect.left+r*.08f, rect.bottom-r*.08f)
-        path.lineTo(rect.left+r*.08f, rect.top+r*.10f)
-        path.lineTo(rect.right-r*.10f, rect.top+r*.10f)
-        canvas.drawPath(path, bevel)
-        bevel.color = 0xAA001713.toInt()
-        path.reset()
-        path.moveTo(rect.right-r*.08f, rect.top+r*.10f)
-        path.lineTo(rect.right-r*.08f, rect.bottom-r*.08f)
-        path.lineTo(rect.left+r*.08f, rect.bottom-r*.08f)
-        canvas.drawPath(path, bevel)
-
-        // Interlocking eight-point star with a second engraved contour.
-        ornament.strokeWidth = r*.025f
-        ornament.color = 0xD9D7B77A.toInt()
-        drawStar(canvas, cx, cy, r*.79f, r*.49f)
-        ornament.strokeWidth = r*.012f
-        ornament.color = 0x9988D8B4.toInt()
-        drawStar(canvas, cx, cy, r*.61f, r*.38f)
-        ornament.color = 0xB9D5B77D.toInt()
-        canvas.drawCircle(cx, cy, r*.19f, ornament)
-        canvas.drawCircle(cx, cy, r*.115f, ornament)
-        // Fine diagonal connectors make the repeated tiles read as one tessellation.
-        ornament.color = 0x668AD0AD.toInt()
-        ornament.strokeWidth = r*.010f
-        for (i in 0 until 4) {
-            val a = Math.PI * (i * 2 + 1) / 4.0
-            val x = cx + cos(a).toFloat()*r*.49f
-            val y = cy + sin(a).toFloat()*r*.49f
-            canvas.drawLine(cx, cy, x, y, ornament)
+            val cx = ox + col * spacing
+            val cy = oy + row * spacing
+            drawStarPanel(canvas, cx, cy, radius)
         }
 
+        // Connect neighboring stars with shared diamond/hexagon seams.
+        line.strokeWidth = unit * .0032f
+        line.color = 0xB8D2AD70.toInt()
+        for (row in -1 until rows) for (col in -1 until cols) {
+            val cx = ox + col * spacing
+            val cy = oy + row * spacing
+            val half = spacing * .5f
+            // Fine connecting diagonals form a single interlocking tessellation.
+            canvas.drawLine(cx, cy - radius * .47f, cx + half, cy - half, line)
+            canvas.drawLine(cx + half, cy - half, cx + spacing, cy, line)
+            canvas.drawLine(cx + spacing, cy, cx + half, cy + half, line)
+            canvas.drawLine(cx + half, cy + half, cx, cy + radius * .47f, line)
+        }
+
+        // Moving warm light runs along the actual ornament edges, not across the screen.
         if (animated) {
-            // A short amber/mint light pulse travels on the engraved star line.
-            // Phase offsets make it ripple through the tessellation, not flash flat.
-            val local = ((phase + col * .083f + row * .057f) % 1f + 1f) % 1f
-            drawLightPulse(canvas, cx, cy, r, local)
+            for (row in -1 until rows) for (col in -1 until cols) {
+                val cx = ox + col * spacing
+                val cy = oy + row * spacing
+                val local = ((phase + col * .071f + row * .047f) % 1f + 1f) % 1f
+                drawEdgePulse(canvas, cx, cy, radius, local, unit)
+            }
         }
     }
 
-    private fun drawStar(canvas: Canvas, cx: Float, cy: Float, outer: Float, inner: Float) {
+    private fun drawStarPanel(canvas: Canvas, cx: Float, cy: Float, r: Float) {
+        // Faceted emerald ground, softly shaded rather than a raised square tile.
+        val bounds = RectF(cx-r, cy-r, cx+r, cy+r)
+        fill.shader = LinearGradient(bounds.left, bounds.top, bounds.right, bounds.bottom,
+            intArrayOf(0xCC17644F.toInt(), 0xCC073B32.toInt(), 0xCC032722.toInt()),
+            null, Shader.TileMode.CLAMP)
         path.reset()
-        for (i in 0 until 16) {
-            val a = Math.PI*i/8.0 - Math.PI/2.0
-            val radius = if (i%2==0) outer else inner
-            val x = cx + cos(a).toFloat()*radius
-            val y = cy + sin(a).toFloat()*radius
-            if (i==0) path.moveTo(x,y) else path.lineTo(x,y)
+        starPath(path, cx, cy, r * .98f, r * .60f)
+        canvas.drawPath(path, fill)
+        fill.shader = null
+
+        // Dark engraved edge and warm metallic bevel.
+        line.strokeWidth = r * .055f
+        line.color = 0xAA001A16.toInt()
+        canvas.drawPath(path, line)
+        line.strokeWidth = r * .022f
+        line.color = 0xD7D8B77A.toInt()
+        canvas.drawPath(path, line)
+
+        // Inner floral geometry gives the star a crafted, layered center.
+        line.strokeWidth = r * .012f
+        line.color = 0xA9A9D5B0.toInt()
+        val inner = Path()
+        starPath(inner, cx, cy, r * .52f, r * .31f)
+        canvas.drawPath(inner, line)
+        canvas.drawCircle(cx, cy, r * .115f, line)
+        canvas.drawCircle(cx, cy, r * .075f, line)
+        for (i in 0 until 8) {
+            val a = Math.PI * i / 4.0
+            val x = cx + cos(a).toFloat() * r * .23f
+            val y = cy + sin(a).toFloat() * r * .23f
+            canvas.drawCircle(x, y, r * .055f, line)
         }
-        path.close()
-        canvas.drawPath(path, ornament)
     }
 
-    /**
-     * Draw a short moving arc along each star contour. The previous full-screen
-     * vertical shader lit every star at once and looked like a white pattern.
-     */
-    private fun drawLightPulse(canvas: Canvas, cx: Float, cy: Float, r: Float, phase: Float) {
-        path.reset()
+    private fun starPath(out: Path, cx: Float, cy: Float, outer: Float, inner: Float) {
+        out.reset()
         for (i in 0 until 16) {
             val a = Math.PI * i / 8.0 - Math.PI / 2.0
-            val radius = if (i % 2 == 0) r * .79f else r * .49f
-            val px = cx + cos(a).toFloat() * radius
-            val py = cy + sin(a).toFloat() * radius
-            if (i == 0) path.moveTo(px, py) else path.lineTo(px, py)
+            val rr = if (i % 2 == 0) outer else inner
+            val x = cx + cos(a).toFloat() * rr
+            val y = cy + sin(a).toFloat() * rr
+            if (i == 0) out.moveTo(x, y) else out.lineTo(x, y)
         }
-        path.close()
+        out.close()
+    }
 
+    private fun drawEdgePulse(canvas: Canvas, cx: Float, cy: Float, r: Float,
+                              phase: Float, unit: Float) {
+        path.reset()
+        starPath(path, cx, cy, r * .98f, r * .60f)
         val measure = PathMeasure(path, true)
         val length = measure.length
         if (length <= 0f) return
-        val pulseLength = length * .16f
-        val distance = phase * length
-        lightPath.reset()
-        val end = distance + pulseLength
+        val pulseLength = length * .19f
+        val start = phase * length
+        val end = start + pulseLength
+        pulsePath.reset()
         if (end <= length) {
-            measure.getSegment(distance, end, lightPath, true)
+            measure.getSegment(start, end, pulsePath, true)
         } else {
-            measure.getSegment(distance, length, lightPath, true)
-            measure.getSegment(0f, end - length, lightPath, true)
+            measure.getSegment(start, length, pulsePath, true)
+            measure.getSegment(0f, end - length, pulsePath, true)
         }
 
-        // Soft green-gold halo, then a fine gold core: no stark white outline.
-        glow.shader = null
-        glow.color = 0x6686E6B8
-        glow.strokeWidth = r * .105f
-        glow.setShadowLayer(r * .11f, 0f, 0f, 0xAA42C99A.toInt())
-        canvas.drawPath(lightPath, glow)
-        glow.clearShadowLayer()
-        glow.color = 0xFFE3C27D.toInt()
-        glow.strokeWidth = r * .026f
-        canvas.drawPath(lightPath, glow)
+        // Broad translucent jade-gold bloom under a fine champagne-gold highlight.
+        halo.color = 0x7A50D6A4
+        halo.strokeWidth = unit * .025f
+        halo.setShadowLayer(unit * .018f, 0f, 0f, 0xCC38D49A.toInt())
+        canvas.drawPath(pulsePath, halo)
+        halo.clearShadowLayer()
+
+        core.color = 0xFFFFD98A.toInt()
+        core.strokeWidth = unit * .0045f
+        canvas.drawPath(pulsePath, core)
     }
 }
