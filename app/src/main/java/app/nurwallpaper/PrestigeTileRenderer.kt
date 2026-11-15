@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.PathMeasure
 import android.graphics.RectF
 import android.graphics.Shader
 import kotlin.math.cos
@@ -22,6 +23,7 @@ internal class PrestigeTileRenderer {
     private val ornament = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE }
     private val glow = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; strokeCap = Paint.Cap.ROUND; strokeJoin = Paint.Join.ROUND }
     private val path = Path()
+    private val lightPath = Path()
 
     fun draw(canvas: Canvas, phase: Float, animated: Boolean) {
         val w = canvas.width.toFloat()
@@ -51,7 +53,6 @@ internal class PrestigeTileRenderer {
             val cy = startY + row * cell
             drawTile(canvas, cx, cy, radius, phase, col, row, animated)
         }
-        if (animated) drawTravellingLight(canvas, w, h, phase, unit)
     }
 
     private fun drawTile(canvas: Canvas, cx: Float, cy: Float, r: Float,
@@ -99,11 +100,10 @@ internal class PrestigeTileRenderer {
         }
 
         if (animated) {
-            val local = ((phase + col*.071f + row*.043f) % 1f + 1f) % 1f
-            val pulse = (.5 + .5*sin(local*Math.PI*2)).toFloat()
-            glow.color = Color.argb((35 + pulse*105).toInt(), 185, 245, 207)
-            glow.strokeWidth = r*(.025f + pulse*.018f)
-            canvas.drawCircle(cx, cy, r*(.23f+pulse*.025f), glow)
+            // A short amber/mint light pulse travels on the engraved star line.
+            // Phase offsets make it ripple through the tessellation, not flash flat.
+            val local = ((phase + col * .083f + row * .057f) % 1f + 1f) % 1f
+            drawLightPulse(canvas, cx, cy, r, local)
         }
     }
 
@@ -120,35 +120,44 @@ internal class PrestigeTileRenderer {
         canvas.drawPath(path, ornament)
     }
 
-    /** A narrow warm-white highlight travels through the engraved star contours. */
-    private fun drawTravellingLight(canvas: Canvas, w: Float, h: Float, phase: Float, unit: Float) {
-        val x = -unit*.25f + (w+unit*.5f)*phase
-        glow.shader = LinearGradient(x-unit*.12f, 0f, x+unit*.12f, 0f,
-            intArrayOf(0x00D8F2C8, 0x558BE6B8, 0xDDF7E8C4.toInt(), 0x558BE6B8, 0x00D8F2C8),
-            floatArrayOf(0f,.34f,.5f,.66f,1f), Shader.TileMode.CLAMP)
-        glow.strokeWidth = unit*.0045f
-        // Clip the moving light to the tile field so it does not become a flat overlay.
-        canvas.save()
-        canvas.clipRect(0f, 0f, w, h)
-        val cell = unit*.235f
-        val cols = (w/cell).toInt()+3
-        val rows = (h/cell).toInt()+3
-        val sx = (w-(cols-1)*cell)/2f
-        val sy = (h-(rows-1)*cell)/2f
-        for (row in -1 until rows) for (col in -1 until cols) {
-            val cx=sx+col*cell; val cy=sy+row*cell; val r=cell*.49f
-            path.reset()
-            for (i in 0 until 16) {
-                val a = Math.PI*i/8.0 - Math.PI/2.0
-                val radius = if (i%2==0) r*.79f else r*.49f
-                val px = cx + cos(a).toFloat()*radius
-                val py = cy + sin(a).toFloat()*radius
-                if (i==0) path.moveTo(px,py) else path.lineTo(px,py)
-            }
-            path.close()
-            canvas.drawPath(path, glow)
+    /**
+     * Draw a short moving arc along each star contour. The previous full-screen
+     * vertical shader lit every star at once and looked like a white pattern.
+     */
+    private fun drawLightPulse(canvas: Canvas, cx: Float, cy: Float, r: Float, phase: Float) {
+        path.reset()
+        for (i in 0 until 16) {
+            val a = Math.PI * i / 8.0 - Math.PI / 2.0
+            val radius = if (i % 2 == 0) r * .79f else r * .49f
+            val px = cx + cos(a).toFloat() * radius
+            val py = cy + sin(a).toFloat() * radius
+            if (i == 0) path.moveTo(px, py) else path.lineTo(px, py)
         }
-        canvas.restore()
+        path.close()
+
+        val measure = PathMeasure(path, true)
+        val length = measure.length
+        if (length <= 0f) return
+        val pulseLength = length * .16f
+        val distance = phase * length
+        lightPath.reset()
+        val end = distance + pulseLength
+        if (end <= length) {
+            measure.getSegment(distance, end, lightPath, true)
+        } else {
+            measure.getSegment(distance, length, lightPath, true)
+            measure.getSegment(0f, end - length, lightPath, true)
+        }
+
+        // Soft green-gold halo, then a fine gold core: no stark white outline.
         glow.shader = null
+        glow.color = 0x6686E6B8
+        glow.strokeWidth = r * .105f
+        glow.setShadowLayer(r * .11f, 0f, 0f, 0xAA42C99A.toInt())
+        canvas.drawPath(lightPath, glow)
+        glow.clearShadowLayer()
+        glow.color = 0xFFE3C27D.toInt()
+        glow.strokeWidth = r * .026f
+        canvas.drawPath(lightPath, glow)
     }
 }
